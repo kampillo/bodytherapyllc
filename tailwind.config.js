@@ -9,7 +9,7 @@ module.exports = {
       extend: {
         colors: {
           primary: {
-            DEFAULT: '#3D7B80', // Un verde azulado calmante
+            DEFAULT: '#3D7B80',
             50: '#F2F7F7',
             100: '#E5F0F0',
             200: '#CCE0E1',
@@ -18,36 +18,28 @@ module.exports = {
             500: '#7FB2B4',
             600: '#66A2A5',
             700: '#4C9396',
-            800: '#3D7B80', // Base
+            800: '#3D7B80',
             900: '#2D5D61',
           },
           secondary: {
-            DEFAULT: '#EAAC8B', // Tono cálido complementario
+            DEFAULT: '#EAAC8B',
             50: '#FDF8F5',
             100: '#FBF1EA',
             200: '#F7E3D4',
             300: '#F3D5BF',
             400: '#EFC7AA',
-            500: '#EAAC8B', // Base
+            500: '#EAAC8B',
             600: '#E39169',
             700: '#DB7647',
             800: '#C05C2E',
             900: '#964625',
           },
-          light: '#F9F9FB', // Fondo general claro
-          dark: '#2D3142', // Texto principal
+          light: '#F9F9FB',
+          dark: '#2D3142',
         },
         fontFamily: {
           sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
           heading: ['var(--font-playfair)', 'ui-serif', 'Georgia', 'serif'],
-        },
-        spacing: {
-          '128': '32rem',
-        },
-        borderRadius: {
-          'xl': '1rem',
-          '2xl': '1.5rem',
-          '3xl': '2rem',
         },
         boxShadow: {
           'soft': '0 4px 20px rgba(0, 0, 0, 0.05)',
