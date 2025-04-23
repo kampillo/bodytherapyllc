@@ -52,99 +52,174 @@ export default function Home() {
 
       {/* Services Preview Section */}
       <section className="py-20 bg-light">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">Nuestras Especialidades</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">Servicios Diseñados para Tu Bienestar</h2>
-            <p className="text-lg text-dark/70 max-w-3xl mx-auto">
-              Ofrecemos una amplia gama de servicios terapéuticos y de bienestar, adaptados a tus necesidades específicas.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Service Card 1 */}
-            <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src="/images/services/therapeutic-massage.jpg"
-                  alt="Masaje Terapéutico"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Terapéutico</h3>
-                <p className="text-dark/70 mb-5">
-                  Especializado en aliviar dolores crónicos, lesiones y problemas musculares específicos.
-                </p>
-                <Button href="/services#therapeutic" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
-                  <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </Button>
-              </div>
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">Nuestras Especialidades</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">Servicios Diseñados para Tu Bienestar</h2>
+          <p className="text-lg text-dark/70 max-w-3xl mx-auto">
+            Ofrecemos una amplia gama de servicios terapéuticos y de bienestar, adaptados a tus necesidades específicas.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Service Card 1 */}
+          <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
+            <div className="relative h-56 overflow-hidden">
+              <Image
+                src="/images/services/therapeutic-massage.jpg"
+                alt="Masaje Terapéutico Especializado"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              />
             </div>
-            
-            {/* Service Card 2 */}
-            <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src="/images/services/relaxing-massage.jpg"
-                  alt="Masaje Relajante"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Relajante</h3>
-                <p className="text-dark/70 mb-5">
-                  Diseñado para reducir el estrés, la ansiedad y promover una sensación de bienestar general.
-                </p>
-                <Button href="/services#relaxing" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
-                  <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </Button>
-              </div>
-            </div>
-            
-            {/* Service Card 3 */}
-            <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src="/images/services/holistic-therapy.jpg"
-                  alt="Terapias Holísticas"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Terapias Holísticas</h3>
-                <p className="text-dark/70 mb-5">
-                  Enfoque integral que combina diferentes técnicas para armonizar cuerpo, mente y espíritu.
-                </p>
-                <Button href="/services#holistic" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
-                  <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </Button>
-              </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Terapéutico Especializado</h3>
+              <p className="text-dark/70 mb-5">
+                Especializado en aliviar dolores crónicos, lesiones y problemas musculares específicos.
+              </p>
+              <Button href="/services#therapeutic" variant="ghost" className="group-hover:text-primary-700">
+                <span>Más información</span>
+                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Button>
             </div>
           </div>
           
-          <div className="text-center mt-12">
-            <Button href="/services" variant="outline" size="lg">
-              Ver todos los servicios
-            </Button>
+          {/* Service Card 2 */}
+          <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
+            <div className="relative h-56 overflow-hidden">
+              <Image
+                src="/images/services/clinical-massage.jpg"
+                alt="Masajes Clínicos"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-primary-800 mb-3">Masajes Clínicos</h3>
+              <p className="text-dark/70 mb-5">
+                Técnicas especializadas para condiciones médicas específicas, como descontracturante, tejido profundo y más.
+              </p>
+              <Button href="/services#clinical" variant="ghost" className="group-hover:text-primary-700">
+                <span>Más información</span>
+                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Button>
+            </div>
+          </div>
+          
+          {/* Service Card 3 */}
+          <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
+            <div className="relative h-56 overflow-hidden">
+              <Image
+                src="/images/services/relaxing-massage.jpg"
+                alt="Masajes Relajantes"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-primary-800 mb-3">Masajes Relajantes</h3>
+              <p className="text-dark/70 mb-5">
+                Diseñados para reducir el estrés, la ansiedad y promover una sensación de bienestar general.
+              </p>
+              <Button href="/services#relaxing" variant="ghost" className="group-hover:text-primary-700">
+                <span>Más información</span>
+                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Button>
+            </div>
+          </div>
+          
+          {/* Service Card 4 */}
+          <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
+            <div className="relative h-56 overflow-hidden">
+              <Image
+                src="/images/services/corporate-massage.jpg"
+                alt="Masaje Corporativo"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Corporativo</h3>
+              <p className="text-dark/70 mb-5">
+                Servicio profesional de masaje Shiatsu para empresas, ideal para reducir el estrés laboral.
+              </p>
+              <Button href="/services#corporate" variant="ghost" className="group-hover:text-primary-700">
+                <span>Más información</span>
+                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Button>
+            </div>
+          </div>
+          
+          {/* Service Card 5 */}
+          <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
+            <div className="relative h-56 overflow-hidden">
+              <Image
+                src="/images/services/holistic-therapy.jpg"
+                alt="Terapias Holísticas"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-primary-800 mb-3">Terapias Holísticas</h3>
+              <p className="text-dark/70 mb-5">
+                Enfoque integral que combina diferentes técnicas para armonizar cuerpo, mente y espíritu.
+              </p>
+              <Button href="/services#holistic" variant="ghost" className="group-hover:text-primary-700">
+                <span>Más información</span>
+                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Button>
+            </div>
+          </div>
+          
+          {/* Service Card 6 */}
+          <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
+            <div className="relative h-56 overflow-hidden">
+              <Image
+                src="/images/services/packages.jpg"
+                alt="Paquetes de Masaje"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-primary-800 mb-3">Paquetes de Masaje</h3>
+              <p className="text-dark/70 mb-5">
+                Experiencias completas que combinan diferentes técnicas y extras para una experiencia integral.
+              </p>
+              <Button href="/services#packages" variant="ghost" className="group-hover:text-primary-700">
+                <span>Más información</span>
+                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Button>
+            </div>
           </div>
         </div>
-      </section>
+        
+        <div className="text-center mt-12">
+          <Button href="/services" variant="outline" size="lg">
+            Ver todos los servicios
+          </Button>
+        </div>
+      </div>
+    </section>
 
       {/* About Preview Section */}
       <section className="py-20">
