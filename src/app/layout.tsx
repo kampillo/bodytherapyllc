@@ -1,8 +1,9 @@
-// src/app/layout.tsx
+// src/app/layout.tsx - versión modificada
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import BackgroundShapes from '@/components/ui/BackgroundShapes';
 import '../styles/globals.css';
 
 // Fuente principal para párrafos y texto general
@@ -31,8 +32,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
-      <body className={`font-sans bg-light text-dark antialiased`}>
-        <div className="flex flex-col min-h-screen">
+      <body className={`font-sans bg-light text-dark antialiased relative`}>
+        <BackgroundShapes />
+        <div className="flex flex-col min-h-screen relative z-10">
           <Header />
           <main className="flex-grow">
             {children}

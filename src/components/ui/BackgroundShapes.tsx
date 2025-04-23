@@ -1,0 +1,57 @@
+// src/components/ui/BackgroundShapes.tsx
+'use client';
+
+import React from 'react';
+
+interface BackgroundShapesProps {
+  className?: string;
+}
+
+const BackgroundShapes: React.FC<BackgroundShapesProps> = ({ className = '' }) => {
+  return (
+    <div className={`fixed inset-0 z-0 w-full h-full pointer-events-none overflow-hidden ${className}`}>
+      <svg
+        className="absolute w-full h-full"
+        viewBox="0 0 1440 800"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        {/* Forma ondulada verde (primary color) */}
+        <path
+          d="M-50,250 C150,150 350,450 550,300 C750,150 950,250 1150,200 C1350,150 1450,100 1550,150 L1550,800 L-50,800 Z"
+          fill="#889535"
+          opacity="0.07"
+        />
+        
+        {/* Forma ondulada morada (secondary color) */}
+        <path
+          d="M-50,500 C100,450 200,600 400,550 C600,500 800,650 1000,600 C1200,550 1400,650 1600,600 L1600,800 L-50,800 Z"
+          fill="#74196E"
+          opacity="0.05"
+        />
+        
+        {/* Blob forma verde claro superior derecha */}
+        <path
+          d="M1000,100 C1100,50 1200,75 1250,150 C1300,225 1275,325 1200,350 C1125,375 1050,325 1025,250 C1000,175 1025,125 1000,100 Z"
+          fill="#889535"
+          opacity="0.07"
+        />
+        
+        {/* Blob forma morada superior izquierda */}
+        <path
+          d="M200,150 C250,100 325,125 350,175 C375,225 350,300 300,325 C250,350 175,325 150,275 C125,225 150,175 200,150 Z"
+          fill="#74196E"
+          opacity="0.06"
+        />
+        
+        {/* Forma ondulada circular morada centro */}
+        <circle cx="800" cy="400" r="100" fill="#74196E" opacity="0.03" />
+        
+        {/* Forma ondulada circular verde centro inferior */}
+        <circle cx="400" cy="600" r="120" fill="#889535" opacity="0.04" />
+      </svg>
+    </div>
+  );
+};
+
+export default BackgroundShapes;
