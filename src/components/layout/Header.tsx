@@ -33,11 +33,11 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <Image 
-            src="/images/logo.svg" 
+            src="/logo.png" 
             alt="Body Therapy" 
             width={180} 
             height={60} 
-            className="h-12 w-auto"
+            className="h-18 w-auto"
           />
         </Link>
 
