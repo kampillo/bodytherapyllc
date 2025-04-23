@@ -33,7 +33,7 @@ const ServicesPage: React.FC = () => {
         id="therapeutic"
         title="Masaje Terapéutico Especializado PAIN"
         description="Nuestro masaje terapéutico especializado está diseñado para abordar condiciones específicas y aliviar el dolor crónico, mejorando tu calidad de vida."
-        imageSrc="/images/services/therapeutic-massage-detail.jpg"
+        imageSrc="/images/services/masaje-terapeutico-especializado.png"
         imageAlt="Masaje Terapéutico Especializado"
         price="$125.00"
         duration="75 min"
@@ -291,7 +291,7 @@ const ServicesPage: React.FC = () => {
             <div className="md:w-1/2 mb-10 md:mb-0">
               <div className="relative rounded-xl overflow-hidden shadow-hover">
                 <Image
-                  src="/images/services/corporate-massage.jpg"
+                  src="/images/services/masaje-corporativo.jpg"
                   alt="Masaje Corporativo"
                   width={600}
                   height={400}
@@ -332,7 +332,7 @@ const ServicesPage: React.FC = () => {
             <div className="md:w-1/2 mb-10 md:mb-0">
               <div className="relative rounded-xl overflow-hidden shadow-hover">
                 <Image
-                  src="/images/services/holistic-therapy-detail.jpg"
+                  src="/images/services/terapias-holisticas.jpg"
                   alt="Terapias Holísticas"
                   width={600}
                   height={400}

@@ -13,41 +13,43 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/3 bg-secondary-50 rounded-tr-3xl opacity-70"></div>
         
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-1/2 mb-10 md:mb-0 md:pr-8">
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-800 mb-6 leading-tight">
-                Redescubre el <span className="relative inline-block">
-                  bienestar
-                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-secondary-500"></span>
-                </span> a través de nuestras manos
-              </h1>
-              <p className="text-lg md:text-xl text-dark/70 mb-8 leading-relaxed">
-                En Body Therapy nos especializamos en terapia manual personalizada para aliviar dolores, mejorar tu movilidad y promover tu bienestar integral.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button href="/services" variant="primary" size="lg">
-                  Nuestros Servicios
-                </Button>
-                <Button href="/contact" variant="outline" size="lg">
-                  Agenda una Cita
-                </Button>
-              </div>
-            </div>
-            <div className="md:w-1/2">
-              <div className="relative rounded-2xl overflow-hidden shadow-hover">
-                <Image
-                  src="/images/hero/massage-therapy.jpg"
-                  alt="Terapia de Masaje"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto"
-                />
-                {/* Elemento decorativo */}
-                <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-300 rounded-full opacity-30"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div className="flex flex-col md:flex-row items-center gap-12">
+    {/* Texto: ocupa 5/12 del ancho en pantallas md+ */}
+    <div className="md:w-5/12 mb-10 md:mb-0 md:pr-8">
+      <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-800 mb-6 leading-tight">
+        Redescubre el <span className="relative inline-block">
+          bienestar
+          <span className="absolute -bottom-1 left-0 w-full h-1 bg-secondary-500"></span>
+        </span> a través de nuestras manos
+      </h1>
+      <p className="text-lg md:text-xl text-dark/70 mb-8 leading-relaxed">
+        En Body Therapy nos especializamos en terapia manual personalizada para aliviar dolores, mejorar tu movilidad y promover tu bienestar integral.
+      </p>
+      <div className="flex flex-wrap gap-4">
+        <Button href="/services" variant="primary" size="lg">
+          Nuestros Servicios
+        </Button>
+        <Button href="/contact" variant="outline" size="lg">
+          Agenda una Cita
+        </Button>
+      </div>
+    </div>
+    {/* Imagen: ocupa 7/12 del ancho en pantallas md+ */}
+    <div className="md:w-7/12">
+      <div className="relative rounded-2xl overflow-hidden shadow-hover">
+        <Image
+          src="/images/home/banner-1.jpg"
+          alt="Terapia de Masaje"
+          width={900}
+          height={600}
+          className="w-full h-auto"
+        />
+        {/* Elemento decorativo */}
+        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-300 rounded-full opacity-30"></div>
+      </div>
+    </div>
+  </div>
+</div>
       </section>
 
       {/* Services Preview Section */}
@@ -66,7 +68,7 @@ export default function Home() {
           <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
             <div className="relative h-56 overflow-hidden">
               <Image
-                src="/images/services/therapeutic-massage.jpg"
+                src="/images/services/masaje-especializado.png"
                 alt="Masaje Terapéutico Especializado"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -91,7 +93,7 @@ export default function Home() {
           <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
             <div className="relative h-56 overflow-hidden">
               <Image
-                src="/images/services/clinical-massage.jpg"
+                src="/images/services/masaje-clinico.jpg"
                 alt="Masajes Clínicos"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -116,7 +118,7 @@ export default function Home() {
           <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
             <div className="relative h-56 overflow-hidden">
               <Image
-                src="/images/services/relaxing-massage.jpg"
+                src="/images/services/masajes-relajantes.jpg"
                 alt="Masajes Relajantes"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -141,7 +143,7 @@ export default function Home() {
           <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
             <div className="relative h-56 overflow-hidden">
               <Image
-                src="/images/services/corporate-massage.jpg"
+                src="/images/services/masaje-corporativo.jpg"
                 alt="Masaje Corporativo"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -166,7 +168,7 @@ export default function Home() {
           <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
             <div className="relative h-56 overflow-hidden">
               <Image
-                src="/images/services/holistic-therapy.jpg"
+                src="/images/services/terapias-holisticas.jpg"
                 alt="Terapias Holísticas"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -191,7 +193,7 @@ export default function Home() {
           <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
             <div className="relative h-56 overflow-hidden">
               <Image
-                src="/images/services/packages.jpg"
+                src="/images/services/paquetes.jpg"
                 alt="Paquetes de Masaje"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -230,7 +232,7 @@ export default function Home() {
                 <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary-200 rounded-xl -z-10"></div>
                 <div className="relative rounded-xl overflow-hidden shadow-hover">
                   <Image
-                    src="/images/about/therapist.jpg"
+                    src="/images/home/Masajes-spa.jpg"
                     alt="Nuestra Terapeuta"
                     width={600}
                     height={400}
