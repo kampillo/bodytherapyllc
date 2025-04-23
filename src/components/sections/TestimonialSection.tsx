@@ -1,7 +1,7 @@
 'use client';
 // src/components/sections/TestimonialCarousel.tsx
 import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 interface Testimonial {
   id: number;
