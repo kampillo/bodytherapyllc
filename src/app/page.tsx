@@ -8,7 +8,7 @@ export default function Home() {
   // Define las imágenes para el carrusel
   const heroImages = [
     {
-      src: "/images/home/banner-1.jpg",
+      src: "/images/home/banner-1.png",
       alt: "Terapia de Masaje"
     },
     {
@@ -18,10 +18,6 @@ export default function Home() {
     {
       src: "/images/home/banner-3.png",
       alt: "Terapias Holísticas"
-    },
-    {
-      src: "/images/home/banner-4.png",
-      alt: "Bienestar Integral"
     }
   ];
 
