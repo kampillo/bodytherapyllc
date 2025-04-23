@@ -274,45 +274,61 @@ export default function Home() {
      </Button>
    </div>
 
-   {/* Mission Section - Text Only */}
+{/* Mission Section */}
 <section className="py-20 bg-gradient-to-b from-white to-primary-50">
   <div className="container mx-auto px-4">
-    <div className="max-w-4xl mx-auto">
-      {/* Encabezado */}
-      <div className="text-center mb-8">
-        <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium mb-4">Nuestra Misión</span>
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-3">Comprometidos con tu bienestar</h2>
-        <div className="flex flex-col items-center justify-center">
-          <h3 className="font-bold text-primary-700 text-xl mb-1">MARÍA MERCEDES LIZALDE</h3>
-          <p className="text-dark/70">LMT–Instructor-Proveedor de Clases Continuas</p>
+    <div className="flex flex-col lg:flex-row items-center gap-12">
+      {/* Columna de la imagen */}
+      <div className="lg:w-5/12 mb-10 lg:mb-0">
+        <div className="relative">
+          <div className="absolute -top-4 -left-4 w-32 h-32 border-2 border-secondary-200 rounded-xl -z-10"></div>
+          <div className="relative rounded-xl overflow-hidden shadow-hover">
+            <Image
+              src="/images/home/mercy.jpg"
+              alt="María Mercedes Lizalde"
+              width={500}
+              height={600}
+              className="w-full h-auto"
+            />
+          </div>
+          <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-primary-200 rounded-xl -z-10"></div>
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-white shadow-soft rounded-lg px-5 py-4 w-11/12 text-center">
+            <h4 className="font-bold text-primary-800 text-lg mb-1">MARÍA MERCEDES LIZALDE</h4>
+            <p className="text-dark/70 text-sm">LMT–Instructor-Proveedor de Clases Continuas</p>
+          </div>
         </div>
       </div>
       
-      {/* Contenido */}
-      <div className="space-y-4 text-dark/80 leading-relaxed">
-        <p>
-          Nuestro mayor deseo es que podamos vivir sin dolor, ya que esa experiencia nos permite entender y empatizar con quienes enfrentan dificultades físicas. Es esa empatía la que nos motiva a ofrecerles nuestros servicios, con la firme intención de ayudarles a mejorar su calidad de vida.
-        </p>
-        <p>
-          Contamos con la capacitación y experiencia necesarias para diseñar tratamientos personalizados, adaptados a las necesidades específicas de cada persona. A través de la Terapia Manual, hemos descubierto una de las mejores maneras de apoyar a nuestros pacientes en la prevención, recuperación y mantenimiento del equilibrio corporal. Creemos en un enfoque integral que no solo alivia el dolor, sino que también promueve un bienestar duradero.
-        </p>
-        <div className="my-6 px-6 py-4 bg-white shadow-soft rounded-lg text-center">
-          <p className="text-lg font-medium text-primary-700 italic">
-            "Transformamos el dolor en progreso y movimientos limitados en libertad"
+      {/* Columna del texto */}
+      <div className="lg:w-7/12">
+        <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium mb-4">Nuestra Misión</span>
+        <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">Comprometidos con tu bienestar</h2>
+        
+        <div className="space-y-4 text-dark/80 leading-relaxed">
+          <p>
+            Nuestro mayor deseo es que podamos vivir sin dolor, ya que esa experiencia nos permite entender y empatizar con quienes enfrentan dificultades físicas. Es esa empatía la que nos motiva a ofrecerles nuestros servicios, con la firme intención de ayudarles a mejorar su calidad de vida.
+          </p>
+          <p>
+            Contamos con la capacitación y experiencia necesarias para diseñar tratamientos personalizados, adaptados a las necesidades específicas de cada persona. A través de la Terapia Manual, hemos descubierto una de las mejores maneras de apoyar a nuestros pacientes en la prevención, recuperación y mantenimiento del equilibrio corporal.
+          </p>
+          <div className="my-6 pl-4 border-l-4 border-secondary-400 italic">
+            <p className="text-lg font-medium text-primary-700">
+              "Transformamos el dolor en progreso y movimientos limitados en libertad"
+            </p>
+          </div>
+          <p>
+            Este lema refleja nuestro compromiso de acompañarlos en cada paso del camino hacia una vida más activa y plena. Nos apasiona ver cómo cada pequeño avance se convierte en un gran logro para quienes confían en nosotros.
+          </p>
+          <p className="font-medium text-primary-700">
+            ¡Por más vidas vivas, llenas de movimiento, salud y felicidad! Estamos aquí para acompañarte en ese camino hacia una vida sin límites.
           </p>
         </div>
-        <p>
-          Nuestro lema refleja nuestro compromiso de acompañarlos en cada paso del camino hacia una vida más activa y plena. Nos apasiona ver cómo cada pequeño avance se convierte en un gran logro para quienes confían en nosotros.
-        </p>
-        <p className="font-medium text-primary-700 text-center mt-6">
-          ¡Por más vidas vivas, llenas de movimiento, salud y felicidad! Estamos aquí para acompañarte en ese camino hacia una vida sin límites.
-        </p>
-      </div>
-      
-      <div className="mt-10 text-center">
-        <Button href="/about" variant="primary">
-          Conoce más sobre nosotros
-        </Button>
+        
+        <div className="mt-8">
+          <Button href="/about" variant="primary">
+            Conoce más sobre nosotros
+          </Button>
+        </div>
       </div>
     </div>
   </div>
