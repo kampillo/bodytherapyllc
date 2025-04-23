@@ -18,7 +18,7 @@ const ServicesPage: React.FC = () => {
         {/* Elementos decorativos */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary-100 rounded-full opacity-60 -translate-y-1/3 translate-x-1/4" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary-100 rounded-full opacity-60 translate-y-1/3 -translate-x-1/4" />
-        
+
         <div className="container mx-auto px-4 text-center relative z-10">
           <span className="inline-block px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium mb-4">Nuestras especialidades</span>
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-800 mb-6">Nuestros Servicios</h1>
@@ -29,7 +29,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Masaje Terapéutico Especializado */}
-      <ServiceCard 
+      <ServiceCard
         id="therapeutic"
         title="Masaje Terapéutico Especializado PAIN"
         description="Nuestro masaje terapéutico especializado está diseñado para abordar condiciones específicas y aliviar el dolor crónico, mejorando tu calidad de vida."
@@ -52,6 +52,7 @@ const ServicesPage: React.FC = () => {
       />
 
       {/* Clinical Massage Section */}
+      {/* Clinical Massage Section */}
       <section id="clinical" className="py-16 bg-primary-50">
         <div className="container mx-auto px-4">
           <div className="mb-12">
@@ -63,166 +64,325 @@ const ServicesPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Clinical Massage 1 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Descontracturante</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/descontracturante.png"
+                      alt="Masaje Descontracturante"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$95.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Descontracturante</h3>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">60 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$95.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
+
             {/* Clinical Massage 2 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Deep Tissue (Tejido profundo)</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/deeptissue.png"
+                      alt="Masaje Deep Tissue"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$95.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Deep Tissue (Tejido profundo)</h3>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">60 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$95.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
-            {/* ...otros Clinical Massage 3 a 10 (igual al original)... */}
 
             {/* Clinical Massage 3 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Linfático</h3>
-              <p className="text-dark/70 text-sm mb-3">
-                Con crema de masaje especial para desintoxicar
-              </p>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/linfatico.png"
+                      alt="Masaje Linfático"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$100.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Linfático</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Con crema de masaje especial para desintoxicar
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">60 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$100.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                  <p className="text-sm text-secondary-700 mt-2">Paquete 3 masajes linfáticos: $280.00</p>
+                </div>
               </div>
-              <p className="text-sm text-secondary-700 mb-4">Paquete 3 masajes linfáticos: $280.00</p>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Clinical Massage 4 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Miofascial</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/miofascial.png"
+                      alt="Masaje Miofascial"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$90.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Miofascial</h3>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">60 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$90.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Clinical Massage 5 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Cambio Hormonal</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/hormonal.png"
+                      alt="Masaje Cambio Hormonal"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$90.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Cambio Hormonal</h3>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">60 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$90.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Clinical Massage 6 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Prenatal</h3>
-              <p className="text-dark/70 text-sm mb-3">
-                Con crema especial para reducir inflamación en piernas
-              </p>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/prenatal.png"
+                      alt="Masaje Prenatal"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$95.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Prenatal</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Con crema especial para reducir inflamación en piernas
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">60 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$95.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                  <p className="text-sm text-secondary-700 mt-2">Paquete 3 masajes prenatales: $270.00</p>
+                </div>
               </div>
-              <p className="text-sm text-secondary-700 mb-4">Paquete 3 masajes prenatales: $270.00</p>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Clinical Massage 7 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Geriátrico</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">55 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/geriatrico.png"
+                      alt="Masaje Geriátrico"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$90.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Geriátrico</h3>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">55 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$90.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Clinical Massage 8 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Oncológico</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">55 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/oncologico.png"
+                      alt="Masaje Oncológico"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$90.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Oncológico</h3>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">55 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$90.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Clinical Massage 9 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Deportivo</h3>
-              <p className="text-dark/70 text-sm mb-3">
-                Con aceite de aromaterapia especial para disminuir tensión, percutor, cupping
-              </p>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">70 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/deportivo.png"
+                      alt="Masaje Deportivo"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$140.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Deportivo</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Con aceite de aromaterapia especial para disminuir tensión, percutor, cupping
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">70 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$140.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                  <p className="text-sm text-secondary-700 mt-2">Paquete 3 masajes deportivos: $385.00</p>
+                </div>
               </div>
-              <p className="text-sm text-secondary-700 mb-4">Paquete 3 masajes deportivos: $385.00</p>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Clinical Massage 10 */}
             <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Metamérico</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">50 min</span>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="sm:w-2/5">
+                  <div className="relative rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src="/images/services/metamerico.png"
+                      alt="Masaje Metamérico"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                <span className="font-bold text-secondary-700">$90.00</span>
+                <div className="sm:w-3/5">
+                  <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Metamérico</h3>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-dark/70">50 min</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-secondary-700">$90.00</span>
+                      <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
-          
           </div>
         </div>
       </section>
@@ -237,46 +397,77 @@ const ServicesPage: React.FC = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-light rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Aromaterapia</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+            {/* Relaxing Massage 1 */}
+            <div className="bg-light rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+              <div className="mb-4">
+                <div className="relative rounded-lg overflow-hidden h-48 mb-4">
+                  <Image
+                    src="/images/services/aroma.png"
+                    alt="Masaje Aromaterapia"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <span className="font-bold text-secondary-700">$80.00</span>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Aromaterapia</h3>
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">60 min</span>
+                  </div>
+                  <span className="font-bold text-secondary-700">$80.00</span>
+                </div>
               </div>
               <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Relaxing Massage 2 */}
             <div className="bg-light rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Sueco</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+              <div className="mb-4">
+                <div className="relative rounded-lg overflow-hidden h-48 mb-4">
+                  <Image
+                    src="/images/services/sueco.png"
+                    alt="Masaje Sueco"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <span className="font-bold text-secondary-700">$80.00</span>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Sueco</h3>
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">60 min</span>
+                  </div>
+                  <span className="font-bold text-secondary-700">$80.00</span>
+                </div>
               </div>
               <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
 
             {/* Relaxing Massage 3 */}
             <div className="bg-light rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
-              <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Piedras Calientes</h3>
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-dark/70">60 min</span>
+              <div className="mb-4">
+                <div className="relative rounded-lg overflow-hidden h-48 mb-4">
+                  <Image
+                    src="/images/services/piedras.png"
+                    alt="Masaje Piedras Calientes"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <span className="font-bold text-secondary-700">$90.00</span>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Piedras Calientes</h3>
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">60 min</span>
+                  </div>
+                  <span className="font-bold text-secondary-700">$90.00</span>
+                </div>
               </div>
               <Button href="/contact" variant="outline" size="sm">Reservar</Button>
             </div>
@@ -346,8 +537,8 @@ const ServicesPage: React.FC = () => {
                 Nuestras terapias holísticas buscan equilibrar el cuerpo, la mente y el espíritu, promoviendo la salud integral y el bienestar.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-{/* Holistic Therapy 1 */}
-<div className="bg-light rounded-lg p-6 shadow-soft">
+                {/* Holistic Therapy 1 */}
+                <div className="bg-light rounded-lg p-6 shadow-soft">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Access Bars</h3>
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center">
@@ -360,7 +551,7 @@ const ServicesPage: React.FC = () => {
                   </div>
                   <Button href="/contact" variant="outline" size="sm">Reservar</Button>
                 </div>
-                
+
                 {/* Holistic Therapy 2 */}
                 <div className="bg-light rounded-lg p-6 shadow-soft">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Reflexología Podal</h3>

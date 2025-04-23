@@ -9,7 +9,7 @@ interface ProductCardProps {
   description: string;
   price: number;
   image: string;
-  category: string;
+  // category: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -18,15 +18,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
   description,
   price,
   image,
-  category,
+  // category,
 }) => {
   return (
     <div className="bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-hover group">
       <div className="relative h-56 overflow-hidden">
         <div className="absolute top-2 right-2 z-10">
-          <span className="inline-block px-2 py-1 bg-primary-50 text-primary-800 rounded-full text-xs font-medium">
+          {/* <span className="inline-block px-2 py-1 bg-primary-50 text-primary-800 rounded-full text-xs font-medium">
             {category}
-          </span>
+          </span> */}
         </div>
         <Image
           src={image}

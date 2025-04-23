@@ -168,7 +168,7 @@ const AboutPage = () => {
     
 
       {/* Testimonials Section - Usando el componente con showAll=true */}
-      <div className="pt-10">
+      <div className="pt-10" id="testimonials">
         <TestimonialCarousel showAll={true} />
       </div>
 

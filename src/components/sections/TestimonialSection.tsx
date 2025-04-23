@@ -88,6 +88,54 @@ const testimonials = [
     content: 'Quiero expresar mi agradecimiento a Body Therapy LLC por su excelente atención al cliente y profesionalismo. Mercedes, quien ha sido una gran amiga durante más de 5 años, siempre ofrece un servicio excepcional. Su dedicación y calidez hacen que cada experiencia sea única.',
     author: 'Jenni Rodríguez',
     role: 'Cliente'
+  },
+  {
+    id: 13,
+    content: 'El mejor masaje descontracturante y de relajación que he recibido es el de Mercedes Lizalde ❤️. He quedado encantada, hace un excelente trabajo. Recomendadisima',
+    author: 'Alma Cecilia',
+    role: 'Cliente'
+  },
+  {
+    id: 14,
+    content: 'Como parte del riesgo de mi trabajo físico, me contracturo seguido, y había llegado a un punto en que los dolores musculares me estaban impidiendo seguir con mis funciones, pero gracias a la recomendacion de un amigo fui a tomar masajes a body therapy y he recuperado mi movilidad y el dolor desapareció, gracias por brindarme salud.',
+    author: 'Manuel Cázares',
+    role: 'Cliente'
+  },
+  {
+    id: 15,
+    content: 'Excelente servicio, realmente profesional, sin duda fue esencial para mi completa recuperación el haber contado con los servicios, principalmente en mi operación de las dos rodillas, las terapias que se ocuparon y terapia de mi brazo, sus manitas son expertas y Sanadoras al millón, Gracias Mechita por tanto DTB 🙏🙏🙏',
+    author: 'Pita Vázquez',
+    role: 'Cliente'
+  },
+  {
+    id: 16,
+    content: 'Aqui llegue por mis bendiciones jajaja... **Excelente servicio, 100% recomendado**',
+    author: 'Norma Servin',
+    role: 'Cliente'
+  },
+  {
+    id: 17,
+    content: 'He tenido la oportunidad de recibir distintos tipos de masajes, relajantes, descontracturantes y hasta baño de novia!! Y todos tienen un factor común, que es el Amor y la entrega con el que los recibí. Altamente recomendable!! Todos merecemos el gran regalo de un masaje!!',
+    author: 'Maricela C',
+    role: 'Cliente'
+  },
+  {
+    id: 18,
+    content: 'Trabaja Exelente María Mercedes mi familia y yo quedamos súper contentos con sus masajes nos sentimos súper bien con esas manos santas que dios te dio como extrañamos los masajes tan bien que nos sentimos dios te siga bendiciendo',
+    author: 'Clara Nava',
+    role: 'Cliente'
+  },
+  {
+    id: 19,
+    content: 'Yo fui una de las primeras clientas de Maria Mercedes de verdad hace como 18 años desde entonces ya era excelente en su trabajo ya sabrás tu la experiencia que ahorita a adquirido a través de tanto tiempo y conocimiento',
+    author: 'María Elsa Valenzuela',
+    role: 'Cliente'
+  },
+  {
+    id: 20,
+    content: 'Thank you to Body therapy for their amazing services, physical therapy, very relaxing massage and wonderful oils, Mercedes did a great job, I highly recommend her services.',
+    author: 'Marielena Muñoz',
+    role: 'Cliente'
   }
 ];
 
@@ -245,7 +293,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
       </div>
       
       <div className="relative z-10">
-        <p className="text-dark/80 mb-6 italic leading-relaxed line-clamp-5">
+        <p className="text-dark/80 mb-6 italic leading-relaxed ">
           "{testimonial.content}"
         </p>
         <div className="flex items-center">
