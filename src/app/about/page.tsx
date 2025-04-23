@@ -45,10 +45,10 @@ const AboutPage = () => {
             <div className="md:w-1/2 md:pl-12">
               <h2 className="text-3xl font-bold text-primary-800 mb-4">Nuestra Historia</h2>
               <p className="text-lg text-dark/70 mb-6">
-                Body Therapy LLC nació del sueño y la pasión de María Mercedes Lizalde, conocida cariñosamente como Mercy, una terapeuta dedicada que ha dedicado su vida a ayudar a los demás a través de la terapia manual.
+                Body Therapy LLC nació del sueño y la pasión de María Mercedes Lizalde, conocida cariñosamente como Mercy, una terapeuta que ha dedicado su vida a ayudar a los demás a través de la terapia manual.
               </p>
               <p className="text-lg text-dark/70 mb-6">
-                Con años de experiencia y formación especializada, Mercy fundó Body Therapy LLC con la visión de crear un espacio donde las personas pudieran encontrar alivio a sus dolores y mejorar su calidad de vida a través de técnicas terapéuticas personalizadas.
+                Con años de experiencia y formación especializada, Mercy fundó Body Therapy LLC con la visión de crear un espacio donde las personas puedan encontrar alivio a su dolor y mejorar su calidad de vida a través de técnicas terapéuticas personalizadas.
               </p>
               <p className="text-lg text-dark/70">
                 Hoy, Body Therapy LLC se ha convertido en un referente en terapia manual, combinando técnicas tradicionales con enfoques innovadores para ofrecer el mejor servicio a nuestros clientes.

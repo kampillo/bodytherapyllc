@@ -40,7 +40,7 @@ export default function Home() {
                 </span> a través de nuestras manos
               </h1>
               <p className="text-lg md:text-xl text-dark/70 mb-8 leading-relaxed">
-                En Body Therapy nos especializamos en terapia manual personalizada para aliviar dolores, mejorar tu movilidad y promover tu bienestar integral.
+                En Body Therapy transformamos el dolor en progreso y movimientos limitados en libertad. 
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button href="/services" variant="primary" size="lg">
@@ -274,6 +274,50 @@ export default function Home() {
      </Button>
    </div>
 
+   {/* Mission Section - Text Only */}
+<section className="py-20 bg-gradient-to-b from-white to-primary-50">
+  <div className="container mx-auto px-4">
+    <div className="max-w-4xl mx-auto">
+      {/* Encabezado */}
+      <div className="text-center mb-8">
+        <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium mb-4">Nuestra Misión</span>
+        <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-3">Comprometidos con tu bienestar</h2>
+        <div className="flex flex-col items-center justify-center">
+          <h3 className="font-bold text-primary-700 text-xl mb-1">MARÍA MERCEDES LIZALDE</h3>
+          <p className="text-dark/70">LMT–Instructor-Proveedor de Clases Continuas</p>
+        </div>
+      </div>
+      
+      {/* Contenido */}
+      <div className="space-y-4 text-dark/80 leading-relaxed">
+        <p>
+          Nuestro mayor deseo es que podamos vivir sin dolor, ya que esa experiencia nos permite entender y empatizar con quienes enfrentan dificultades físicas. Es esa empatía la que nos motiva a ofrecerles nuestros servicios, con la firme intención de ayudarles a mejorar su calidad de vida.
+        </p>
+        <p>
+          Contamos con la capacitación y experiencia necesarias para diseñar tratamientos personalizados, adaptados a las necesidades específicas de cada persona. A través de la Terapia Manual, hemos descubierto una de las mejores maneras de apoyar a nuestros pacientes en la prevención, recuperación y mantenimiento del equilibrio corporal. Creemos en un enfoque integral que no solo alivia el dolor, sino que también promueve un bienestar duradero.
+        </p>
+        <div className="my-6 px-6 py-4 bg-white shadow-soft rounded-lg text-center">
+          <p className="text-lg font-medium text-primary-700 italic">
+            "Transformamos el dolor en progreso y movimientos limitados en libertad"
+          </p>
+        </div>
+        <p>
+          Nuestro lema refleja nuestro compromiso de acompañarlos en cada paso del camino hacia una vida más activa y plena. Nos apasiona ver cómo cada pequeño avance se convierte en un gran logro para quienes confían en nosotros.
+        </p>
+        <p className="font-medium text-primary-700 text-center mt-6">
+          ¡Por más vidas vivas, llenas de movimiento, salud y felicidad! Estamos aquí para acompañarte en ese camino hacia una vida sin límites.
+        </p>
+      </div>
+      
+      <div className="mt-10 text-center">
+        <Button href="/about" variant="primary">
+          Conoce más sobre nosotros
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
       {/* Products Preview Section */}
       {/* Products Preview Section */}
       <section className="py-20 bg-light">
@@ -284,6 +328,8 @@ export default function Home() {
             <p className="text-lg text-dark/70 max-w-3xl mx-auto">
               Productos de alta calidad creados en laboratorio profesional con ingredientes naturales para complementar tu tratamiento.
             </p>
+            <h4 className="font-heading text-3xl md:text-4xl text-primary-600 mb-2">Para uso en casa y cabina de masaje</h4>
+
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
