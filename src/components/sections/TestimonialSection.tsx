@@ -10,6 +10,11 @@ interface Testimonial {
   role: string;
 }
 
+// Agregar prop showAll a la interfaz del componente
+interface TestimonialCarouselProps {
+  showAll?: boolean; // Opcional con valor predeterminado false
+}
+
 // Lista completa de testimonios
 const testimonials = [
   {
@@ -86,7 +91,7 @@ const testimonials = [
   }
 ];
 
-const TestimonialCarousel = () => {
+const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = false }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -95,7 +100,13 @@ const TestimonialCarousel = () => {
   // Duplicar testimonios para crear un efecto de carrusel infinito
   const extendedTestimonials = [...testimonials, ...testimonials.slice(0, 3)];
   
+  // Lógica para mostrar todos los testimonios o solo el carrusel
+  const testimonialsToDisplay = showAll ? testimonials : extendedTestimonials;
+
   useEffect(() => {
+    // Solo aplicar el efecto de carrusel cuando showAll es false
+    if (showAll) return;
+    
     let animationFrameId: number;
     let lastTimestamp: number;
 
@@ -130,8 +141,34 @@ const TestimonialCarousel = () => {
         cancelAnimationFrame(animationFrameId);
       }
     };
-  }, [scrollPosition, isPaused]);
+  }, [scrollPosition, isPaused, showAll]);
 
+  // Renderizado diferente según showAll
+  if (showAll) {
+    return (
+      <section className="py-20 bg-primary-50 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-40 h-40 bg-secondary-100 rounded-full opacity-50 -translate-y-1/2 -translate-x-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary-100 rounded-full opacity-60 translate-y-1/3 translate-x-1/4"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">Lo Que Dicen Nuestros Clientes</h2>
+            <p className="text-lg text-dark/70 max-w-3xl mx-auto">
+              Experiencias reales de personas que han transformado su bienestar con nuestras terapias
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonialsToDisplay.map((testimonial) => (
+              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Versión de carrusel (original)
   return (
     <section className="py-20 bg-primary-50 relative overflow-hidden">
       {/* Elementos decorativos */}
@@ -140,7 +177,7 @@ const TestimonialCarousel = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium mb-4">Testimonios</span>
+          <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-800 rounded-full text-sm font-medium mb-4">Testimonios</span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">Lo Que Dicen Nuestros Clientes</h2>
           <p className="text-lg text-dark/70 max-w-3xl mx-auto">
             Experiencias reales de personas que han transformado su bienestar con nuestras terapias
