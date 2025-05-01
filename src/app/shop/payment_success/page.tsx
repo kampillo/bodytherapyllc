@@ -1,114 +1,61 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useState, Suspense } from 'react';
+import { useRouter } from 'next/navigation';
 import { useStripe } from '@stripe/react-stripe-js';
 import Button from '@/components/ui/Button';
 
-// Definir nuestro propio tipo para PaymentIntent
-interface StripePaymentIntent {
-  id: string;
-  amount: number;
-  status: 'succeeded' | 'processing' | 'requires_payment_method' | string;
-  receipt_email: string | null;
+// Separamos la parte que usa useSearchParams() en un componente cliente
+function PaymentStatusContent() {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Placeholder para mostrar mientras el componente real se carga
+  return (
+    <div className="container mx-auto px-4 py-16 text-center">
+      {isLoading ? (
+        <>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-700 mx-auto"></div>
+          <p className="text-dark/70 mt-4">Verificando el estado de tu pago...</p>
+        </>
+      ) : null}
+    </div>
+  );
 }
 
-export default function PaymentSuccessPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const stripe = useStripe();
-  
-  const [paymentStatus, setPaymentStatus] = useState<'loading' | 'success' | 'error'>('loading');
-  const [paymentDetails, setPaymentDetails] = useState<{
+// Componente que muestra cuando ha habido un error
+function PaymentError() {
+  return (
+    <div className="container mx-auto px-4 py-16 text-center">
+      <div className="max-w-md mx-auto">
+        <div className="mb-8 text-red-500">
+          <svg className="h-24 w-24 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h1 className="text-2xl font-bold text-primary-800 mb-4">Hubo un problema con tu pago</h1>
+        <p className="text-dark/70 mb-8">Lo sentimos, ocurrió un error al procesar tu pago. Por favor, intenta nuevamente o contacta con nuestro soporte.</p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/shop/checkout" variant="primary">
+            Intentar nuevamente
+          </Button>
+          <Button href="/contact" variant="outline">
+            Contactar soporte
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Componente que muestra cuando el pago ha sido exitoso
+function PaymentSuccess({ paymentDetails }: { 
+  paymentDetails: {
     id: string;
     amount: number;
     email: string;
     date: string;
-  } | null>(null);
-  
-  useEffect(() => {
-    if (!stripe) return;
-    
-    const clientSecret = searchParams.get('payment_intent_client_secret');
-    
-    if (!clientSecret) {
-      setPaymentStatus('error');
-      return;
-    }
-    
-    // Recuperar detalles del pago
-    stripe.retrievePaymentIntent(clientSecret).then((result: { paymentIntent?: StripePaymentIntent }) => {
-      const { paymentIntent } = result;
-      
-      if (!paymentIntent) {
-        setPaymentStatus('error');
-        return;
-      }
-      
-      switch (paymentIntent.status) {
-        case 'succeeded':
-          setPaymentStatus('success');
-          setPaymentDetails({
-            id: paymentIntent.id,
-            amount: paymentIntent.amount / 100, // Convertir de centavos a dólares
-            email: paymentIntent.receipt_email || '',
-            date: new Date().toLocaleDateString(),
-          });
-          break;
-        case 'processing':
-          // El pago se está procesando. Podríamos mostrar un mensaje diferente o redirigir
-          setPaymentStatus('success');
-          setPaymentDetails({
-            id: paymentIntent.id,
-            amount: paymentIntent.amount / 100,
-            email: paymentIntent.receipt_email || '',
-            date: new Date().toLocaleDateString(),
-          });
-          break;
-        case 'requires_payment_method':
-          // El pago falló. Podríamos redirigir de vuelta al checkout
-          setPaymentStatus('error');
-          break;
-        default:
-          setPaymentStatus('error');
-          break;
-      }
-    });
-  }, [searchParams, stripe]);
-  
-  if (paymentStatus === 'loading') {
-    return (
-      <div className="container mx-auto px-4 py-16 text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-700 mx-auto"></div>
-        <p className="text-dark/70 mt-4">Verificando el estado de tu pago...</p>
-      </div>
-    );
-  }
-  
-  if (paymentStatus === 'error') {
-    return (
-      <div className="container mx-auto px-4 py-16 text-center">
-        <div className="max-w-md mx-auto">
-          <div className="mb-8 text-red-500">
-            <svg className="h-24 w-24 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <h1 className="text-2xl font-bold text-primary-800 mb-4">Hubo un problema con tu pago</h1>
-          <p className="text-dark/70 mb-8">Lo sentimos, ocurrió un error al procesar tu pago. Por favor, intenta nuevamente o contacta con nuestro soporte.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/shop/checkout" variant="primary">
-              Intentar nuevamente
-            </Button>
-            <Button href="/contact" variant="outline">
-              Contactar soporte
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  
+  } | null 
+}) {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-lg mx-auto bg-white rounded-xl shadow-soft p-8">
@@ -163,4 +110,94 @@ export default function PaymentSuccessPage() {
       </div>
     </div>
   );
+}
+
+// Componente principal que actúa como punto de entrada
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={<PaymentStatusContent />}>
+      <ClientPaymentContent />
+    </Suspense>
+  );
+}
+
+// Componente cliente que contiene la lógica y usa hooks
+function ClientPaymentContent() {
+  // Importamos useSearchParams dinámicamente para que Next.js sepa que está dentro de Suspense
+  const { useSearchParams } = require('next/navigation');
+  const searchParams = useSearchParams();
+  const stripe = useStripe();
+  
+  const [paymentStatus, setPaymentStatus] = useState<'loading' | 'success' | 'error'>('loading');
+  const [paymentDetails, setPaymentDetails] = useState<{
+    id: string;
+    amount: number;
+    email: string;
+    date: string;
+  } | null>(null);
+  
+  useEffect(() => {
+    // Este efecto solo se ejecuta en el cliente, lo que es seguro
+    if (!stripe) return;
+    
+    const clientSecret = searchParams.get('payment_intent_client_secret');
+    
+    if (!clientSecret) {
+      setPaymentStatus('error');
+      return;
+    }
+    
+    // Recuperar detalles del pago
+    stripe.retrievePaymentIntent(clientSecret).then((result: { paymentIntent?: any }) => {
+      const { paymentIntent } = result;
+      
+      if (!paymentIntent) {
+        setPaymentStatus('error');
+        return;
+      }
+      
+      switch (paymentIntent.status) {
+        case 'succeeded':
+          setPaymentStatus('success');
+          setPaymentDetails({
+            id: paymentIntent.id,
+            amount: paymentIntent.amount / 100, // Convertir de centavos a dólares
+            email: paymentIntent.receipt_email || '',
+            date: new Date().toLocaleDateString(),
+          });
+          break;
+        case 'processing':
+          // El pago se está procesando. Podríamos mostrar un mensaje diferente o redirigir
+          setPaymentStatus('success');
+          setPaymentDetails({
+            id: paymentIntent.id,
+            amount: paymentIntent.amount / 100,
+            email: paymentIntent.receipt_email || '',
+            date: new Date().toLocaleDateString(),
+          });
+          break;
+        case 'requires_payment_method':
+          // El pago falló. Podríamos redirigir de vuelta al checkout
+          setPaymentStatus('error');
+          break;
+        default:
+          setPaymentStatus('error');
+          break;
+      }
+    }).catch((error: Error) => {
+      console.error('Error retrieving payment intent:', error);
+      setPaymentStatus('error');
+    });
+  }, [searchParams, stripe]);
+  
+  // Renderizar según el estado
+  if (paymentStatus === 'loading') {
+    return <PaymentStatusContent />;
+  }
+  
+  if (paymentStatus === 'error') {
+    return <PaymentError />;
+  }
+  
+  return <PaymentSuccess paymentDetails={paymentDetails} />;
 }

@@ -1,4 +1,4 @@
-// src/components/ui/ProductCard.tsx
+// src/components/ui/ProductCard.tsx - versión temporal
 import React from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
@@ -41,7 +41,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p className="text-dark/70 text-sm mb-4 line-clamp-2">{description}</p>
         <div className="flex justify-between items-center">
           <span className="text-xl text-secondary-700 font-bold">${price.toFixed(2)}</span>
-          <Button href={`/shop/product/${id}`} variant="outline" size="sm" className="group-hover:bg-primary-50">
+          {/* Temporalmente cambiamos el destino a /shop */}
+          <Button href="/shop" variant="outline" size="sm" className="group-hover:bg-primary-50">
             <span className="flex items-center">
               <span>Ver Detalle</span>
               <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
