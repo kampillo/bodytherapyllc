@@ -85,7 +85,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
       </button>
 
       {/* Indicadores */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+      {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
         {images.map((_, index) => (
           <button
             key={index}
@@ -96,7 +96,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
             aria-label={`Ir a imagen ${index + 1}`}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

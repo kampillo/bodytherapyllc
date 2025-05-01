@@ -586,6 +586,436 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Massage Packages Section */}
+      <section id="packages" className="py-20 bg-primary-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-3xl font-bold text-primary-800 mb-6">Paquetes de Masajes</h2>
+            <p className="text-lg text-dark/70 max-w-3xl mx-auto">
+              Disfruta de nuestros paquetes especiales diseñados para brindar una experiencia completa de relajación y bienestar.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Package 1 */}
+            <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+              <div className="relative">
+                <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                  Promoción
+                </div>
+                <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                  {/* <Image
+                    src=""
+                    alt=""
+                    fill
+                    className="object-cover"
+                  /> */}
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-primary-800 mb-4">RELAX BODYFACE</h3>
+              <ul className="mb-6 space-y-2">
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Masaje relajante sueco</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Piedras calientes en espalda</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Masaje facial</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Toallas calientes</span>
+                </li>
+              </ul>
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center">
+                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-dark/70">75 min</span>
+                </div>
+                <div>
+                  <span className="text-sm line-through text-dark/50 mr-2">$120.00</span>
+                  <span className="text-xl font-bold text-secondary-700">$95.00</span>
+                </div>
+              </div>
+              <Button href="/contact" variant="primary" size="md" className="w-full">Reservar</Button>
+            </div>
+
+            {/* Package 2 */}
+            <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+              <div className="relative">
+                <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                  Promoción
+                </div>
+                <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                  {/* <Image
+                    src="/images/services/relax-bodyfeet.png"
+                    alt="Relax BodyFeet"
+                    fill
+                    className="object-cover"
+                  /> */}
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-primary-800 mb-4">RELAX BODYFEET</h3>
+              <ul className="mb-6 space-y-2">
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Masaje relajante sueco</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Botas de compresión</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Exfoliante de pies</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Aromaterapia y toallas calientes</span>
+                </li>
+              </ul>
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center">
+                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-dark/70">75 min</span>
+                </div>
+                <div>
+                  <span className="text-sm line-through text-dark/50 mr-2">$110.00</span>
+                  <span className="text-xl font-bold text-secondary-700">$100.00</span>
+                </div>
+              </div>
+              <Button href="/contact" variant="primary" size="md" className="w-full">Reservar</Button>
+            </div>
+
+            {/* Package 3 */}
+            <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+              <div className="relative">
+                <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                  Promoción
+                </div>
+                <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                  {/* <Image
+                    src="/images/services/tensionless.png"
+                    alt="Tensionless"
+                    fill
+                    className="object-cover"
+                  /> */}
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-primary-800 mb-4">TENSIONLESS</h3>
+              <ul className="mb-6 space-y-2">
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Masaje descontracturante</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Guasha de acero inoxidable o percutor o ventosas</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Toallas calientes</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Aceite especial para descontracturar</span>
+                </li>
+              </ul>
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center">
+                  <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-dark/70">75 min</span>
+                </div>
+                <div>
+                  <span className="text-sm line-through text-dark/50 mr-2">$130.00</span>
+                  <span className="text-xl font-bold text-secondary-700">$110.00</span>
+                </div>
+              </div>
+              <Button href="/contact" variant="primary" size="md" className="w-full">Reservar</Button>
+            </div>
+          </div>
+
+          {/* Couple Massage Packages */}
+          <div className="mt-16">
+            <h3 className="text-center font-heading text-2xl font-bold text-primary-800 mb-12">Masajes en Pareja</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Couple Package 1 */}
+              <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+                <div className="relative">
+                  <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                    Promoción
+                  </div>
+                  <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                    {/* <Image
+                      src="/images/services/couple-body.png"
+                      alt="Couple Massage Body"
+                      fill
+                      className="object-cover"
+                    /> */}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-primary-800 mb-4">COUPLE MASSAGE BODY</h3>
+                <ul className="mb-6 space-y-2">
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Masaje relajante sueco</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Toallas calientes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Snack orgánico</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Bebida natural</span>
+                  </li>
+                </ul>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">65 min</span>
+                  </div>
+                  <div>
+                    <span className="text-sm line-through text-dark/50 mr-2">$220.00</span>
+                    <span className="text-xl font-bold text-secondary-700">$190.00</span>
+                  </div>
+                </div>
+                <Button href="/contact" variant="primary" size="md" className="w-full">Reservar</Button>
+              </div>
+
+              {/* Couple Package 2 */}
+              <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+                <div className="relative">
+                  <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                    Promoción
+                  </div>
+                  <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                    {/* <Image
+                      src="/images/services/couple-bodyfacial.png"
+                      alt="Couple Massage BodyFacial"
+                      fill
+                      className="object-cover"
+                    /> */}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-primary-800 mb-4">COUPLE MASSAGE BODYFACIAL</h3>
+                <ul className="mb-6 space-y-2">
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Masaje relajante sueco</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Masaje facial</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Toallas calientes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Snack orgánico y bebida natural</span>
+                  </li>
+                </ul>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">75 min</span>
+                  </div>
+                  <div>
+                    <span className="text-sm line-through text-dark/50 mr-2">$240.00</span>
+                    <span className="text-xl font-bold text-secondary-700">$215.00</span>
+                  </div>
+                </div>
+                <Button href="/contact" variant="primary" size="md" className="w-full">Reservar</Button>
+              </div>
+
+              {/* Couple Package 3 */}
+              <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+                <div className="relative">
+                  <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                    Promoción
+                  </div>
+                  <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                    {/* <Image
+                      src="/images/services/couple-bodystone.png"
+                      alt="Couple Massage BodyStone"
+                      fill
+                      className="object-cover"
+                    /> */}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-primary-800 mb-4">COUPLE MASSAGE BODYSTONE</h3>
+                <ul className="mb-6 space-y-2">
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Masaje relajante sueco</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Piedras calientes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Aromaterapia</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="h-5 w-5 text-secondary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Snack orgánico y bebida natural</span>
+                  </li>
+                </ul>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">90 min</span>
+                  </div>
+                  <div>
+                    <span className="text-sm line-through text-dark/50 mr-2">$265.00</span>
+                    <span className="text-xl font-bold text-secondary-700">$235.00</span>
+                  </div>
+                </div>
+                <Button href="/contact" variant="primary" size="md" className="w-full">Reservar</Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16">
+            <h3 className="text-center font-heading text-2xl font-bold text-primary-800 mb-12">Más Opciones</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Additional Option 1 */}
+              <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+                <div className="flex flex-col sm:flex-row gap-6">
+                  {/* <div className="sm:w-1/3">
+                    <div className="relative rounded-lg overflow-hidden aspect-square">
+                      <Image
+                        src="/images/services/cuello-brazos-espalda.png"
+                        alt="Masaje cuello, brazos y espalda"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div> */}
+                  <div className="">
+                    <h3 className="text-xl font-bold text-primary-800 mb-4">Masaje cuello, brazos y espalda</h3>
+                    <p className="text-dark/70 mb-6">
+                      Tratamiento rápido enfocado en liberar tensión de las zonas más propensas a acumular estrés.
+                    </p>
+                    <div className="flex justify-between items-center mb-6">
+                      <div className="flex items-center">
+                        <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span className="text-dark/70">30 min</span>
+                      </div>
+                      <span className="font-bold text-secondary-700">$50.00</span>
+                    </div>
+                    <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Option 2 */}
+              <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+                <div className="flex flex-col sm:flex-row gap-6">
+                  {/* <div className="sm:w-1/3">
+                    <div className="relative rounded-lg overflow-hidden aspect-square">
+                      <Image
+                        src="/images/services/piernas-cansadas.png"
+                        alt="Masaje piernas cansadas"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div> */}
+                  <div className="">
+                    <h3 className="text-xl font-bold text-primary-800 mb-4">Masaje piernas cansadas</h3>
+                    <p className="text-dark/70 mb-6">
+                      Tratamiento específico para piernas y pies, ideal para aliviar la fatiga y mejorar la circulación.
+                    </p>
+                    <div className="flex justify-between items-center mb-6">
+                      <div className="flex items-center">
+                        <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span className="text-dark/70">45 min</span>
+                      </div>
+                      <span className="font-bold text-secondary-700">$75.00</span>
+                    </div>
+                    <Button href="/contact" variant="outline" size="sm">Reservar</Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-primary-800 text-white relative overflow-hidden">
         {/* ... */}

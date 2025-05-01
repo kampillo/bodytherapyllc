@@ -17,7 +17,23 @@ export default function Home() {
     },
     {
       src: "/images/home/banner-3.png",
-      alt: "Terapias Holísticas"
+      alt: "promocion 1"
+    },
+    {
+      src: "/images/home/banner-4.jpg",
+      alt: "promocion 2"
+    },
+    {
+      src: "/images/home/banner-5.jpg",
+      alt: "promocion 3"
+    },
+    {
+      src: "/images/home/banner-6.jpg",
+      alt: "promocion 4"
+    },
+    {
+      src: "/images/home/banner-7.jpg",
+      alt: "promocion 5"
     }
   ];
 
@@ -25,46 +41,46 @@ export default function Home() {
     <>
       {/* Hero Section - Con estilo minimalista y moderno */}
       <section className="relative py-20 md:py-32 overflow-hidden">
-  {/* Decoración de fondo */}
-  <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 bg-primary-50 rounded-bl-3xl opacity-70"></div>
-  <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/3 bg-secondary-50 rounded-tr-3xl opacity-70"></div>
+        {/* Decoración de fondo */}
+        <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 bg-primary-50 rounded-bl-3xl opacity-70"></div>
+        <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/3 bg-secondary-50 rounded-tr-3xl opacity-70"></div>
 
-  <div className="container mx-auto px-4">
-    <div className="flex flex-col md:flex-row items-center gap-12">
-      {/* Texto: ocupa 4/12 del ancho en pantallas md+ */}
-      <div className="md:w-4/12 mb-10 md:mb-0 md:pr-8">
-        <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-800 mb-6 leading-tight">
-          Redescubre el <span className="relative inline-block">
-            bienestar
-            <span className="absolute -bottom-1 left-0 w-full h-1 bg-secondary-500"></span>
-          </span> a través de nuestras manos
-        </h1>
-        <p className="text-lg md:text-xl text-dark/70 mb-4 leading-relaxed">
-          En Body Therapy:
-        </p>
-        <div className="my-5 pl-4 border-l-4 border-secondary-400 italic">
-          <p className="text-lg md:text-xl font-medium text-primary-700">
-            "Transformamos el dolor en progreso y movimientos limitados en libertad"
-          </p>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* Texto: ocupa 4/12 del ancho en pantallas md+ */}
+            <div className="md:w-4/12 mb-10 md:mb-0 md:pr-8">
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-800 mb-6 leading-tight">
+                Redescubre el <span className="relative inline-block">
+                  bienestar
+                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-secondary-500"></span>
+                </span> a través de nuestras manos
+              </h1>
+              <p className="text-lg md:text-xl text-dark/70 mb-4 leading-relaxed">
+                En Body Therapy:
+              </p>
+              <div className="my-5 pl-4 border-l-4 border-secondary-400 italic">
+                <p className="text-lg md:text-xl font-medium text-primary-700">
+                  "Transformamos el dolor en progreso y movimientos limitados en libertad"
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-4 mt-8">
+                <Button href="/services" variant="primary" size="lg">
+                  Nuestros Servicios
+                </Button>
+                <Button href="/contact" variant="outline" size="lg">
+                  Agenda una Cita
+                </Button>
+              </div>
+            </div>
+            {/* Carrusel de imágenes: ocupa 8/12 del ancho en pantallas md+ */}
+            <div className="md:w-8/12 aspect-[2/1] rounded-xl overflow-hidden">
+              <div className="w-full h-full relative">
+                <HeroCarousel images={heroImages} interval={6000} />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-wrap gap-4 mt-8">
-          <Button href="/services" variant="primary" size="lg">
-            Nuestros Servicios
-          </Button>
-          <Button href="/contact" variant="outline" size="lg">
-            Agenda una Cita
-          </Button>
-        </div>
-      </div>
-      {/* Carrusel de imágenes: ocupa 8/12 del ancho en pantallas md+ */}
-      <div className="md:w-8/12 aspect-[2/1] rounded-xl overflow-hidden">
-        <div className="w-full h-full relative">
-          <HeroCarousel images={heroImages} interval={6000} />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Services Preview Section */}
       <section className="py-20 bg-light">
@@ -441,6 +457,8 @@ export default function Home() {
       </section>
 
       {/* Contact CTA Section */}
+
+
 
     </>
   );
