@@ -50,17 +50,17 @@ export default function Home() {
             {/* Texto: ocupa 4/12 del ancho en pantallas md+ */}
             <div className="md:w-4/12 mb-10 md:mb-0 md:pr-8">
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-800 mb-6 leading-tight">
-                Redescubre el <span className="relative inline-block">
-                  bienestar
+              ¿EL DOLOR   <span className="relative inline-block">
+              TE IMPIDE REALIZAR TUS 
                   <span className="absolute -bottom-1 left-0 w-full h-1 bg-secondary-500"></span>
-                </span> a través de nuestras manos
+                </span> ACTIVIDADES DIARIAS?
               </h1>
               <p className="text-lg md:text-xl text-dark/70 mb-4 leading-relaxed">
-                En Body Therapy:
+               
               </p>
               <div className="my-5 pl-4 border-l-4 border-secondary-400 italic">
                 <p className="text-lg md:text-xl font-medium text-primary-700">
-                  "Transformamos el dolor en progreso y movimientos limitados en libertad"
+                Atrévete a vivir sin dolor, transforma tus movimientos limitados en libertad.
                 </p>
               </div>
               <div className="flex flex-wrap gap-4 mt-8">
@@ -297,65 +297,7 @@ export default function Home() {
         </Button>
       </div>
 
-      {/* Mission Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-primary-50">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            {/* Columna de la imagen */}
-            <div className="lg:w-5/12 mb-10 lg:mb-0">
-              <div className="relative">
-                <div className="absolute -top-4 -left-4 w-32 h-32 border-2 border-secondary-200 rounded-xl -z-10"></div>
-                <div className="relative rounded-xl overflow-hidden shadow-hover">
-                  <Image
-                    src="/images/home/mercy.jpg"
-                    alt="María Mercedes Lizalde"
-                    width={500}
-                    height={600}
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-primary-200 rounded-xl -z-10"></div>
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-white shadow-soft rounded-lg px-5 py-4 w-11/12 text-center">
-                  <h4 className="font-bold text-primary-800 text-lg mb-1">MARÍA MERCEDES LIZALDE</h4>
-                  <p className="text-dark/70 text-sm">LMT–Instructor-Proveedor de Clases Continuas</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Columna del texto */}
-            <div className="lg:w-7/12">
-              <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium mb-4">Nuestra Misión</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">Comprometidos con tu bienestar</h2>
-
-              <div className="space-y-4 text-dark/80 leading-relaxed">
-                <p>
-                  Nuestro mayor deseo es que podamos vivir sin dolor, ya que esa experiencia nos permite entender y empatizar con quienes enfrentan dificultades físicas. Es esa empatía la que nos motiva a ofrecerles nuestros servicios, con la firme intención de ayudarles a mejorar su calidad de vida.
-                </p>
-                <p>
-                  Contamos con la capacitación y experiencia necesarias para diseñar tratamientos personalizados, adaptados a las necesidades específicas de cada persona. A través de la Terapia Manual, hemos descubierto una de las mejores maneras de apoyar a nuestros pacientes en la prevención, recuperación y mantenimiento del equilibrio corporal.
-                </p>
-                <div className="my-6 pl-4 border-l-4 border-secondary-400 italic">
-                  <p className="text-lg font-medium text-primary-700">
-                    "Transformamos el dolor en progreso y movimientos limitados en libertad"
-                  </p>
-                </div>
-                <p>
-                  Este lema refleja nuestro compromiso de acompañarlos en cada paso del camino hacia una vida más activa y plena. Nos apasiona ver cómo cada pequeño avance se convierte en un gran logro para quienes confían en nosotros.
-                </p>
-                <p className="font-medium text-primary-700">
-                  ¡Por más vidas vivas, llenas de movimiento, salud y felicidad! Estamos aquí para acompañarte en ese camino hacia una vida sin límites.
-                </p>
-              </div>
-
-              <div className="mt-8">
-                <Button href="/about" variant="primary">
-                  Conoce más sobre nosotros
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    
 
       {/* Products Preview Section */}
       {/* Products Preview Section */}
@@ -452,6 +394,69 @@ export default function Home() {
             <Button href="/shop" variant="outline" size="lg">
               Visitar tienda
             </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-to-b from-white to-primary-50">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Columna de la imagen */}
+            <div className="lg:w-5/12 mb-10 lg:mb-0">
+              <div className="relative">
+                <div className="absolute -top-4 -left-4 w-32 h-32 border-2 border-secondary-200 rounded-xl -z-10"></div>
+                <div className="relative rounded-xl overflow-hidden shadow-hover">
+                  <Image
+                    src="/images/home/mercy.jpg"
+                    alt="María Mercedes Lizalde"
+                    width={500}
+                    height={600}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-primary-200 rounded-xl -z-10"></div>
+                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-white shadow-soft rounded-lg px-5 py-4 w-11/12 text-center">
+                  <h4 className="font-bold text-primary-800 text-lg mb-1">MARÍA MERCEDES LIZALDE</h4>
+                  <p className="text-dark/70 text-sm">LMT–Instructor-Proveedor de Clases Continuas</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Columna del texto */}
+            <div className="lg:w-7/12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">Comprometidos con tu bienestar</h2>
+
+              <div className="space-y-4 text-dark/80 leading-relaxed">
+                <p>
+                  Mi mayor deseo es que podamos vivir sin dolor. Soy la segunda de 5 hermanos, nací con subluxación en una de mis caderas, era una bebé demasiado grande y el espacio en el vientre de mi Madre era pequeño, en mi infancia esto ocasionó secuelas en mis piernas, mis rodillas se vieron afectadas y se me desarrolló genu valgo, esta condición se caracteriza por una deformación en la que las rodillas se acercan entre sí, haciendo que los tobillos se desvíen hacia afuera, y perdida del arco plantar, lo cual no me permitía correr, pues me ocasionada caídas frecuentes.
+                </p>
+                <p>
+                  Recibí atención medica en mi infancia gracias a mi Madre, estuve en tratamiento, use aparatos ortopédicos en las noches, plantilla y zapato ortopédico en el día, recuerdo los aparatos me que ocasionaban dolor, lloraba en silencio, esto fue para mí un período largo, intentaba aflojarlos para que no me presionaran y no lo lograba, y así caía agotada hasta altas horas de la noche.
+                </p>
+                <p>
+                  Recuerdo, mi sueño se volvió liviano y podía escuchar a una de mis hermanas que lloraba en las noches por el dolor de piernas debido al desarrollo, me levantaba y le daba masaje hasta que se quedaba dormida.
+                </p>
+                <p>
+                  A mi Madre le daba masaje en su espalda baja desde que tenía 6 años, le decía: Mamá déjame sobarte las bolitas que tienes en la espalda, me encantaba hacerlo, dejaba mis juegos de niña para apoyarla con ello, podía estar todo el tiempo tocándole y palpando sus bolitas, que hoy sé eran contracturas. A los 7 años puse mis primeras ventosas, también a mi Madre.
+                </p>
+                <p>
+                  Ya adulta tuve otras secuelas, me hicieron dos cirugías, una en cada pie, estuve en silla de ruedas por casi 2 meses.
+                </p>
+                <p className="font-medium text-primary-700">
+                  Estas experiencias generaron en mí una empatía por el dolor ajeno, por quienes enfrentan dificultades físicas. Esto es lo que me motiva a ofrecerles nuestros servicios, con la firme intención de ayudarles a mejorar su movimiento, y por ende su calidad de vida.
+                </p>
+                <p>
+                Soy fiel creyente de Papá Dios, él tiene planes para cada uno de nosotros. Hoy reafirmo mi misión terrenal, encaminarte a que tu cuerpo este en equilibrio, ¡libre de dolor!
+                ¡Por más vidas sanas, en movimiento, y libres de dolor!
+                </p>
+              </div>
+
+              <div className="mt-8">
+                <Button href="/about" variant="primary">
+                  Conoce más sobre nosotros
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

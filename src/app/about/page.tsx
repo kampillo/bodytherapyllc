@@ -72,7 +72,7 @@ const AboutPage = () => {
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-3xl font-bold text-primary-800 mb-6">Visión</h2>
               <p className="text-lg text-dark/70">
-                "Ser la principal referencia en terapia manual, logrando que más personas vivan libres de dolor y con una mejor calidad de vida. Nos comprometemos a contribuir al bienestar de nuestros pacientes a través de un servicio de excelencia, fundamentado en la educación continua, la innovación y el respeto por nuestros valores: servicio, respeto, empatía, integridad, compromiso y responsabilidad. Aspiramos a expandirnos como una franquicia reconocida en nuestro ramo, manteniendo siempre nuestro compromiso con la seguridad, la ética y la mejora constante para ofrecer un cuidado humano y efectivo."
+              Ser la principal referencia en terapia manual, apoyándonos en la naturaleza para mejorar tus movimientos, vivas libre de dolor y con mejor calidad de vida. 
               </p>
             </div>
           </div>
