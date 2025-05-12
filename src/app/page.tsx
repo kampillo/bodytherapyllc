@@ -253,53 +253,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Preview Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <div className="relative">
-                <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary-200 rounded-xl -z-10"></div>
-                <div className="relative rounded-xl overflow-hidden shadow-hover">
-                  <Image
-                    src="/images/home/Masajes-spa.jpg"
-                    alt="Nuestra Terapeuta"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 border-2 border-secondary-200 rounded-xl -z-10"></div>
-              </div>
-            </div>
-            <div className="md:w-1/2 md:pl-8">
-              <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">Nuestra Historia</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">Sobre Nosotros</h2>
-              <p className="text-lg text-dark/70 mb-6 leading-relaxed">
-                Body Therapy LLC es un centro especializado en terapia manual, fundado con la misión de proporcionar alivio, bienestar y una mejor calidad de vida a nuestros pacientes.
-              </p>
-              <p className="text-lg text-dark/70 mb-8 leading-relaxed">
-                Nuestra directora, María Mercedes Lizalde, combina años de experiencia con un enfoque personalizado que atiende las necesidades específicas de cada paciente.
-              </p>
-              <Button href="/about" variant="primary">
-                Conoce nuestra historia
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Testimonials Section - Se mantiene el componente pero se renderizará con el nuevo estilo */}
-      <TestimonialSection />
-      <div className="container mx-auto px-4 pb-12 -mt-8 text-center">
-        <Button href="/about#testimonials" variant="outline" size="lg">
-          Ver todos los testimonios
-        </Button>
-      </div>
-
-    
-
-      {/* Products Preview Section */}
       {/* Products Preview Section */}
       <section className="py-20 bg-light">
         <div className="container mx-auto px-4">
@@ -397,6 +351,53 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* About Preview Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2 mb-10 md:mb-0">
+              <div className="relative">
+                <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary-200 rounded-xl -z-10"></div>
+                <div className="relative rounded-xl overflow-hidden shadow-hover">
+                  <Image
+                    src="/images/home/Masajes-spa.jpg"
+                    alt="Nuestra Terapeuta"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 border-2 border-secondary-200 rounded-xl -z-10"></div>
+              </div>
+            </div>
+            <div className="md:w-1/2 md:pl-8">
+              <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">Nuestra Historia</span>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">Sobre Nosotros</h2>
+              <p className="text-lg text-dark/70 mb-6 leading-relaxed">
+                Body Therapy LLC es un centro especializado en terapia manual, fundado con la misión de proporcionar alivio, bienestar y una mejor calidad de vida a nuestros pacientes.
+              </p>
+              <p className="text-lg text-dark/70 mb-8 leading-relaxed">
+                Nuestra directora, María Mercedes Lizalde, combina años de experiencia con un enfoque personalizado que atiende las necesidades específicas de cada paciente.
+              </p>
+              <Button href="/about" variant="primary">
+                Conoce nuestra historia
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section - Se mantiene el componente pero se renderizará con el nuevo estilo */}
+      <TestimonialSection />
+      <div className="container mx-auto px-4 pb-12 -mt-8 text-center">
+        <Button href="/about#testimonials" variant="outline" size="lg">
+          Ver todos los testimonios
+        </Button>
+      </div>
+
+    
+
 
       <section className="py-20 bg-gradient-to-b from-white to-primary-50">
         <div className="container mx-auto px-4">
