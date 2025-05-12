@@ -32,7 +32,7 @@ const ServicesPage: React.FC = () => {
       <ServiceCard
         id="therapeutic"
         title="Masaje Terapéutico Especializado PAIN"
-        description="Nuestro masaje terapéutico especializado está diseñado para abordar condiciones específicas y aliviar el dolor crónico, mejorando tu calidad de vida."
+        description="Nuestro masaje terapéutico especializado está diseñado para abordar trastornos neuromusculares y musculoesqueléticos, eliminando toxinas, activando la circulación sanguínea y linfática, mejorando el aporte de oxígeno a los tejidos, ampliando el arco de movilidad y disminuyendo el dolor. Rehabilita las actividades de la vida diaria (dependiendo la patología)."
         imageSrc="/images/services/masaje-terapeutico-especializado.png"
         imageAlt="Masaje Terapéutico Especializado"
         price="$125.00"
@@ -46,7 +46,13 @@ const ServicesPage: React.FC = () => {
           "Lumbalgia, Ciatalgia y Cervicalgia",
           "Síndrome de latigazo",
           "Síndrome de tenista y golfista",
-          "Lesiones deportivas y neurológicas"
+          "Lesiones deportivas y neurológicas",
+          "Eliminación de toxinas",
+          "Activación de circulación sanguínea y linfática",
+          "Mejora del aporte de oxígeno a los tejidos",
+          "Ampliación del arco de movilidad",
+          "Disminución del dolor",
+          "*Se trabaja por región."
         ]}
         link="/contact"
       />
@@ -77,6 +83,9 @@ const ServicesPage: React.FC = () => {
                 </div>
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Descontracturante</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Se centra en aplicar presión controlada sobre los puntos de tensión muscular, donde se concentran las contracturas. Se utiliza para tratar dolores musculares, tensiones crónicas o lesiones deportivas.
+                  </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -108,6 +117,9 @@ const ServicesPage: React.FC = () => {
                 </div>
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Deep Tissue (Tejido profundo)</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Se enfoca en las capas más profundas de los músculos, la fascia y ligamentos, utilizando presión firme para liberar áreas tensas. Ideal para tratar dolores crónicos y contracturas persistentes.
+                  </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,7 +152,7 @@ const ServicesPage: React.FC = () => {
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Linfático</h3>
                   <p className="text-dark/70 text-sm mb-3">
-                    Con crema de masaje especial para desintoxicar
+                    Se aplica sobre el sistema linfático para favorecer la circulación y eliminación de líquidos. Reduce inflamaciones y ayuda a la desintoxicación natural del cuerpo.
                   </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
@@ -174,6 +186,9 @@ const ServicesPage: React.FC = () => {
                 </div>
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Miofascial</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Técnica especializada que trabaja sobre la fascia, el tejido conectivo que envuelve músculos y órganos. Ayuda a liberar restricciones, mejorando la movilidad y reduciendo el dolor crónico.
+                  </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -205,6 +220,9 @@ const ServicesPage: React.FC = () => {
                 </div>
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Cambio Hormonal</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Diseñado para mujeres en menopausia, ayuda a calmar síntomas como sofocos, problemas para dormir, depresión y ansiedad, mejorando la circulación y reduciendo el estrés.
+                  </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -237,7 +255,7 @@ const ServicesPage: React.FC = () => {
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Prenatal</h3>
                   <p className="text-dark/70 text-sm mb-3">
-                    Con crema especial para reducir inflamación en piernas
+                    Terapia corporal enfocada en las necesidades de la embarazada, alivia molestias durante la gestación y ayuda a liberar endorfinas, compensando las energías que la madre pierde.
                   </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
@@ -271,6 +289,9 @@ const ServicesPage: React.FC = () => {
                 </div>
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Geriátrico</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Mejora la circulación sanguínea, la flexibilidad articular y mantiene el equilibrio hormonal. Alivia problemas como artritis, reumatismo y fatiga muscular comunes en la edad avanzada.
+                  </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -302,6 +323,9 @@ const ServicesPage: React.FC = () => {
                 </div>
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Oncológico</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Tratamiento especializado para pacientes oncológicos que mejora su calidad de vida aliviando síntomas como dolor, fatiga, ansiedad, náuseas y depresión mediante técnicas específicas.
+                  </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -334,7 +358,7 @@ const ServicesPage: React.FC = () => {
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Deportivo</h3>
                   <p className="text-dark/70 text-sm mb-3">
-                    Con aceite de aromaterapia especial para disminuir tensión, percutor, cupping
+                    Diseñado para atletas y personas activas, combina diferentes técnicas para preparar el cuerpo antes del ejercicio, acelerar la recuperación y prevenir lesiones.
                   </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
@@ -368,6 +392,9 @@ const ServicesPage: React.FC = () => {
                 </div>
                 <div className="sm:w-3/5">
                   <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Metamérico</h3>
+                  <p className="text-dark/70 text-sm mb-3">
+                    Trabaja específicamente sobre los segmentos neurológicos del cuerpo para aliviar dolores referidos. Ideal para problemas como ciáticas, lumbalgias y dolores articulares.
+                  </p>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -409,6 +436,9 @@ const ServicesPage: React.FC = () => {
                   />
                 </div>
                 <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Aromaterapia</h3>
+                <p className="text-dark/70 text-sm mb-3">
+                  Utiliza aceites esenciales altamente concentrados de plantas medicinales para relajar y tratar dolores. Produce relajación profunda, ayuda a reducir el estrés y tiene propiedades antibacterianas y antiinflamatorias.
+                </p>
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center">
                     <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -434,6 +464,9 @@ const ServicesPage: React.FC = () => {
                   />
                 </div>
                 <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Sueco</h3>
+                <p className="text-dark/70 text-sm mb-3">
+                  Masaje clásico que combina cinco técnicas fundamentales para eliminar toxinas, mejorar la circulación y oxigenar los tejidos. Ideal para reducir estrés, ansiedad y ayudar en procesos de duelo.
+                </p>
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center">
                     <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -459,6 +492,9 @@ const ServicesPage: React.FC = () => {
                   />
                 </div>
                 <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Piedras Calientes</h3>
+                <p className="text-dark/70 text-sm mb-3">
+                  Combina técnicas de masaje manual con la aplicación de piedras calientes sobre puntos energéticos del cuerpo. Alivia tensiones profundas, mejora la circulación y proporciona una relajación intensa.
+                </p>
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center">
                     <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -504,7 +540,7 @@ const ServicesPage: React.FC = () => {
                     </svg>
                     <span className="text-dark/70">60 min</span>
                   </div>
-                  <span className="font-bold text-secondary-700">$120.00</span>
+                  {/* <span className="font-bold text-secondary-700">$120.00</span> */}
                 </div>
                 <p className="text-dark/70 mb-4">
                   El masaje Shiatsu se centra en puntos específicos para liberar la tensión y mejorar el flujo de energía en el cuerpo.

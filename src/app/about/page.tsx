@@ -17,7 +17,6 @@ const AboutPage = () => {
         {/* Elementos decorativos */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary-100 rounded-full opacity-60 -translate-y-1/3 translate-x-1/4"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary-100 rounded-full opacity-60 translate-y-1/3 -translate-x-1/4"></div>
-        
         <div className="container mx-auto px-4 text-center relative z-10">
           <span className="inline-block px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium mb-4">Conócenos</span>
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-800 mb-6">Sobre Nosotros</h1>
@@ -68,11 +67,11 @@ const AboutPage = () => {
                 "Nuestra misión es brindar atención de terapia manual de alta calidad, personalizada y basada en la evidencia, con el objetivo de aliviar dolores, mejorar la movilidad y promover el bienestar integral de nuestros pacientes. Nos comprometemos a ofrecer un trato cercano y profesional, ayudando a cada individuo a recuperar su salud y calidad de vida a través de técnicas manuales especializadas y un enfoque humano."
               </p>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-3xl font-bold text-primary-800 mb-6">Visión</h2>
               <p className="text-lg text-dark/70">
-              Ser la principal referencia en terapia manual, apoyándonos en la naturaleza para mejorar tus movimientos, vivas libre de dolor y con mejor calidad de vida. 
+                Ser la principal referencia en terapia manual, apoyándonos en la naturaleza para mejorar tus movimientos, vivas libre de dolor y con mejor calidad de vida.
               </p>
             </div>
           </div>
@@ -88,7 +87,7 @@ const AboutPage = () => {
               Los principios que guían nuestras acciones y definen nuestra forma de trabajo
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow p-6 transition-transform hover:scale-105">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mb-4">
@@ -101,7 +100,7 @@ const AboutPage = () => {
                 Nos dedicamos a ofrecer atención de calidad, poniendo siempre las necesidades y bienestar de nuestros pacientes en primer lugar. Nuestro objetivo es brindar una experiencia positiva y efectiva en cada sesión.
               </p>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow p-6 transition-transform hover:scale-105">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mb-4">
                 <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,7 +112,7 @@ const AboutPage = () => {
                 Valoramos y consideramos la individualidad de cada persona, tratando a todos con cortesía, dignidad y comprensión. Reconocemos la importancia de escuchar y aceptar diferentes perspectivas y condiciones.
               </p>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow p-6 transition-transform hover:scale-105">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mb-4">
                 <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -125,7 +124,7 @@ const AboutPage = () => {
                 Nos esforzamos por entender y compartir los sentimientos y experiencias de nuestros pacientes, creando un ambiente de confianza y apoyo para facilitar su proceso de recuperación.
               </p>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow p-6 transition-transform hover:scale-105">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mb-4">
                 <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -137,7 +136,7 @@ const AboutPage = () => {
                 Actuamos con honestidad, transparencia y ética en todas nuestras acciones, asegurando que nuestras prácticas sean responsables y confiables.
               </p>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow p-6 transition-transform hover:scale-105">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mb-4">
                 <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -149,7 +148,7 @@ const AboutPage = () => {
                 Estamos dedicados a brindar lo mejor de nosotros, manteniendo una actitud comprometida con la salud y el bienestar de nuestros pacientes, y buscando siempre mejorar nuestros servicios.
               </p>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow p-6 transition-transform hover:scale-105">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mb-4">
                 <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,7 +164,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-    
+
 
       {/* Testimonials Section - Usando el componente con showAll=true */}
       <div className="pt-10" id="testimonials">
@@ -173,7 +172,7 @@ const AboutPage = () => {
       </div>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary-800 text-white">
+      <section className="py-20 bg-primary-800 text-black">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">¿Listo para mejorar tu bienestar?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">

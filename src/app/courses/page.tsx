@@ -47,13 +47,18 @@ const CoursesPage = () => {
         {/* Elementos decorativos */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary-100 rounded-full opacity-60 -translate-y-1/3 translate-x-1/4"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary-100 rounded-full opacity-60 translate-y-1/3 -translate-x-1/4"></div>
-        
+
         <div className="container mx-auto px-4 text-center relative z-10">
-          <span className="inline-block px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium mb-4">Formación Especializada</span>
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-800 mb-6">Nuestros Cursos</h1>
-          <p className="text-xl text-dark/70 max-w-3xl mx-auto">
-            Aprende con profesionales experimentados y expande tus conocimientos en terapia manual, estiramiento deportivo y enseñanza de masaje terapéutico.
-          </p>
+          <span className="inline-block px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium mb-4">
+            Formación Especializada
+          </span>
+          <h1 className="font-heading text-2xl md:text-3xl font-bold text-black-800 uppercase mb-2">
+            CERTIFICACIONES EN TÉCNICAS DE TERAPIA MANUAL PARA MASAJISTAS PROFESIONALES: TU CAMINO HACIA LA EXCELENCIA.
+          </h1>
+          <h2 className="text-lg md:text-xl text-black-800 font-semibold mb-6">
+            Por: María Mercedes Lizalde<br />
+            LMT-Instructor-Proveedor de Clases Continuas
+          </h2>
         </div>
       </section>
 
@@ -63,8 +68,8 @@ const CoursesPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary-800 mb-6">Formación Profesional</h2>
-              <p className="text-lg text-dark/70 mb-6 leading-relaxed">
-                En Body Therapy LLC ofrecemos programas de formación especializados para profesionales del masaje, fisioterapeutas y entusiastas que desean ampliar sus conocimientos y habilidades en terapia manual y estiramiento deportivo.
+              <p className="text-lg text-black-800 font-medium mb-4">
+                Amplía tus conocimientos y habilidades como masajista.
               </p>
               <p className="text-lg text-dark/70 mb-6 leading-relaxed">
                 Nuestros cursos combinan teoría con práctica intensiva, en grupos reducidos para garantizar atención personalizada y un aprendizaje efectivo.
@@ -100,7 +105,7 @@ const CoursesPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="ml-3 text-dark/80">Certificación avalada por organizaciones reconocidas</p>
+                  <p className="ml-3 text-dark/80">Certificación avalada</p>
                 </div>
               </div>
             </div>
@@ -114,20 +119,20 @@ const CoursesPage = () => {
               <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-secondary-200 rounded-xl -z-10"></div>
             </div>
           </div>
-          
+
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-800 rounded-full text-sm font-medium mb-4">Programas Disponibles</span>
-            <h2 className="font-heading text-3xl font-bold text-primary-800 mb-4">Nuestros Cursos Especializados</h2>
+            <h2 className="font-heading text-3xl font-bold text-primary-800 mb-4">Nuestros Certificaciones Especializados</h2>
             <p className="text-lg text-dark/70 max-w-3xl mx-auto">
               Explora nuestros cursos diseñados para profesionales del masaje y terapeutas
             </p>
           </div>
-          
+
           {/* Detalle Individual de Cursos */}
           <div className="space-y-16">
             {courses.map((course, index) => (
-              <div 
-                key={course.id} 
+              <div
+                key={course.id}
                 className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all`}
               >
                 <div className="md:w-1/3 mb-6 md:mb-0">
@@ -179,7 +184,7 @@ const CoursesPage = () => {
               Experiencias de quienes han tomado nuestros cursos especializados
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
             <div className="bg-white rounded-xl shadow-soft p-8 hover:shadow-hover transition-all">
@@ -198,7 +203,7 @@ const CoursesPage = () => {
                 "El curso de Estiramiento Deportivo fue clave para mejorar mis servicios. Las técnicas aprendidas me permiten ofrecer un tratamiento más completo y efectivo a mis clientes deportistas."
               </p>
             </div>
-            
+
             {/* Testimonial 2 */}
             <div className="bg-white rounded-xl shadow-soft p-8 hover:shadow-hover transition-all">
               <div className="flex items-center mb-4">
@@ -216,7 +221,7 @@ const CoursesPage = () => {
                 "Como profesional de la fisioterapia, el curso de estiramiento me proporcionó nuevas herramientas para tratar lesiones deportivas. La metodología de enseñanza facilita la aplicación inmediata de lo aprendido."
               </p>
             </div>
-            
+
             {/* Testimonial 3 */}
             <div className="bg-white rounded-xl shadow-soft p-8 hover:shadow-hover transition-all">
               <div className="flex items-center mb-4">
@@ -248,7 +253,7 @@ const CoursesPage = () => {
               Reserva tu lugar en nuestros próximos cursos y talleres
             </p>
           </div>
-          
+
           <div className="bg-white rounded-xl shadow-soft overflow-hidden">
             <div className="overflow-x-auto">
               <table className="min-w-full">
@@ -315,7 +320,7 @@ const CoursesPage = () => {
               </table>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-xl shadow-soft p-6 mt-8">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="md:w-8/12">
@@ -335,14 +340,14 @@ const CoursesPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary-800 text-white relative overflow-hidden">
+      <section className="py-20 bg-primary-800 text-black relative overflow-hidden">
         {/* Elementos decorativos */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary-700 rounded-full opacity-30 -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-700 rounded-full opacity-30 translate-y-1/2 -translate-x-1/2"></div>
-        
+
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">¿Quieres ampliar tus conocimientos?</h2>
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-black/90 mb-10 max-w-2xl mx-auto">
             Contáctanos para obtener más información sobre nuestros cursos y programas de formación especializada.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -350,7 +355,7 @@ const CoursesPage = () => {
               href="/contact"
               variant="secondary"
               size="lg"
-              className="shadow-lg"
+              className="shadow-lg text-black"
             >
               Contáctanos Ahora
             </Button>
@@ -358,7 +363,7 @@ const CoursesPage = () => {
               href="tel:+17139228973"
               variant="outline"
               size="lg"
-              className="text-white border-white hover:bg-white/10 shadow-lg"
+              className="text-black border-black hover:bg-black/10 shadow-lg"
             >
               <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
