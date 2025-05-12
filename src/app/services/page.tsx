@@ -639,12 +639,13 @@ const ServicesPage: React.FC = () => {
                   Promoción
                 </div>
                 <div className="relative rounded-lg overflow-hidden h-48 mb-6">
-                  {/* <Image
-                    src=""
-                    alt=""
+                  <Image
+                    src="/images/services/71.png"
+                    alt="Promo Relax BodyFace"
                     fill
-                    className="object-cover"
-                  /> */}
+                    className="object-cover object-bottom" // Añadido object-bottom para mostrar la parte inferior
+                    priority // Opcional: para cargar esta imagen con prioridad
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-primary-800 mb-4">RELAX BODYFACE</h3>
@@ -696,12 +697,12 @@ const ServicesPage: React.FC = () => {
                   Promoción
                 </div>
                 <div className="relative rounded-lg overflow-hidden h-48 mb-6">
-                  {/* <Image
-                    src="/images/services/relax-bodyfeet.png"
-                    alt="Relax BodyFeet"
+                  <Image
+                    src="/images/services/72.png"
+                    alt=""
                     fill
-                    className="object-cover"
-                  /> */}
+                    className="object-cover object-bottom"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-primary-800 mb-4">RELAX BODYFEET</h3>
@@ -753,12 +754,12 @@ const ServicesPage: React.FC = () => {
                   Promoción
                 </div>
                 <div className="relative rounded-lg overflow-hidden h-48 mb-6">
-                  {/* <Image
-                    src="/images/services/tensionless.png"
-                    alt="Tensionless"
+                  <Image
+                    src="/images/services/73.png"
+                    alt=""
                     fill
-                    className="object-cover"
-                  /> */}
+                    className="object-cover object-bottom"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-primary-800 mb-4">TENSIONLESS</h3>
@@ -815,12 +816,12 @@ const ServicesPage: React.FC = () => {
                     Promoción
                   </div>
                   <div className="relative rounded-lg overflow-hidden h-48 mb-6">
-                    {/* <Image
-                      src="/images/services/couple-body.png"
-                      alt="Couple Massage Body"
+                    <Image
+                      src="/images/services/74.png"
+                      alt=""
                       fill
                       className="object-cover"
-                    /> */}
+                    />
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-primary-800 mb-4">COUPLE MASSAGE BODY</h3>
@@ -872,12 +873,12 @@ const ServicesPage: React.FC = () => {
                     Promoción
                   </div>
                   <div className="relative rounded-lg overflow-hidden h-48 mb-6">
-                    {/* <Image
-                      src="/images/services/couple-bodyfacial.png"
-                      alt="Couple Massage BodyFacial"
+                    <Image
+                      src="/images/services/75.png"
+                      alt=""
                       fill
-                      className="object-cover"
-                    /> */}
+                      className="object-cover object-bottom"
+                    />
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-primary-800 mb-4">COUPLE MASSAGE BODYFACIAL</h3>
@@ -929,12 +930,12 @@ const ServicesPage: React.FC = () => {
                     Promoción
                   </div>
                   <div className="relative rounded-lg overflow-hidden h-48 mb-6">
-                    {/* <Image
-                      src="/images/services/couple-bodystone.png"
-                      alt="Couple Massage BodyStone"
+                    <Image
+                      src="/images/services/76.png"
+                      alt=""
                       fill
                       className="object-cover"
-                    /> */}
+                    />
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-primary-800 mb-4">COUPLE MASSAGE BODYSTONE</h3>
