@@ -71,8 +71,7 @@ const AboutPage = () => {
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-3xl font-bold text-primary-800 mb-6">Visión</h2>
               <p className="text-lg text-dark/70">
-                Ser la principal referencia en terapia manual, apoyándonos en la naturaleza para mejorar tus movimientos, vivas libre de dolor y con mejor calidad de vida.
-              </p>
+              Ser la principal referencia en terapia manual, apoyándonos en la naturaleza para mejorar tus movimientos, vivas libre de dolor y con mejor calidad de vida.               </p>
             </div>
           </div>
         </div>
