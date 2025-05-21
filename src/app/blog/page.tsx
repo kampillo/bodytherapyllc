@@ -29,7 +29,7 @@ const BlogPage = () => {
         {/* Elementos decorativos */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary-100 rounded-full opacity-60 -translate-y-1/3 translate-x-1/4"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary-100 rounded-full opacity-60 translate-y-1/3 -translate-x-1/4"></div>
-        
+
         <div className="container mx-auto px-4 text-center relative z-10">
           <span className="inline-block px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium mb-4">Conocimientos y Consejos</span>
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-800 mb-6">Nuestro Blog</h1>
@@ -79,7 +79,7 @@ const BlogPage = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Coming Soon Section */}
       <section className="py-16 bg-light">
         <div className="container mx-auto px-4">
@@ -97,14 +97,15 @@ const BlogPage = () => {
         </div>
       </section>
 
+
       {/* CTA Section */}
-      <section className="py-16 bg-primary-800 text-white relative overflow-hidden">
+      <section className="py-16 bg-primary-800 text-black relative overflow-hidden">
         <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 bg-primary-700 rounded-bl-3xl opacity-30"></div>
         <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/3 bg-primary-700 rounded-tr-3xl opacity-30"></div>
-        
+
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">¿Quieres aprender más sobre terapia manual?</h2>
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-black/90 mb-10 max-w-2xl mx-auto">
             Ofrecemos cursos y talleres para profesionales y entusiastas de la terapia manual y el masaje terapéutico.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -112,7 +113,7 @@ const BlogPage = () => {
               href="/courses"
               variant="secondary"
               size="lg"
-              className="shadow-lg"
+              className="shadow-lg text-black"
             >
               Explorar Cursos
             </Button>
@@ -120,7 +121,7 @@ const BlogPage = () => {
               href="/contact"
               variant="outline"
               size="lg"
-              className="text-white border-white hover:bg-white/10 shadow-lg"
+              className="text-black border-black hover:bg-black/10 shadow-lg"
             >
               Contactar para Información
             </Button>

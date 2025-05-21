@@ -64,7 +64,7 @@ const AboutPage = () => {
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-3xl font-bold text-primary-800 mb-6">Misión</h2>
               <p className="text-lg text-dark/70">
-                "Nuestra misión es brindar atención de terapia manual de alta calidad, personalizada y basada en la evidencia, con el objetivo de aliviar dolores, mejorar la movilidad y promover el bienestar integral de nuestros pacientes. Nos comprometemos a ofrecer un trato cercano y profesional, ayudando a cada individuo a recuperar su salud y calidad de vida a través de técnicas manuales especializadas y un enfoque humano."
+                Nuestra misión es brindar atención de terapia manual de alta calidad, personalizada y basada en la evidencia, con el objetivo de aliviar dolores, mejorar la movilidad y promover el bienestar integral de nuestros pacientes. 
               </p>
             </div>
 
