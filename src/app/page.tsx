@@ -445,7 +445,7 @@ export default function Home() {
                   Mi mayor deseo es que podamos vivir sin dolor. Soy la segunda de 5 hermanos, nací con subluxación en una de mis caderas, era una bebé demasiado grande y el espacio en el vientre de mi Madre era pequeño, en mi infancia esto ocasionó secuelas en mis piernas, mis rodillas se vieron afectadas y se me desarrolló genu valgo, esta condición se caracteriza por una deformación en la que las rodillas se acercan entre sí, haciendo que los tobillos se desvíen hacia afuera, y perdida del arco plantar, lo cual no me permitía correr, pues me ocasionada caídas frecuentes.
                 </p>
                 <p>
-                  Recibí atención medica en mi infancia gracias a mi Madre, estuve en tratamiento, use aparatos ortopédicos en las noches, plantilla y zapato ortopédico en el día, recuerdo los aparatos me que ocasionaban dolor, lloraba en silencio, esto fue para mí un período largo, intentaba aflojarlos para que no me presionaran y no lo lograba, y así caía agotada hasta altas horas de la noche.
+                  Recibí atención medica en mi infancia gracias a mi Madre, estuve en tratamiento, use aparatos ortopédicos en las noches, plantillas y zapatos ortopédico en el día, recuerdo que los aparatos me ocasionaban dolor, lloraba en silencio, esto fue para mí un período largo, intentaba aflojarlos para que no me presionaran y no lo lograba, y así caía agotada hasta altas horas de la noche.
                 </p>
                 <p>
                   Recuerdo, mi sueño se volvió liviano y podía escuchar a una de mis hermanas que lloraba en las noches por el dolor de piernas debido al desarrollo, me levantaba y le daba masaje hasta que se quedaba dormida.
@@ -461,6 +461,9 @@ export default function Home() {
                 </p>
                 <p>
                 Soy fiel creyente de Papá Dios, él tiene planes para cada uno de nosotros. Hoy reafirmo mi misión terrenal, encaminarte a que tu cuerpo este en equilibrio, ¡libre de dolor!
+               
+                </p>
+                <p>
                 ¡Por más vidas sanas, en movimiento, y libres de dolor!
                 </p>
               </div>
