@@ -40,42 +40,55 @@ export default function Home() {
   return (
     <>
       {/* Hero Section - Con estilo minimalista y moderno */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
+    {/* Hero Section - Con estilo minimalista y moderno */}
+    <section className="relative py-12 md:py-20 lg:py-32 overflow-hidden">
         {/* Decoración de fondo */}
         <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 bg-primary-50 rounded-bl-3xl opacity-70"></div>
         <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/3 bg-secondary-50 rounded-tr-3xl opacity-70"></div>
 
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            {/* Texto: ocupa 4/12 del ancho en pantallas md+ */}
-            <div className="md:w-4/12 mb-10 md:mb-0 md:pr-8">
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-800 mb-6 leading-tight">
-              ¿EL DOLOR   <span className="relative inline-block">
-              TE IMPIDE REALIZAR TUS 
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            {/* Texto: responsivo para diferentes tamaños */}
+            <div className="w-full md:w-4/12 mb-8 md:mb-0 md:pr-8 text-center md:text-left">
+              <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary-800 mb-4 md:mb-6 leading-tight">
+                ¿EL DOLOR{" "}
+                <span className="relative inline-block">
+                  TE IMPIDE REALIZAR TUS
                   <span className="absolute -bottom-1 left-0 w-full h-1 bg-secondary-500"></span>
-                </span> ACTIVIDADES DIARIAS?
+                </span>{" "}
+                ACTIVIDADES DIARIAS?
               </h1>
-              <p className="text-lg md:text-xl text-dark/70 mb-4 leading-relaxed">
-               
-              </p>
-              <div className="my-5 pl-4 border-l-4 border-secondary-400 italic">
-                <p className="text-lg md:text-xl font-medium text-primary-700">
-                Atrévete a vivir sin dolor, transforma tus movimientos limitados en libertad.
+              
+              <div className="my-4 md:my-5 pl-4 border-l-4 border-secondary-400 italic">
+                <p className="text-base sm:text-lg md:text-xl font-medium text-primary-700">
+                  Atrévete a vivir sin dolor, transforma tus movimientos limitados en libertad.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-4 mt-8">
-                <Button href="/services" variant="primary" size="lg">
+              
+              <div className="flex flex-col sm:flex-row sm:justify-center md:justify-start gap-3 md:gap-4 mt-6 md:mt-8">
+                <Button href="/services" variant="primary" size="lg" className="w-full sm:w-auto">
                   Nuestros Servicios
                 </Button>
-                <Button href="/contact" variant="outline" size="lg">
+                <Button href="/contact" variant="outline" size="lg" className="w-full sm:w-auto">
                   Agenda una Cita
                 </Button>
               </div>
             </div>
-            {/* Carrusel de imágenes: ocupa 8/12 del ancho en pantallas md+ */}
-            <div className="md:w-8/12 aspect-[2/1] rounded-xl overflow-hidden">
-              <div className="w-full h-full relative">
-                <HeroCarousel images={heroImages} interval={6000} />
+            
+            {/* Carrusel de imágenes: responsivo */}
+            <div className="w-full md:w-8/12">
+              {/* Mobile: aspect ratio más cuadrado */}
+              <div className="block md:hidden aspect-[4/3] rounded-xl overflow-hidden shadow-hover">
+                <div className="w-full h-full relative">
+                  <HeroCarousel images={heroImages} interval={6000} />
+                </div>
+              </div>
+              
+              {/* Desktop: aspect ratio más panorámico */}
+              <div className="hidden md:block aspect-[2/1] rounded-xl overflow-hidden shadow-hover">
+                <div className="w-full h-full relative">
+                  <HeroCarousel images={heroImages} interval={6000} />
+                </div>
               </div>
             </div>
           </div>
