@@ -8,8 +8,8 @@ import Button from '@/components/ui/Button';
 const LoginForm = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: 'mercedes@bodytherapyllc.com', // Pre-llenar para testing
+    password: 'admin123'
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -29,30 +29,34 @@ const LoginForm = () => {
     setError('');
 
     try {
-      console.log('🔐 Attempting login...');
+      console.log('🔐 Attempting login with:', formData.email);
       
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials: 'include', // Importante para las cookies
         body: JSON.stringify(formData)
       });
 
-      const data = await response.json();
-      console.log('📡 Login response:', response.status, data);
+      console.log('📡 Login response status:', response.status);
 
       if (response.ok) {
-        console.log('✅ Login successful, redirecting...');
+        const data = await response.json();
+        console.log('✅ Login successful:', data);
         
-        // Forzar recarga para asegurar que las cookies se procesen
-        window.location.href = '/admin/dashboard';
+        // Pequeña pausa para asegurar que la cookie se establezca
+        setTimeout(() => {
+          // Usar replace en lugar de push para evitar volver al login
+          router.replace('/admin/dashboard');
+          // También forzar un refresh
+          window.location.href = '/admin/dashboard';
+        }, 100);
         
-        // Alternativa usando router.push con refresh
-        // router.push('/admin/dashboard');
-        // router.refresh();
       } else {
-        console.log('❌ Login failed:', data.error);
+        const data = await response.json();
+        console.log('❌ Login failed:', data);
         setError(data.error || 'Error al iniciar sesión');
       }
     } catch (error) {
@@ -131,7 +135,7 @@ const LoginForm = () => {
             </Button>
           </form>
 
-          {/* Debug info - remover en producción */}
+          {/* Debug info */}
           <div className="mt-6 p-3 bg-gray-50 rounded text-xs text-gray-600">
             <p><strong>Credenciales de prueba:</strong></p>
             <p>Email: mercedes@bodytherapyllc.com</p>

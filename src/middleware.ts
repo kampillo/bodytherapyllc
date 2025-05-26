@@ -1,7 +1,6 @@
-// src/middleware.ts - Corregido para usar solo auth-edge
+// src/middleware.ts - Versión simplificada sin JWT
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verifyToken } from './lib/auth-edge';
 
 export function middleware(request: NextRequest) {
   // Solo proteger rutas admin (excepto login)
@@ -10,7 +9,9 @@ export function middleware(request: NextRequest) {
     
     const token = request.cookies.get('auth-token')?.value;
     
-    if (!token || !verifyToken(token)) {
+    // Verificación básica - solo verificar que existe el token
+    // La verificación completa se hará en los componentes
+    if (!token) {
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }

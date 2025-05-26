@@ -1,4 +1,4 @@
-// src/app/api/blog/[id]/route.ts - Actualizada para evitar importaciones mixtas
+// src/app/api/blog/[id]/route.ts - Arreglado para Next.js 15
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { getPostById, updatePost, deletePost } from '@/lib/blog';
@@ -15,21 +15,28 @@ function verifyTokenLocal(token: string): { userId: number; email: string } | nu
   }
 }
 
+// Definir el tipo correcto para los parámetros
+interface RouteParams {
+  params: Promise<{ id: string }>;
+}
+
 // GET - obtener post por ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: RouteParams
 ) {
   try {
-    const id = parseInt(params.id);
-    if (isNaN(id)) {
+    const { id } = await context.params;
+    const postId = parseInt(id);
+    
+    if (isNaN(postId)) {
       return NextResponse.json(
         { error: 'ID inválido' },
         { status: 400 }
       );
     }
     
-    const post = getPostById(id);
+    const post = getPostById(postId);
     if (!post) {
       return NextResponse.json(
         { error: 'Post no encontrado' },
@@ -50,7 +57,7 @@ export async function GET(
 // PUT - actualizar post
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: RouteParams
 ) {
   try {
     // Verificar autenticación
@@ -62,8 +69,10 @@ export async function PUT(
       );
     }
     
-    const id = parseInt(params.id);
-    if (isNaN(id)) {
+    const { id } = await context.params;
+    const postId = parseInt(id);
+    
+    if (isNaN(postId)) {
       return NextResponse.json(
         { error: 'ID inválido' },
         { status: 400 }
@@ -71,7 +80,7 @@ export async function PUT(
     }
     
     const body = await request.json();
-    const updatedPost = updatePost(id, body);
+    const updatedPost = updatePost(postId, body);
     
     if (!updatedPost) {
       return NextResponse.json(
@@ -93,7 +102,7 @@ export async function PUT(
 // DELETE - eliminar post
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: RouteParams
 ) {
   try {
     // Verificar autenticación
@@ -105,15 +114,17 @@ export async function DELETE(
       );
     }
     
-    const id = parseInt(params.id);
-    if (isNaN(id)) {
+    const { id } = await context.params;
+    const postId = parseInt(id);
+    
+    if (isNaN(postId)) {
       return NextResponse.json(
         { error: 'ID inválido' },
         { status: 400 }
       );
     }
     
-    const deleted = deletePost(id);
+    const deleted = deletePost(postId);
     
     if (!deleted) {
       return NextResponse.json(

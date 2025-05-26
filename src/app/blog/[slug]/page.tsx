@@ -1,4 +1,4 @@
-// src/app/blog/[slug]/page.tsx - Nueva página dinámica
+// src/app/blog/[slug]/page.tsx - Página de detalle mejorada
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -24,19 +24,26 @@ export default function BlogPostPage() {
 
   const fetchPost = async () => {
     try {
+      console.log('🔍 Cargando post:', params.slug);
       const response = await fetch('/api/blog');
+      
       if (response.ok) {
         const data = await response.json();
         const foundPost = data.posts.find((p: BlogPost) => p.slug === params.slug);
+        
         if (foundPost) {
+          console.log('✅ Post encontrado:', foundPost.title);
           setPost(foundPost);
         } else {
+          console.error('❌ Post no encontrado:', params.slug);
           setError('Post no encontrado');
         }
       } else {
+        console.error('❌ Error al cargar post:', response.status);
         setError('Error al cargar el post');
       }
     } catch (error) {
+      console.error('❌ Error de conexión:', error);
       setError('Error de conexión');
     } finally {
       setLoading(false);
@@ -62,7 +69,10 @@ export default function BlogPostPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-700"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-700 mx-auto mb-4"></div>
+          <p className="text-gray-600">Cargando artículo...</p>
+        </div>
       </div>
     );
   }
@@ -70,11 +80,16 @@ export default function BlogPostPage() {
   if (error || !post) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">Post no encontrado</h1>
-        <p className="text-gray-600 mb-8">El artículo que buscas no existe o ha sido eliminado.</p>
-        <Button href="/blog" variant="primary">
-          Volver al Blog
-        </Button>
+        <div className="max-w-md mx-auto">
+          <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Post no encontrado</h1>
+          <p className="text-gray-600 mb-8">El artículo que buscas no existe o ha sido eliminado.</p>
+          <Button href="/blog" variant="primary">
+            Volver al Blog
+          </Button>
+        </div>
       </div>
     );
   }
@@ -93,64 +108,98 @@ export default function BlogPostPage() {
               Blog
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-dark/80">{post.title}</span>
+            <span className="text-dark/80 truncate">{post.title}</span>
           </div>
         </div>
       </div>
       
       {/* Blog Content */}
-      <section className="py-16">
+      <article className="py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <div className="bg-white rounded-xl shadow-soft p-8 md:p-12">
-              <div className="flex items-center mb-6">
+            
+            {/* Header */}
+            <header className="mb-8">
+              <div className="flex flex-wrap items-center gap-3 mb-6">
                 <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-800 rounded-full text-sm font-medium">
                   {post.category}
                 </span>
-                <span className="text-dark/60 text-sm ml-4">
-                  {new Date(post.createdAt).toLocaleDateString()}
+                <span className="text-dark/60 text-sm">
+                  {new Date(post.createdAt).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </span>
               </div>
               
-              <h1 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">
+              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-800 mb-6 leading-tight">
                 {post.title}
               </h1>
               
-              <div className="flex items-center mb-8">
-                <div className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mr-3">
-                  <span className="font-semibold">{post.author.charAt(0)}</span>
+              <div className="flex items-center">
+                <div className="h-12 w-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mr-4">
+                  <span className="font-semibold text-lg">{post.author.charAt(0)}</span>
                 </div>
-                <span className="text-dark/80 font-medium">{post.author}</span>
+                <div>
+                  <p className="text-dark/80 font-medium">{post.author}</p>
+                  <p className="text-dark/60 text-sm">
+                    {new Date(post.createdAt).toLocaleDateString('es-ES')}
+                  </p>
+                </div>
               </div>
-              
-              <div className="relative rounded-xl overflow-hidden shadow-hover mb-8 h-80">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
+            </header>
+            
+            {/* Featured Image */}
+            <div className="relative rounded-xl overflow-hidden shadow-hover mb-8 h-96">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                style={{ objectFit: 'cover' }}
+                className="transition-transform duration-300 hover:scale-105"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            </div>
+            
+            {/* Content */}
+            <div className="bg-white rounded-xl shadow-soft p-8 md:p-12">
+              {post.excerpt && (
+                <div className="mb-8 p-6 bg-primary-50 rounded-lg border-l-4 border-primary-400">
+                  <p className="text-lg text-primary-800 font-medium italic leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                </div>
+              )}
               
               <div className="prose prose-lg max-w-none text-dark/80 leading-relaxed">
-                {post.content.split('\n').map((paragraph, index) => (
-                  <p key={index} className="mb-4">
-                    {paragraph}
-                  </p>
+                {post.content.split('\n\n').map((paragraph, index) => (
+                  paragraph.trim() && (
+                    <p key={index} className="mb-6 text-lg leading-relaxed">
+                      {paragraph.trim()}
+                    </p>
+                  )
                 ))}
               </div>
               
-              <div className="mt-10 border-t border-gray-200 pt-10">
-                <h3 className="font-heading text-xl font-bold text-primary-800 mb-4">
-                  ¿Te resultó útil este artículo?
-                </h3>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button href="/contact" variant="primary">
-                    Contáctanos para más información
-                  </Button>
-                  <Button href="/services" variant="outline">
-                    Explorar nuestros servicios
-                  </Button>
+              {/* Call to Action */}
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-xl p-6">
+                  <h3 className="font-heading text-xl font-bold text-primary-800 mb-4">
+                    ¿Te resultó útil este artículo?
+                  </h3>
+                  <p className="text-dark/70 mb-6">
+                    Si tienes preguntas o quieres saber más sobre nuestros servicios, estamos aquí para ayudarte.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button href="/contact" variant="primary">
+                      Contáctanos para más información
+                    </Button>
+                    <Button href="/services" variant="outline">
+                      Explorar nuestros servicios
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -159,18 +208,28 @@ export default function BlogPostPage() {
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
             <div className="mt-16">
-              <h2 className="text-2xl font-bold text-primary-800 mb-8 text-center">
-                Artículos Relacionados
-              </h2>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-primary-800 mb-4">
+                  Artículos Relacionados
+                </h2>
+                <p className="text-lg text-dark/70">
+                  Otros artículos que podrían interesarte
+                </p>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {relatedPosts.map((relatedPost) => (
-                  <article key={relatedPost.id} className="bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-hover transition-all">
+                  <article 
+                    key={relatedPost.id} 
+                    className="bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-hover transition-all duration-300 group"
+                  >
                     <div className="relative h-48 overflow-hidden">
                       <Image
                         src={relatedPost.image}
                         alt={relatedPost.title}
                         fill
                         style={{ objectFit: 'cover' }}
+                        className="transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                     <div className="p-6">
@@ -179,20 +238,25 @@ export default function BlogPostPage() {
                           {relatedPost.category}
                         </span>
                         <span className="text-dark/60 text-xs ml-2">
-                          {new Date(relatedPost.createdAt).toLocaleDateString()}
+                          {new Date(relatedPost.createdAt).toLocaleDateString('es-ES')}
                         </span>
                       </div>
-                      <h3 className="font-heading text-lg font-bold text-primary-800 mb-3 line-clamp-2">
-                        {relatedPost.title}
+                      <h3 className="font-heading text-lg font-bold text-primary-800 mb-3 line-clamp-2 group-hover:text-primary-700 transition-colors">
+                        <Link href={`/blog/${relatedPost.slug}`}>
+                          {relatedPost.title}
+                        </Link>
                       </h3>
                       <p className="text-dark/70 mb-4 line-clamp-3 text-sm">
                         {relatedPost.excerpt || relatedPost.content.substring(0, 120) + '...'}
                       </p>
                       <Link 
                         href={`/blog/${relatedPost.slug}`}
-                        className="text-primary-600 hover:text-primary-700 text-sm font-medium"
+                        className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center transition-colors"
                       >
-                        Leer más →
+                        Leer más
+                        <svg className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </Link>
                     </div>
                   </article>
@@ -201,7 +265,7 @@ export default function BlogPostPage() {
             </div>
           )}
         </div>
-      </section>
+      </article>
     </>
   );
 }

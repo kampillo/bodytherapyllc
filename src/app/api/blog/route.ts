@@ -1,7 +1,7 @@
-// src/app/api/blog/route.ts - Actualizada para evitar importaciones mixtas
+// src/app/api/blog/route.ts - API verificada para mostrar posts públicos
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
-import { getAllPosts, getPublishedPosts, createPost } from '@/lib/blog';
+import { getAllPosts, getPublishedPosts } from '@/lib/blog';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret';
 
@@ -21,10 +21,13 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const admin = searchParams.get('admin') === 'true';
     
+    console.log('📡 API Blog - Solicitud recibida:', { admin });
+    
     if (admin) {
       // Verificar autenticación para admin
       const token = request.cookies.get('auth-token')?.value;
       if (!token || !verifyTokenLocal(token)) {
+        console.log('❌ API Blog - Admin no autorizado');
         return NextResponse.json(
           { error: 'No autorizado' },
           { status: 401 }
@@ -32,14 +35,24 @@ export async function GET(request: NextRequest) {
       }
       
       const posts = getAllPosts();
+      console.log('✅ API Blog - Posts admin devueltos:', posts.length);
       return NextResponse.json({ posts });
     } else {
-      // Posts públicos
+      // Posts públicos (solo publicados)
       const posts = getPublishedPosts();
+      console.log('✅ API Blog - Posts públicos devueltos:', posts.length);
+      console.log('📝 Posts publicados:', posts.map(p => ({ 
+        id: p.id, 
+        title: p.title, 
+        published: p.published,
+        slug: p.slug,
+        image: p.image 
+      })));
+      
       return NextResponse.json({ posts });
     }
   } catch (error) {
-    console.error('Error getting posts:', error);
+    console.error('❌ API Blog - Error:', error);
     return NextResponse.json(
       { error: 'Error interno del servidor' },
       { status: 500 }
@@ -62,12 +75,20 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { title, excerpt, content, author, category, image, published } = body;
     
+    console.log('📝 API Blog - Creando nuevo post:', { 
+      title, 
+      published, 
+      image: image?.substring(0, 50) + '...' 
+    });
+    
     if (!title || !content) {
       return NextResponse.json(
         { error: 'Título y contenido son requeridos' },
         { status: 400 }
       );
     }
+    
+    const { createPost } = await import('@/lib/blog');
     
     const newPost = createPost({
       title,
@@ -80,9 +101,16 @@ export async function POST(request: NextRequest) {
       published: published || false
     });
     
+    console.log('✅ API Blog - Post creado:', { 
+      id: newPost.id, 
+      title: newPost.title, 
+      published: newPost.published,
+      slug: newPost.slug
+    });
+    
     return NextResponse.json({ post: newPost }, { status: 201 });
   } catch (error) {
-    console.error('Error creating post:', error);
+    console.error('❌ API Blog - Error creando post:', error);
     return NextResponse.json(
       { error: 'Error interno del servidor' },
       { status: 500 }
