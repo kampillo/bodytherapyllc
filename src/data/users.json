@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "mercedes@bodytherapyllc.com",
+      "password": "$2b$12$3P05Pa2ctqmm.apAOx/fBe3Tdl9aNw4lNjq531KIrqgIMxEWb8Rsi",
+      "name": "Administrador",
+      "role": "admin",
+      "createdAt": "2025-05-26T21:54:34.195Z"
+    }
+  ]
+}

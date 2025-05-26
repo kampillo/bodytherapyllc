@@ -1,0 +1,17 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "Masajes y Emociones: Una Conexión Profunda",
+        "slug": "masajes-y-emociones",
+        "excerpt": "Descubre la profunda conexión entre los masajes y nuestras emociones, y cómo el masaje terapéutico puede ayudar a liberar emociones reprimidas.",
+        "content": "Content aquí...",
+        "author": "María Mercedes Lizalde",
+        "category": "Bienestar Emocional",
+        "image": "/images/blog/masajes-emociones.jpg",
+        "published": true,
+        "createdAt": "2025-05-21T00:00:00.000Z",
+        "updatedAt": "2025-05-21T00:00:00.000Z"
+      }
+    ]
+  }
