@@ -1,10 +1,12 @@
-// src/components/sections/ContactForm.tsx
+// src/components/sections/ContactForm.tsx - Con soporte multiidioma
 'use client';
 
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ContactForm = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,20 +36,20 @@ const ContactForm = () => {
     };
     
     if (!formData.name.trim()) {
-      newErrors.name = 'Por favor ingresa tu nombre';
+      newErrors.name = `${t('contact.form.name')} ${t('common.required').toLowerCase()}`;
       valid = false;
     }
     
     if (!formData.email.trim()) {
-      newErrors.email = 'Por favor ingresa tu email';
+      newErrors.email = `${t('contact.form.email')} ${t('common.required').toLowerCase()}`;
       valid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Por favor ingresa un email válido';
+      newErrors.email = 'Por favor ingresa un email válido / Please enter a valid email';
       valid = false;
     }
     
     if (!formData.message.trim()) {
-      newErrors.message = 'Por favor ingresa un mensaje';
+      newErrors.message = `${t('contact.form.message')} ${t('common.required').toLowerCase()}`;
       valid = false;
     }
     
@@ -73,7 +75,7 @@ const ContactForm = () => {
     setFormStatus({
       submitted: true,
       success: false,
-      message: 'Enviando mensaje...',
+      message: t('common.loading'),
     });
     
     // Simular envío
@@ -81,7 +83,7 @@ const ContactForm = () => {
       setFormStatus({
         submitted: true,
         success: true,
-        message: 'Tu mensaje ha sido enviado con éxito. Nos pondremos en contacto contigo pronto.',
+        message: t('contact.form.success'),
       });
       
       // Resetear el formulario
@@ -121,7 +123,7 @@ const ContactForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-dark/80 mb-2">
-            Nombre *
+            {t('contact.form.name')} *
           </label>
           <input
             type="text"
@@ -132,7 +134,7 @@ const ContactForm = () => {
             className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all ${
               errors.name ? 'border-red-300' : 'border-gray-200'
             }`}
-            placeholder="Tu nombre"
+            placeholder={t('contact.form.name')}
           />
           {errors.name && (
             <p className="mt-1.5 text-sm text-red-500 flex items-center">
@@ -146,7 +148,7 @@ const ContactForm = () => {
         
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-dark/80 mb-2">
-            Email *
+            {t('contact.form.email')} *
           </label>
           <input
             type="email"
@@ -173,7 +175,7 @@ const ContactForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-dark/80 mb-2">
-            Teléfono
+            {t('contact.form.phone')}
           </label>
           <input
             type="tel"
@@ -188,7 +190,7 @@ const ContactForm = () => {
         
         <div>
           <label htmlFor="subject" className="block text-sm font-medium text-dark/80 mb-2">
-            Asunto
+            {t('contact.form.subject')}
           </label>
           <select
             id="subject"
@@ -198,18 +200,18 @@ const ContactForm = () => {
             className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all appearance-none"
             style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")", backgroundPosition: "right 1rem center", backgroundRepeat: "no-repeat", backgroundSize: "1.5em 1.5em", paddingRight: "2.5rem" }}
           >
-            <option value="">Selecciona una opción</option>
-            <option value="Consulta">Consulta general</option>
-            <option value="Cita">Reservar cita</option>
-            <option value="Informacion">Solicitar información</option>
-            <option value="Otro">Otro</option>
+            <option value="">Selecciona una opción / Select an option</option>
+            <option value="Consulta">Consulta general / General inquiry</option>
+            <option value="Cita">Reservar cita / Book appointment</option>
+            <option value="Informacion">Solicitar información / Request information</option>
+            <option value="Otro">Otro / Other</option>
           </select>
         </div>
       </div>
       
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-dark/80 mb-2">
-          Mensaje *
+          {t('contact.form.message')} *
         </label>
         <textarea
           id="message"
@@ -220,7 +222,7 @@ const ContactForm = () => {
           className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all ${
             errors.message ? 'border-red-300' : 'border-gray-200'
           }`}
-          placeholder="¿Cómo podemos ayudarte?"
+          placeholder="¿Cómo podemos ayudarte? / How can we help you?"
         ></textarea>
         {errors.message && (
           <p className="mt-1.5 text-sm text-red-500 flex items-center">
@@ -240,7 +242,7 @@ const ContactForm = () => {
           className="w-full md:w-auto"
         >
           <span className="flex items-center">
-            <span>Enviar Mensaje</span>
+            <span>{t('contact.form.send')}</span>
             <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>

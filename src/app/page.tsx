@@ -1,10 +1,15 @@
-// src/app/page.tsx
+// src/app/page.tsx - Con soporte multiidioma completo
+'use client';
+
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import HeroCarousel from '@/components/ui/HeroCarousel';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Home() {
+  const { t } = useLanguage();
+
   // Define las imágenes para el carrusel
   const heroImages = [
     {
@@ -40,8 +45,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section - Con estilo minimalista y moderno */}
-    {/* Hero Section - Con estilo minimalista y moderno */}
-    <section className="relative py-12 md:py-20 lg:py-32 overflow-hidden">
+      <section className="relative py-12 md:py-20 lg:py-32 overflow-hidden">
         {/* Decoración de fondo */}
         <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 bg-primary-50 rounded-bl-3xl opacity-70"></div>
         <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/3 bg-secondary-50 rounded-tr-3xl opacity-70"></div>
@@ -51,26 +55,21 @@ export default function Home() {
             {/* Texto: responsivo para diferentes tamaños */}
             <div className="w-full md:w-4/12 mb-8 md:mb-0 md:pr-8 text-center md:text-left">
               <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary-800 mb-4 md:mb-6 leading-tight">
-                ¿EL DOLOR{" "}
-                <span className="relative inline-block">
-                  TE IMPIDE REALIZAR TUS
-                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-secondary-500"></span>
-                </span>{" "}
-                ACTIVIDADES DIARIAS?
+                {t('hero.title')}
               </h1>
               
               <div className="my-4 md:my-5 pl-4 border-l-4 border-secondary-400 italic">
                 <p className="text-base sm:text-lg md:text-xl font-medium text-primary-700">
-                  Atrévete a vivir sin dolor, transforma tus movimientos limitados en libertad.
+                  {t('hero.subtitle')}
                 </p>
               </div>
               
               <div className="flex flex-col sm:flex-row sm:justify-center md:justify-start gap-3 md:gap-4 mt-6 md:mt-8">
                 <Button href="/services" variant="primary" size="lg" className="w-full sm:w-auto">
-                  Nuestros Servicios
+                  {t('hero.services')}
                 </Button>
                 <Button href="/contact" variant="outline" size="lg" className="w-full sm:w-auto">
-                  Agenda una Cita
+                  {t('hero.appointment')}
                 </Button>
               </div>
             </div>
@@ -99,10 +98,14 @@ export default function Home() {
       <section className="py-20 bg-light">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">Nuestras Especialidades</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">Servicios Diseñados para Tu Bienestar</h2>
+            <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">
+              Nuestras Especialidades
+            </span>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">
+              {t('services.title')}
+            </h2>
             <p className="text-lg text-dark/70 max-w-3xl mx-auto">
-              Ofrecemos una amplia gama de servicios terapéuticos y de bienestar, adaptados a tus necesidades específicas.
+              {t('services.subtitle')}
             </p>
           </div>
 
@@ -112,19 +115,19 @@ export default function Home() {
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src="/images/services/masaje-especializado.png"
-                  alt="Masaje Terapéutico Especializado"
+                  alt={t('services.therapeutic')}
                   fill
                   style={{ objectFit: 'cover' }}
                   className="group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Terapéutico Especializado</h3>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">{t('services.therapeutic')}</h3>
                 <p className="text-dark/70 mb-5">
-                  Especializado en aliviar dolores crónicos, lesiones y problemas musculares específicos.
+                  {t('services.therapeutic.desc')}
                 </p>
                 <Button href="/services#therapeutic" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
+                  <span>{t('services.more.info')}</span>
                   <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -137,19 +140,19 @@ export default function Home() {
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src="/images/services/masaje-clinico.jpg"
-                  alt="Masajes Clínicos"
+                  alt={t('services.clinical')}
                   fill
                   style={{ objectFit: 'cover' }}
                   className="group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Masajes Clínicos</h3>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">{t('services.clinical')}</h3>
                 <p className="text-dark/70 mb-5">
-                  Técnicas especializadas para condiciones médicas específicas, como descontracturante, tejido profundo y más.
+                  {t('services.clinical.desc')}
                 </p>
                 <Button href="/services#clinical" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
+                  <span>{t('services.more.info')}</span>
                   <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -162,19 +165,19 @@ export default function Home() {
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src="/images/services/masajes-relajantes.jpg"
-                  alt="Masajes Relajantes"
+                  alt={t('services.relaxing')}
                   fill
                   style={{ objectFit: 'cover' }}
                   className="group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Masajes Relajantes</h3>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">{t('services.relaxing')}</h3>
                 <p className="text-dark/70 mb-5">
-                  Diseñados para reducir el estrés, la ansiedad y promover una sensación de bienestar general.
+                  {t('services.relaxing.desc')}
                 </p>
                 <Button href="/services#relaxing" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
+                  <span>{t('services.more.info')}</span>
                   <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -187,19 +190,19 @@ export default function Home() {
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src="/images/services/masaje-corporativo.jpg"
-                  alt="Masaje Corporativo"
+                  alt={t('services.corporate')}
                   fill
                   style={{ objectFit: 'cover' }}
                   className="group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Masaje Corporativo</h3>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">{t('services.corporate')}</h3>
                 <p className="text-dark/70 mb-5">
-                  Servicio profesional de masaje Shiatsu para empresas, ideal para reducir el estrés laboral.
+                  {t('services.corporate.desc')}
                 </p>
                 <Button href="/services#corporate" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
+                  <span>{t('services.more.info')}</span>
                   <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -212,19 +215,19 @@ export default function Home() {
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src="/images/services/terapias-holisticas.jpg"
-                  alt="Terapias Holísticas"
+                  alt={t('services.holistic')}
                   fill
                   style={{ objectFit: 'cover' }}
                   className="group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Terapias Holísticas</h3>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">{t('services.holistic')}</h3>
                 <p className="text-dark/70 mb-5">
-                  Enfoque integral que combina diferentes técnicas para armonizar cuerpo, mente y espíritu.
+                  {t('services.holistic.desc')}
                 </p>
                 <Button href="/services#holistic" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
+                  <span>{t('services.more.info')}</span>
                   <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -237,19 +240,19 @@ export default function Home() {
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src="/images/services/paquetes.jpg"
-                  alt="Paquetes de Masaje"
+                  alt={t('services.packages')}
                   fill
                   style={{ objectFit: 'cover' }}
                   className="group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-primary-800 mb-3">Paquetes de Masaje</h3>
+                <h3 className="text-xl font-bold text-primary-800 mb-3">{t('services.packages')}</h3>
                 <p className="text-dark/70 mb-5">
-                  Experiencias completas que combinan diferentes técnicas y extras para una experiencia integral.
+                  {t('services.packages.desc')}
                 </p>
                 <Button href="/services#packages" variant="ghost" className="group-hover:text-primary-700">
-                  <span>Más información</span>
+                  <span>{t('services.more.info')}</span>
                   <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -260,24 +263,28 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Button href="/services" variant="outline" size="lg">
-              Ver todos los servicios
+              {t('services.view.all')}
             </Button>
           </div>
         </div>
       </section>
 
-
       {/* Products Preview Section */}
       <section className="py-20 bg-light">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium mb-4">Productos de Calidad</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">Complementa Tu Tratamiento</h2>
+            <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium mb-4">
+              Productos de Calidad
+            </span>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">
+              {t('products.title')}
+            </h2>
             <p className="text-lg text-dark/70 max-w-3xl mx-auto">
-              Productos de alta calidad creados en laboratorio profesional con ingredientes naturales para complementar tu tratamiento.
+              {t('products.subtitle')}
             </p>
-            <h4 className="font-heading text-3xl md:text-4xl text-primary-600 mb-2">Para uso en casa y cabina de masaje</h4>
-
+            <h4 className="font-heading text-3xl md:text-4xl text-primary-600 mb-2">
+              {t('products.home.cabin')}
+            </h4>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -300,7 +307,7 @@ export default function Home() {
                 <div className="flex justify-between items-center">
                   <span className="text-secondary-700 font-bold">$39.00</span>
                   <Button href="/shop" variant="ghost" size="sm" className="group-hover:text-primary-700">
-                    Ver detalles
+                    {t('products.view.details')}
                   </Button>
                 </div>
               </div>
@@ -325,7 +332,7 @@ export default function Home() {
                 <div className="flex justify-between items-center">
                   <span className="text-secondary-700 font-bold">$39.99</span>
                   <Button href="/shop" variant="ghost" size="sm" className="group-hover:text-primary-700">
-                    Ver detalles
+                    {t('products.view.details')}
                   </Button>
                 </div>
               </div>
@@ -350,7 +357,7 @@ export default function Home() {
                 <div className="flex justify-between items-center">
                   <span className="text-secondary-700 font-bold">$39.99</span>
                   <Button href="/shop" variant="ghost" size="sm" className="group-hover:text-primary-700">
-                    Ver detalles
+                    {t('products.view.details')}
                   </Button>
                 </div>
               </div>
@@ -359,7 +366,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Button href="/shop" variant="outline" size="lg">
-              Visitar tienda
+              {t('products.visit.shop')}
             </Button>
           </div>
         </div>
@@ -385,33 +392,35 @@ export default function Home() {
               </div>
             </div>
             <div className="md:w-1/2 md:pl-8">
-              <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">Nuestra Historia</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">Sobre Nosotros</h2>
+              <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">
+                {t('about.title')}
+              </span>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">
+                {t('about.title')}
+              </h2>
               <p className="text-lg text-dark/70 mb-6 leading-relaxed">
-                Body Therapy LLC es un centro especializado en terapia manual, fundado con la misión de proporcionar alivio, bienestar y una mejor calidad de vida a nuestros pacientes.
+                {t('about.history.desc')}
               </p>
               <p className="text-lg text-dark/70 mb-8 leading-relaxed">
-                Nuestra directora, María Mercedes Lizalde, combina años de experiencia con un enfoque personalizado que atiende las necesidades específicas de cada paciente.
+                {t('about.founder.desc')}
               </p>
               <Button href="/about" variant="primary">
-                Conoce nuestra historia
+                {t('about.learn.more')}
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section - Se mantiene el componente pero se renderizará con el nuevo estilo */}
+      {/* Testimonials Section */}
       <TestimonialSection />
       <div className="container mx-auto px-4 pb-12 -mt-8 text-center">
         <Button href="/about#testimonials" variant="outline" size="lg">
-          Ver todos los testimonios
+          {t('testimonials.view.all')}
         </Button>
       </div>
 
-    
-
-
+      {/* Mercy Section */}
       <section className="py-20 bg-gradient-to-b from-white to-primary-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-12">
@@ -438,7 +447,9 @@ export default function Home() {
 
             {/* Columna del texto */}
             <div className="lg:w-7/12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">Comprometidos con tu bienestar</h2>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">
+                {t('about.commitment')}
+              </h2>
 
               <div className="space-y-4 text-dark/80 leading-relaxed">
                 <p>
@@ -460,28 +471,22 @@ export default function Home() {
                   Estas experiencias generaron en mí una empatía por el dolor ajeno, por quienes enfrentan dificultades físicas. Esto es lo que me motiva a ofrecerles nuestros servicios, con la firme intención de ayudarles a mejorar su movimiento, y por ende su calidad de vida.
                 </p>
                 <p>
-                Soy fiel creyente de Papá Dios, él tiene planes para cada uno de nosotros. Hoy reafirmo mi misión terrenal, encaminarte a que tu cuerpo este en equilibrio, ¡libre de dolor!
-               
+                  Soy fiel creyente de Papá Dios, él tiene planes para cada uno de nosotros. Hoy reafirmo mi misión terrenal, encaminarte a que tu cuerpo este en equilibrio, ¡libre de dolor!
                 </p>
                 <p>
-                ¡Por más vidas sanas, en movimiento, y libres de dolor!
+                  ¡Por más vidas sanas, en movimiento, y libres de dolor!
                 </p>
               </div>
 
               <div className="mt-8">
                 <Button href="/about" variant="primary">
-                  Conoce más sobre nosotros
+                  {t('about.learn.about')}
                 </Button>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Contact CTA Section */}
-
-
-
     </>
   );
 }

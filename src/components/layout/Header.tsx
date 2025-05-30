@@ -1,12 +1,15 @@
 "use client";
-// src/components/layout/Header.tsx
+// src/components/layout/Header.tsx - Con soporte multiidioma
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import CartDropdown from '@/components/ui/cartDropdown';
+import LanguageSelector from '@/components/ui/LanguageSelector';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Header = () => {
+  const { t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -80,17 +83,18 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <div className="flex space-x-6">
-            <NavLink href="/" text="Inicio" />
-            <NavLink href="/about" text="Sobre Nosotros" />
-            <NavLink href="/services" text="Servicios" />
-            <NavLink href="/shop" text="Tienda" />
-            <NavLink href="/courses" text="Certificaciones" />
-            <NavLink href="/blog" text="Blog" />
+            <NavLink href="/" text={t('nav.home')} />
+            <NavLink href="/about" text={t('nav.about')} />
+            <NavLink href="/services" text={t('nav.services')} />
+            <NavLink href="/shop" text={t('nav.shop')} />
+            <NavLink href="/courses" text={t('nav.courses')} />
+            <NavLink href="/blog" text={t('nav.blog')} />
           </div>
           <div className="flex items-center space-x-4">
+            <LanguageSelector />
             <CartDropdown />
             <Button href="/contact" variant="primary" size="sm">
-              Contacto
+              {t('nav.contact')}
             </Button>
           </div>
         </nav>
@@ -98,6 +102,7 @@ const Header = () => {
         {/* Mobile Menu Button and Cart Icon - Visible ONLY on mobile */}
         {isMobile && (
           <div className="flex items-center space-x-2">
+            <LanguageSelector />
             <CartDropdown />
             <button
               onClick={toggleMenu}
@@ -145,12 +150,12 @@ const Header = () => {
       >
         <nav className="px-4 py-6">
           <div className="flex flex-col space-y-4">
-            <MobileNavLink href="/" text="Inicio" onClick={() => setIsMenuOpen(false)} />
-            <MobileNavLink href="/about" text="Sobre Nosotros" onClick={() => setIsMenuOpen(false)} />
-            <MobileNavLink href="/services" text="Servicios" onClick={() => setIsMenuOpen(false)} />
-            <MobileNavLink href="/shop" text="Tienda" onClick={() => setIsMenuOpen(false)} />
-            <MobileNavLink href="/courses" text="Cursos" onClick={() => setIsMenuOpen(false)} />
-            <MobileNavLink href="/blog" text="Blog" onClick={() => setIsMenuOpen(false)} />
+            <MobileNavLink href="/" text={t('nav.home')} onClick={() => setIsMenuOpen(false)} />
+            <MobileNavLink href="/about" text={t('nav.about')} onClick={() => setIsMenuOpen(false)} />
+            <MobileNavLink href="/services" text={t('nav.services')} onClick={() => setIsMenuOpen(false)} />
+            <MobileNavLink href="/shop" text={t('nav.shop')} onClick={() => setIsMenuOpen(false)} />
+            <MobileNavLink href="/courses" text={t('nav.courses')} onClick={() => setIsMenuOpen(false)} />
+            <MobileNavLink href="/blog" text={t('nav.blog')} onClick={() => setIsMenuOpen(false)} />
             <div className="pt-2">
               <Button 
                 href="/contact" 
@@ -159,7 +164,7 @@ const Header = () => {
                 fullWidth 
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contacto
+                {t('nav.contact')}
               </Button>
             </div>
           </div>

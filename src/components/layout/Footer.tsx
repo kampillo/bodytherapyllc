@@ -1,9 +1,14 @@
-// src/components/layout/Footer.tsx
+// src/components/layout/Footer.tsx - Con soporte multiidioma
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-white pt-16 pb-8 border-t border-gray-100">
       <div className="container mx-auto px-4">
@@ -19,7 +24,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-dark/70 mb-6 leading-relaxed">
-              Terapia manual de alta calidad, personalizada y basada en la evidencia, para aliviar dolores, mejorar la movilidad y promover el bienestar integral.
+              {t('about.history.desc')}
             </p>
             <div className="flex space-x-4">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-800 transition-colors">
@@ -38,14 +43,14 @@ const Footer = () => {
           </div>
           
           <div className="col-span-1">
-            <h3 className="text-primary-800 font-bold text-lg mb-6">Servicios</h3>
+            <h3 className="text-primary-800 font-bold text-lg mb-6">{t('footer.services')}</h3>
             <ul className="space-y-3">
               <li>
                 <Link href="/services#therapeutic" className="text-dark/70 hover:text-primary-700 transition-colors inline-flex items-center">
                   <svg className="w-3 h-3 mr-2 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  Masaje Terapéutico
+                  {t('services.therapeutic')}
                 </Link>
               </li>
               <li>
@@ -53,7 +58,7 @@ const Footer = () => {
                   <svg className="w-3 h-3 mr-2 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  Masajes Clínicos
+                  {t('services.clinical')}
                 </Link>
               </li>
               <li>
@@ -61,7 +66,7 @@ const Footer = () => {
                   <svg className="w-3 h-3 mr-2 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  Masajes Relajantes
+                  {t('services.relaxing')}
                 </Link>
               </li>
               <li>
@@ -69,21 +74,21 @@ const Footer = () => {
                   <svg className="w-3 h-3 mr-2 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  Terapias Holísticas
+                  {t('services.holistic')}
                 </Link>
               </li>
             </ul>
           </div>
           
           <div className="col-span-1">
-            <h3 className="text-primary-800 font-bold text-lg mb-6">Enlaces</h3>
+            <h3 className="text-primary-800 font-bold text-lg mb-6">{t('footer.links')}</h3>
             <ul className="space-y-3">
               <li>
                 <Link href="/about" className="text-dark/70 hover:text-primary-700 transition-colors inline-flex items-center">
                   <svg className="w-3 h-3 mr-2 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  Sobre Nosotros
+                  {t('nav.about')}
                 </Link>
               </li>
               <li>
@@ -91,7 +96,7 @@ const Footer = () => {
                   <svg className="w-3 h-3 mr-2 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  Tienda
+                  {t('nav.shop')}
                 </Link>
               </li>
               <li>
@@ -99,7 +104,7 @@ const Footer = () => {
                   <svg className="w-3 h-3 mr-2 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  Certificaciones
+                  {t('nav.courses')}
                 </Link>
               </li>
               <li>
@@ -107,7 +112,7 @@ const Footer = () => {
                   <svg className="w-3 h-3 mr-2 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  Blog
+                  {t('nav.blog')}
                 </Link>
               </li>
               <li>
@@ -122,7 +127,7 @@ const Footer = () => {
           </div>
           
           <div className="col-span-1">
-            <h3 className="text-primary-800 font-bold text-lg mb-6">Contacto</h3>
+            <h3 className="text-primary-800 font-bold text-lg mb-6">{t('footer.contact')}</h3>
             <address className="not-italic text-dark/70 space-y-3">
               <div className="flex items-start">
                 <svg className="h-5 w-5 text-primary-600 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -147,13 +152,24 @@ const Footer = () => {
                   mercedes@bodytherapyllc.com
                 </a>
               </div>
+              <div className="flex items-start mt-4">
+                <svg className="h-5 w-5 text-primary-600 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <h4 className="font-medium text-dark mb-1">{t('footer.schedule')}</h4>
+                  <p className="text-sm">{t('footer.schedule.weekdays')}</p>
+                  <p className="text-sm">{t('footer.schedule.saturday')}</p>
+                  <p className="text-sm">{t('footer.schedule.sunday')}</p>
+                </div>
+              </div>
             </address>
           </div>
         </div>
         
         <div className="mt-16 pt-8 border-t border-gray-100 text-center">
           <p className="text-sm text-dark/50">
-            &copy; {new Date().getFullYear()} Body Therapy LLC. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Body Therapy LLC. {t('footer.rights')}
           </p>
         </div>
       </div>
