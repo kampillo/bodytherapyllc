@@ -11,7 +11,7 @@ const LanguageSelector: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages = [
-    { code: 'es' as Language, name: 'Español', flag: '🇪🇸' },
+    { code: 'es' as Language, name: 'Español', flag: '🇲🇽' },
     { code: 'en' as Language, name: 'English', flag: '🇺🇸' },
   ];
 
