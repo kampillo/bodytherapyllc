@@ -19,7 +19,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
     title: post?.title || '',
     excerpt: post?.excerpt || '',
     content: post?.content || '',
-    author: post?.author || 'María Mercedes Lizalde',
+    author: typeof post?.author === 'string' ? post.author : post?.author?.name || 'María Mercedes Lizalde',
     category: post?.category || 'General',
     image: post?.image || '/images/blog/default.jpg',
     published: post?.published || false

@@ -135,9 +135,9 @@ export default function BlogPage() {
                       </p>
                       <div className="flex items-center mb-6">
                         <div className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mr-3">
-                          <span className="font-semibold">{posts[0].author.charAt(0)}</span>
+                          <span className="font-semibold">{posts[0].author.name.charAt(0)}</span>
                         </div>
-                        <span className="text-dark/80 font-medium">{posts[0].author}</span>
+                        <span className="text-dark/80 font-medium">{posts[0].author.name}</span>
                       </div>
                       <Button href={`/blog/${posts[0].slug}`} variant="primary">
                         Leer Artículo
@@ -185,9 +185,9 @@ export default function BlogPage() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center">
                             <div className="h-8 w-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mr-2">
-                              <span className="text-xs font-semibold">{post.author.charAt(0)}</span>
+                              <span className="text-xs font-semibold">{post.author.name.charAt(0)}</span>
                             </div>
-                            <span className="text-sm text-dark/80">{post.author}</span>
+                            <span className="text-sm text-dark/80">{post.author.name}</span>
                           </div>
                           <Link 
                             href={`/blog/${post.slug}`}

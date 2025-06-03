@@ -246,8 +246,8 @@ const ProductList = () => {
                     {/* Actions */}
                     <div className="flex items-center justify-between">
                       <div className="flex space-x-2">
-                        <button
-                          onClick={() => handleToggleStock(id)}
+                      <button
+                          onClick={() => handleToggleStock(product.id)}
                           className={`inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
                             product.inStock
                               ? 'text-green-600 bg-green-50 hover:bg-green-100'

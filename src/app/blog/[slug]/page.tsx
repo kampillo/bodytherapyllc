@@ -26,11 +26,11 @@ export default function BlogPostPage() {
     try {
       console.log('🔍 Cargando post:', params.slug);
       const response = await fetch('/api/blog');
-      
+
       if (response.ok) {
         const data = await response.json();
         const foundPost = data.posts.find((p: BlogPost) => p.slug === params.slug);
-        
+
         if (foundPost) {
           console.log('✅ Post encontrado:', foundPost.title);
           setPost(foundPost);
@@ -112,12 +112,12 @@ export default function BlogPostPage() {
           </div>
         </div>
       </div>
-      
+
       {/* Blog Content */}
       <article className="py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            
+
             {/* Header */}
             <header className="mb-8">
               <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -132,24 +132,22 @@ export default function BlogPostPage() {
                   })}
                 </span>
               </div>
-              
+
               <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-800 mb-6 leading-tight">
                 {post.title}
               </h1>
-              
+
               <div className="flex items-center">
                 <div className="h-12 w-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 mr-4">
-                  <span className="font-semibold text-lg">{post.author.charAt(0)}</span>
+                  <span className="font-semibold text-lg">{post.author.name.charAt(0)}</span>
                 </div>
                 <div>
-                  <p className="text-dark/80 font-medium">{post.author}</p>
-                  <p className="text-dark/60 text-sm">
-                    {new Date(post.createdAt).toLocaleDateString('es-ES')}
-                  </p>
+                  <p className="text-dark/80 font-medium">{post.author.name}</p>
+                  <p className="text-sm text-dark/60">{new Date(post.createdAt).toLocaleDateString()}</p>
                 </div>
               </div>
             </header>
-            
+
             {/* Featured Image */}
             <div className="relative rounded-xl overflow-hidden shadow-hover mb-8 h-96">
               <Image
@@ -162,7 +160,7 @@ export default function BlogPostPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
             </div>
-            
+
             {/* Content */}
             <div className="bg-white rounded-xl shadow-soft p-8 md:p-12">
               {post.excerpt && (
@@ -172,7 +170,7 @@ export default function BlogPostPage() {
                   </p>
                 </div>
               )}
-              
+
               <div className="prose prose-lg max-w-none text-dark/80 leading-relaxed">
                 {post.content.split('\n\n').map((paragraph, index) => (
                   paragraph.trim() && (
@@ -182,7 +180,7 @@ export default function BlogPostPage() {
                   )
                 ))}
               </div>
-              
+
               {/* Call to Action */}
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-xl p-6">
@@ -216,11 +214,11 @@ export default function BlogPostPage() {
                   Otros artículos que podrían interesarte
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {relatedPosts.map((relatedPost) => (
-                  <article 
-                    key={relatedPost.id} 
+                  <article
+                    key={relatedPost.id}
                     className="bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-hover transition-all duration-300 group"
                   >
                     <div className="relative h-48 overflow-hidden">
@@ -249,7 +247,7 @@ export default function BlogPostPage() {
                       <p className="text-dark/70 mb-4 line-clamp-3 text-sm">
                         {relatedPost.excerpt || relatedPost.content.substring(0, 120) + '...'}
                       </p>
-                      <Link 
+                      <Link
                         href={`/blog/${relatedPost.slug}`}
                         className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center transition-colors"
                       >

@@ -39,9 +39,9 @@ export async function GET(request: NextRequest) {
       // Búsqueda simple si se especifica
       if (search) {
         const searchLower = search.toLowerCase();
-        posts = posts.filter(post => 
+        posts = posts.filter(post =>
           post.title.toLowerCase().includes(searchLower) ||
-          post.excerpt.toLowerCase().includes(searchLower) ||
+          (post.excerpt && post.excerpt.toLowerCase().includes(searchLower)) ||  // ← Verificación de null
           post.content.toLowerCase().includes(searchLower)
         );
       }

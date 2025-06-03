@@ -185,7 +185,7 @@ const BlogList = () => {
                     </p>
                     
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <span className="font-medium">{post.author}</span>
+                      <span className="font-medium">{post.author.name}</span>
                       <span>{new Date(post.createdAt).toLocaleDateString('es-ES')}</span>
                     </div>
 
@@ -276,7 +276,7 @@ const BlogList = () => {
                                 {post.title}
                               </div>
                               <div className="text-sm text-gray-500">
-                                {post.category} • {post.author}
+                                {post.category} • {post.author.name}
                               </div>
                             </div>
                           </div>
