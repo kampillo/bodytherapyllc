@@ -1,24 +1,11 @@
-// src/components/admin/ProductList.tsx - Gestión completa de productos
+// src/components/admin/ProductList.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-  inStock: boolean;
-  featured: boolean;
-  slug: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import type { Product } from '@prisma/client';
 
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -26,7 +13,6 @@ const ProductList = () => {
   const [error, setError] = useState('');
   const [deleteLoading, setDeleteLoading] = useState<number | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
-  const [toggleLoading, setToggleLoading] = useState<{[key: number]: string}>({});
 
   useEffect(() => {
     fetchProducts();
@@ -40,12 +26,10 @@ const ProductList = () => {
       if (response.ok) {
         const data = await response.json();
         setProducts(data.products);
-        console.log('✅ Productos cargados:', data.products.length);
       } else {
         setError('Error al cargar los productos');
       }
     } catch (error) {
-      console.error('Error fetching products:', error);
       setError('Error de conexión');
     } finally {
       setLoading(false);
@@ -67,22 +51,17 @@ const ProductList = () => {
 
       if (response.ok) {
         setProducts(products.filter(product => product.id !== id));
-        console.log('✅ Producto eliminado:', id);
       } else {
-        const errorData = await response.json();
-        alert(`Error al eliminar el producto: ${errorData.error}`);
+        alert('Error al eliminar el producto');
       }
     } catch (error) {
-      console.error('Error deleting product:', error);
       alert('Error de conexión');
     } finally {
       setDeleteLoading(null);
     }
   };
 
-  const handleToggle = async (id: number, action: 'toggle-featured' | 'toggle-stock') => {
-    setToggleLoading(prev => ({ ...prev, [id]: action }));
-    
+  const handleToggleFeatured = async (id: number) => {
     try {
       const response = await fetch(`/api/products/${id}`, {
         method: 'PATCH',
@@ -90,7 +69,7 @@ const ProductList = () => {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ action })
+        body: JSON.stringify({ action: 'toggle-featured' }),
       });
 
       if (response.ok) {
@@ -98,20 +77,35 @@ const ProductList = () => {
         setProducts(products.map(product => 
           product.id === id ? data.product : product
         ));
-        console.log(`✅ ${action} completado para producto:`, id);
       } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.error}`);
+        alert('Error al actualizar el producto');
       }
     } catch (error) {
-      console.error(`Error in ${action}:`, error);
       alert('Error de conexión');
-    } finally {
-      setToggleLoading(prev => {
-        const newState = { ...prev };
-        delete newState[id];
-        return newState;
+    }
+  };
+
+  const handleToggleStock = async (id: number) => {
+    try {
+      const response = await fetch(`/api/products/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ action: 'toggle-stock' }),
       });
+
+      if (response.ok) {
+        const data = await response.json();
+        setProducts(products.map(product => 
+          product.id === id ? data.product : product
+        ));
+      } else {
+        alert('Error al actualizar el producto');
+      }
+    } catch (error) {
+      alert('Error de conexión');
     }
   };
 
@@ -130,15 +124,7 @@ const ProductList = () => {
           <svg className="w-5 h-5 text-red-400 mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <div>
-            <p className="text-red-700">{error}</p>
-            <button
-              onClick={fetchProducts}
-              className="mt-2 text-sm text-red-600 hover:text-red-500 underline"
-            >
-              Intentar de nuevo
-            </button>
-          </div>
+          <p className="text-red-700">{error}</p>
         </div>
       </div>
     );
@@ -149,7 +135,7 @@ const ProductList = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <div>
           <h2 className="text-3xl font-bold text-gray-900">Productos</h2>
-          <p className="text-gray-600 mt-1">Gestiona el catálogo de productos ({products.length} productos)</p>
+          <p className="text-gray-600 mt-1">Gestiona todos los productos de tu tienda ({products.length} productos)</p>
         </div>
         
         <div className="flex items-center gap-3">
@@ -192,7 +178,7 @@ const ProductList = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
           </svg>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">No hay productos</h3>
-          <p className="text-gray-500 mb-6">Comienza creando tu primer producto en el catálogo.</p>
+          <p className="text-gray-500 mb-6">Comienza creando tu primer producto.</p>
           <Button href="/admin/products/new" variant="primary">
             <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -217,13 +203,8 @@ const ProductList = () => {
                       className="transition-transform duration-200 group-hover:scale-105"
                     />
                     
-                    {/* Badges */}
-                    <div className="absolute top-3 left-3 flex gap-2">
-                      {product.featured && (
-                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">
-                          Destacado
-                        </span>
-                      )}
+                    {/* Status badges */}
+                    <div className="absolute top-3 left-3 flex flex-col gap-2">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                         product.inStock 
                           ? 'bg-green-100 text-green-800 border border-green-200' 
@@ -231,6 +212,12 @@ const ProductList = () => {
                       }`}>
                         {product.inStock ? 'En Stock' : 'Sin Stock'}
                       </span>
+                      
+                      {product.featured && (
+                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">
+                          Destacado
+                        </span>
+                      )}
                     </div>
                     
                     {/* Category badge */}
@@ -243,7 +230,7 @@ const ProductList = () => {
 
                   {/* Content */}
                   <div className="p-5">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1 group-hover:text-primary-700 transition-colors">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-700 transition-colors">
                       {product.name}
                     </h3>
                     
@@ -259,6 +246,34 @@ const ProductList = () => {
                     {/* Actions */}
                     <div className="flex items-center justify-between">
                       <div className="flex space-x-2">
+                        <button
+                          onClick={() => handleToggleStock(id)}
+                          className={`inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                            product.inStock
+                              ? 'text-green-600 bg-green-50 hover:bg-green-100'
+                              : 'text-red-600 bg-red-50 hover:bg-red-100'
+                          }`}
+                        >
+                          <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                          </svg>
+                          {product.inStock ? 'En Stock' : 'Sin Stock'}
+                        </button>
+                        
+                        <button
+                          onClick={() => handleToggleFeatured(product.id)}
+                          className={`inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                            product.featured
+                              ? 'text-yellow-600 bg-yellow-50 hover:bg-yellow-100'
+                              : 'text-gray-600 bg-gray-50 hover:bg-gray-100'
+                          }`}
+                        >
+                          <svg className="w-3 h-3 mr-1" fill={product.featured ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                          </svg>
+                          {product.featured ? 'Destacado' : 'Destacar'}
+                        </button>
+                        
                         <Link
                           href={`/admin/products/edit/${product.id}`}
                           className="inline-flex items-center px-3 py-1.5 text-xs font-medium text-indigo-600 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
@@ -268,21 +283,6 @@ const ProductList = () => {
                           </svg>
                           Editar
                         </Link>
-                        
-                        <button
-                          onClick={() => handleToggle(product.id, 'toggle-featured')}
-                          disabled={toggleLoading[product.id] === 'toggle-featured'}
-                          className="inline-flex items-center px-3 py-1.5 text-xs font-medium text-yellow-600 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors disabled:opacity-50"
-                        >
-                          {toggleLoading[product.id] === 'toggle-featured' ? (
-                            <div className="animate-spin h-3 w-3 border border-yellow-600 rounded-full border-t-transparent mr-1"></div>
-                          ) : (
-                            <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                            </svg>
-                          )}
-                          {product.featured ? 'Quitar' : 'Destacar'}
-                        </button>
                       </div>
 
                       <button
@@ -344,7 +344,7 @@ const ProductList = () => {
                               />
                             </div>
                             <div className="ml-4">
-                              <div className="text-sm font-medium text-gray-900 line-clamp-1 max-w-md">
+                              <div className="text-sm font-medium text-gray-900 line-clamp-2 max-w-md">
                                 {product.name}
                               </div>
                               <div className="text-sm text-gray-500">
@@ -354,10 +354,12 @@ const ProductList = () => {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm font-medium text-gray-900">${product.price.toFixed(2)}</div>
+                          <span className="text-lg font-bold text-secondary-700">
+                            ${product.price.toFixed(2)}
+                          </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex flex-col space-y-1">
+                          <div className="flex flex-col gap-1">
                             <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                               product.inStock 
                                 ? 'bg-green-100 text-green-800' 
@@ -377,23 +379,28 @@ const ProductList = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <div className="flex justify-end space-x-2">
+                            <button
+                              onClick={() => handleToggleStock(product.id)}
+                              className="text-blue-600 hover:text-blue-900 font-medium text-xs"
+                            >
+                              {product.inStock ? 'Quitar Stock' : 'Agregar Stock'}
+                            </button>
+                            <button
+                              onClick={() => handleToggleFeatured(product.id)}
+                              className="text-yellow-600 hover:text-yellow-900 font-medium text-xs"
+                            >
+                              {product.featured ? 'Quitar Destacado' : 'Destacar'}
+                            </button>
                             <Link
                               href={`/admin/products/edit/${product.id}`}
-                              className="text-indigo-600 hover:text-indigo-900 font-medium"
+                              className="text-indigo-600 hover:text-indigo-900 font-medium text-xs"
                             >
                               Editar
                             </Link>
                             <button
-                              onClick={() => handleToggle(product.id, 'toggle-stock')}
-                              disabled={toggleLoading[product.id] === 'toggle-stock'}
-                              className="text-blue-600 hover:text-blue-900 font-medium disabled:opacity-50"
-                            >
-                              {toggleLoading[product.id] === 'toggle-stock' ? 'Cambiando...' : 'Stock'}
-                            </button>
-                            <button
                               onClick={() => handleDelete(product.id)}
                               disabled={deleteLoading === product.id}
-                              className="text-red-600 hover:text-red-900 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                              className="text-red-600 hover:text-red-900 font-medium disabled:opacity-50 disabled:cursor-not-allowed text-xs"
                             >
                               {deleteLoading === product.id ? 'Eliminando...' : 'Eliminar'}
                             </button>
