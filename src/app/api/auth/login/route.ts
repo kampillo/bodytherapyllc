@@ -1,4 +1,4 @@
-// src/app/api/auth/login/route.ts
+// src/app/api/auth/login/route.ts - Actualizada para usar Prisma
 import { NextRequest, NextResponse } from 'next/server';
 import { findUserByEmail, verifyPassword, createToken, createInitialAdmin } from '@/lib/auth';
 
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Buscar usuario
-    const user = findUserByEmail(email);
+    const user = await findUserByEmail(email);
     if (!user) {
       return NextResponse.json(
         { error: 'Credenciales inválidas' },
@@ -57,13 +57,14 @@ export async function POST(request: NextRequest) {
       path: '/'
     });
     
+    console.log('✅ Login successful for user:', user.email);
+    
     return response;
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('❌ Login error:', error);
     return NextResponse.json(
       { error: 'Error interno del servidor' },
       { status: 500 }
     );
   }
 }
-

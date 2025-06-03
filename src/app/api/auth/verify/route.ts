@@ -1,6 +1,6 @@
-// src/app/api/auth/verify/route.ts - Actualizada para usar la función correcta
+// src/app/api/auth/verify/route.ts - Actualizada para usar Prisma
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken, findUserByEmail } from '@/lib/auth';
+import { verifyToken, findUserById } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
@@ -21,14 +21,16 @@ export async function GET(request: NextRequest) {
       );
     }
     
-    // Verificar que el usuario aún existe
-    const user = findUserByEmail(decoded.email);
+    // Verificar que el usuario aún existe en la base de datos
+    const user = await findUserById(decoded.userId);
     if (!user) {
       return NextResponse.json(
         { error: 'Usuario no encontrado' },
         { status: 401 }
       );
     }
+    
+    console.log('✅ Token verified for user:', user.email);
     
     return NextResponse.json({
       user: {
@@ -39,7 +41,7 @@ export async function GET(request: NextRequest) {
       }
     });
   } catch (error) {
-    console.error('Verify error:', error);
+    console.error('❌ Verify error:', error);
     return NextResponse.json(
       { error: 'Error interno del servidor' },
       { status: 500 }

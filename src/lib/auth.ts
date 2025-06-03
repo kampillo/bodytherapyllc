@@ -1,73 +1,69 @@
-// src/lib/auth.ts - Sin importaciones de auth-edge para evitar conflictos
+// src/lib/auth.ts - Actualizada para usar Prisma
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import fs from 'fs';
-import path from 'path';
-
-interface User {
-  id: number;
-  email: string;
-  password: string;
-  name: string;
-  role: string;
-  createdAt: string;
-}
-
-interface UsersData {
-  users: User[];
-}
+import { prisma } from './prisma';
+import type { User } from '@prisma/client';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret';
-const usersPath = path.join(process.cwd(), 'src/data/users.json');
 
-// Leer usuarios del archivo
-export function getUsers(): UsersData {
-  try {
-    if (!fs.existsSync(usersPath)) {
-      const initialData: UsersData = { users: [] };
-      fs.writeFileSync(usersPath, JSON.stringify(initialData, null, 2));
-      return initialData;
-    }
-    const data = fs.readFileSync(usersPath, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading users:', error);
-    return { users: [] };
-  }
-}
-
-// Escribir usuarios al archivo
-export function saveUsers(data: UsersData): void {
-  try {
-    // Asegurar que el directorio existe
-    const dir = path.dirname(usersPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(usersPath, JSON.stringify(data, null, 2));
-  } catch (error) {
-    console.error('Error saving users:', error);
-    throw new Error('Failed to save users');
-  }
-}
+// Tipo para usuario sin contraseña (para respuestas)
+export type SafeUser = Omit<User, 'password'>;
 
 // Buscar usuario por email
-export function findUserByEmail(email: string): User | null {
-  const { users } = getUsers();
-  return users.find(user => user.email === email) || null;
+export async function findUserByEmail(email: string): Promise<User | null> {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email }
+    });
+    return user;
+  } catch (error) {
+    console.error('Error finding user by email:', error);
+    return null;
+  }
+}
+
+// Buscar usuario por ID
+export async function findUserById(id: number): Promise<SafeUser | null> {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      }
+    });
+    return user;
+  } catch (error) {
+    console.error('Error finding user by ID:', error);
+    return null;
+  }
 }
 
 // Verificar contraseña
 export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
-  return bcrypt.compare(password, hashedPassword);
+  try {
+    return await bcrypt.compare(password, hashedPassword);
+  } catch (error) {
+    console.error('Error verifying password:', error);
+    return false;
+  }
 }
 
 // Hash de contraseña
 export async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, 12);
+  try {
+    return await bcrypt.hash(password, 12);
+  } catch (error) {
+    console.error('Error hashing password:', error);
+    throw new Error('Failed to hash password');
+  }
 }
 
-// Crear token JWT (duplicado aquí para las APIs)
+// Crear token JWT
 export function createToken(userId: number, email: string): string {
   return jwt.sign(
     { userId, email },
@@ -76,36 +72,145 @@ export function createToken(userId: number, email: string): string {
   );
 }
 
-// Verificar token JWT (duplicado aquí para las APIs)
+// Verificar token JWT
 export function verifyToken(token: string): { userId: number; email: string } | null {
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as { userId: number; email: string };
     return decoded;
   } catch (error) {
+    console.error('Error verifying token:', error);
     return null;
   }
 }
 
-// Crear usuario inicial si no existe
+// Crear usuario administrador inicial si no existe
 export async function createInitialAdmin(): Promise<void> {
-  const { users } = getUsers();
-  
-  if (users.length === 0) {
-    const adminEmail = process.env.ADMIN_EMAIL || 'admin@bodytherapyllc.com';
-    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+  try {
+    const userCount = await prisma.user.count();
     
-    const hashedPassword = await hashPassword(adminPassword);
+    if (userCount === 0) {
+      const adminEmail = process.env.ADMIN_EMAIL || 'mercedes@bodytherapyllc.com';
+      const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+      
+      const hashedPassword = await hashPassword(adminPassword);
+      
+      const adminUser = await prisma.user.create({
+        data: {
+          email: adminEmail,
+          password: hashedPassword,
+          name: 'María Mercedes Lizalde',
+          role: 'admin',
+        }
+      });
+      
+      console.log('✅ Admin user created:', adminUser.email);
+    }
+  } catch (error) {
+    console.error('❌ Error creating initial admin:', error);
+    throw new Error('Failed to create initial admin');
+  }
+}
+
+// Crear nuevo usuario
+export async function createUser(userData: {
+  email: string;
+  password: string;
+  name: string;
+  role?: string;
+}): Promise<SafeUser> {
+  try {
+    const hashedPassword = await hashPassword(userData.password);
     
-    const adminUser: User = {
-      id: 1,
-      email: adminEmail,
-      password: hashedPassword,
-      name: 'Administrador',
-      role: 'admin',
-      createdAt: new Date().toISOString()
-    };
+    const user = await prisma.user.create({
+      data: {
+        email: userData.email,
+        password: hashedPassword,
+        name: userData.name,
+        role: userData.role || 'admin',
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      }
+    });
     
-    saveUsers({ users: [adminUser] });
-    console.log('Admin user created:', adminEmail);
+    return user;
+  } catch (error) {
+    console.error('Error creating user:', error);
+    throw new Error('Failed to create user');
+  }
+}
+
+// Actualizar usuario
+export async function updateUser(
+  id: number, 
+  updates: Partial<{ email: string; name: string; role: string; password: string }>
+): Promise<SafeUser | null> {
+  try {
+    const updateData: any = { ...updates };
+    
+    // Si se actualiza la contraseña, hashearla
+    if (updates.password) {
+      updateData.password = await hashPassword(updates.password);
+    }
+    
+    const user = await prisma.user.update({
+      where: { id },
+      data: updateData,
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      }
+    });
+    
+    return user;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    return null;
+  }
+}
+
+// Eliminar usuario
+export async function deleteUser(id: number): Promise<boolean> {
+  try {
+    await prisma.user.delete({
+      where: { id }
+    });
+    return true;
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    return false;
+  }
+}
+
+// Obtener todos los usuarios (sin contraseñas)
+export async function getAllUsers(): Promise<SafeUser[]> {
+  try {
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+    
+    return users;
+  } catch (error) {
+    console.error('Error getting all users:', error);
+    return [];
   }
 }

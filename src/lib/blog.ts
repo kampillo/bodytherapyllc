@@ -1,83 +1,25 @@
-// src/lib/blog.ts
-import fs from 'fs';
-import path from 'path';
+// src/lib/blog.ts - Actualizada para usar Prisma
+import { prisma } from './prisma';
+import type { Post, User } from '@prisma/client';
 
-export interface BlogPost {
-  id: number;
+// Tipo para post con autor incluido
+export type PostWithAuthor = Post & {
+  author: Pick<User, 'id' | 'name' | 'email'>;
+};
+
+// Tipo para crear post (sin campos autogenerados)
+export type CreatePostData = {
   title: string;
-  slug: string;
-  excerpt: string;
+  excerpt?: string;
   content: string;
-  author: string;
-  category: string;
-  image: string;
-  published: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
+  image?: string;
+  category?: string;
+  published?: boolean;
+  authorId: number;
+};
 
-interface BlogData {
-  posts: BlogPost[];
-}
-
-const blogPath = path.join(process.cwd(), 'src/data/blog.json');
-
-// Leer posts del archivo
-export function getBlogPosts(): BlogData {
-  try {
-    if (!fs.existsSync(blogPath)) {
-      const initialData: BlogData = { posts: [] };
-      fs.writeFileSync(blogPath, JSON.stringify(initialData, null, 2));
-      return initialData;
-    }
-    const data = fs.readFileSync(blogPath, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading blog posts:', error);
-    return { posts: [] };
-  }
-}
-
-// Escribir posts al archivo
-export function saveBlogPosts(data: BlogData): void {
-  try {
-    // Asegurar que el directorio existe
-    const dir = path.dirname(blogPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(blogPath, JSON.stringify(data, null, 2));
-  } catch (error) {
-    console.error('Error saving blog posts:', error);
-    throw new Error('Failed to save blog posts');
-  }
-}
-
-// Obtener todos los posts (admin)
-export function getAllPosts(): BlogPost[] {
-  const { posts } = getBlogPosts();
-  return posts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-}
-
-// Obtener posts publicados (público)
-export function getPublishedPosts(): BlogPost[] {
-  const { posts } = getBlogPosts();
-  return posts
-    .filter(post => post.published)
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-}
-
-// Obtener post por ID
-export function getPostById(id: number): BlogPost | null {
-  const { posts } = getBlogPosts();
-  return posts.find(post => post.id === id) || null;
-}
-
-// Obtener post por slug
-export function getPostBySlug(slug: string): BlogPost | null {
-  const { posts } = getBlogPosts();
-  return posts.find(post => post.slug === slug) || null;
-}
+// Tipo para actualizar post
+export type UpdatePostData = Partial<Omit<CreatePostData, 'authorId'>>;
 
 // Crear slug desde título
 export function createSlug(title: string): string {
@@ -91,70 +33,357 @@ export function createSlug(title: string): string {
     .trim();
 }
 
-// Crear nuevo post
-export function createPost(postData: Omit<BlogPost, 'id' | 'createdAt' | 'updatedAt'>): BlogPost {
-  const { posts } = getBlogPosts();
-  const newId = posts.length > 0 ? Math.max(...posts.map(p => p.id)) + 1 : 1;
-  
-  const newPost: BlogPost = {
-    ...postData,
-    id: newId,
-    slug: postData.slug || createSlug(postData.title),
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString()
-  };
-  
-  // Verificar que el slug sea único
-  let finalSlug = newPost.slug;
+// Generar slug único
+async function generateUniqueSlug(title: string, excludeId?: number): Promise<string> {
+  let baseSlug = createSlug(title);
+  let finalSlug = baseSlug;
   let counter = 1;
-  while (posts.some(p => p.slug === finalSlug)) {
-    finalSlug = `${newPost.slug}-${counter}`;
+
+  while (true) {
+    const existing = await prisma.post.findUnique({
+      where: { slug: finalSlug }
+    });
+
+    // Si no existe o es el mismo post que estamos actualizando
+    if (!existing || (excludeId && existing.id === excludeId)) {
+      break;
+    }
+
+    finalSlug = `${baseSlug}-${counter}`;
     counter++;
   }
-  newPost.slug = finalSlug;
-  
-  posts.push(newPost);
-  saveBlogPosts({ posts });
-  
-  return newPost;
+
+  return finalSlug;
+}
+
+// Obtener todos los posts (admin) con autor
+export async function getAllPosts(): Promise<PostWithAuthor[]> {
+  try {
+    const posts = await prisma.post.findMany({
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    return posts;
+  } catch (error) {
+    console.error('Error getting all posts:', error);
+    return [];
+  }
+}
+
+// Obtener posts publicados (público) con autor
+export async function getPublishedPosts(): Promise<PostWithAuthor[]> {
+  try {
+    const posts = await prisma.post.findMany({
+      where: {
+        published: true
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    return posts;
+  } catch (error) {
+    console.error('Error getting published posts:', error);
+    return [];
+  }
+}
+
+// Obtener post por ID con autor
+export async function getPostById(id: number): Promise<PostWithAuthor | null> {
+  try {
+    const post = await prisma.post.findUnique({
+      where: { id },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      }
+    });
+
+    return post;
+  } catch (error) {
+    console.error('Error getting post by ID:', error);
+    return null;
+  }
+}
+
+// Obtener post por slug con autor
+export async function getPostBySlug(slug: string): Promise<PostWithAuthor | null> {
+  try {
+    const post = await prisma.post.findUnique({
+      where: { slug },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      }
+    });
+
+    return post;
+  } catch (error) {
+    console.error('Error getting post by slug:', error);
+    return null;
+  }
+}
+
+// Crear nuevo post
+export async function createPost(postData: CreatePostData): Promise<PostWithAuthor | null> {
+  try {
+    const slug = await generateUniqueSlug(postData.title);
+
+    const post = await prisma.post.create({
+      data: {
+        title: postData.title,
+        slug,
+        excerpt: postData.excerpt || '',
+        content: postData.content,
+        image: postData.image || '/images/blog/default.jpg',
+        category: postData.category || 'General',
+        published: postData.published || false,
+        authorId: postData.authorId,
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      }
+    });
+
+    return post;
+  } catch (error) {
+    console.error('Error creating post:', error);
+    return null;
+  }
 }
 
 // Actualizar post
-export function updatePost(id: number, updates: Partial<Omit<BlogPost, 'id' | 'createdAt'>>): BlogPost | null {
-  const { posts } = getBlogPosts();
-  const postIndex = posts.findIndex(post => post.id === id);
-  
-  if (postIndex === -1) {
+export async function updatePost(id: number, updates: UpdatePostData): Promise<PostWithAuthor | null> {
+  try {
+    // Si se actualiza el título, generar nuevo slug
+    let slug;
+    if (updates.title) {
+      slug = await generateUniqueSlug(updates.title, id);
+    }
+
+    const updateData: any = { ...updates };
+    if (slug) {
+      updateData.slug = slug;
+    }
+
+    const post = await prisma.post.update({
+      where: { id },
+      data: updateData,
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      }
+    });
+
+    return post;
+  } catch (error) {
+    console.error('Error updating post:', error);
     return null;
   }
-  
-  const updatedPost = {
-    ...posts[postIndex],
-    ...updates,
-    updatedAt: new Date().toISOString()
-  };
-  
-  // Si se actualiza el título y no se proporciona slug, regenerar slug
-  if (updates.title && !updates.slug) {
-    updatedPost.slug = createSlug(updates.title);
-  }
-  
-  posts[postIndex] = updatedPost;
-  saveBlogPosts({ posts });
-  
-  return updatedPost;
 }
 
 // Eliminar post
-export function deletePost(id: number): boolean {
-  const { posts } = getBlogPosts();
-  const initialLength = posts.length;
-  const filteredPosts = posts.filter(post => post.id !== id);
-  
-  if (filteredPosts.length < initialLength) {
-    saveBlogPosts({ posts: filteredPosts });
+export async function deletePost(id: number): Promise<boolean> {
+  try {
+    await prisma.post.delete({
+      where: { id }
+    });
     return true;
+  } catch (error) {
+    console.error('Error deleting post:', error);
+    return false;
   }
-  
-  return false;
+}
+
+// Obtener posts por categoría
+export async function getPostsByCategory(category: string, publishedOnly: boolean = true): Promise<PostWithAuthor[]> {
+  try {
+    const whereCondition: any = { category };
+    if (publishedOnly) {
+      whereCondition.published = true;
+    }
+
+    const posts = await prisma.post.findMany({
+      where: whereCondition,
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    return posts;
+  } catch (error) {
+    console.error('Error getting posts by category:', error);
+    return [];
+  }
+}
+
+// Obtener posts relacionados (misma categoría, excluyendo el actual)
+export async function getRelatedPosts(postId: number, category: string, limit: number = 3): Promise<PostWithAuthor[]> {
+  try {
+    const posts = await prisma.post.findMany({
+      where: {
+        category,
+        published: true,
+        id: {
+          not: postId
+        }
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      },
+      take: limit
+    });
+
+    return posts;
+  } catch (error) {
+    console.error('Error getting related posts:', error);
+    return [];
+  }
+}
+
+// Buscar posts por texto
+export async function searchPosts(query: string, publishedOnly: boolean = true): Promise<PostWithAuthor[]> {
+  try {
+    const whereCondition: any = {
+      OR: [
+        { title: { contains: query, mode: 'insensitive' } },
+        { excerpt: { contains: query, mode: 'insensitive' } },
+        { content: { contains: query, mode: 'insensitive' } },
+      ]
+    };
+
+    if (publishedOnly) {
+      whereCondition.published = true;
+    }
+
+    const posts = await prisma.post.findMany({
+      where: whereCondition,
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    return posts;
+  } catch (error) {
+    console.error('Error searching posts:', error);
+    return [];
+  }
+}
+
+// Obtener categorías disponibles
+export async function getCategories(): Promise<string[]> {
+  try {
+    const categories = await prisma.post.findMany({
+      select: {
+        category: true
+      },
+      distinct: ['category'],
+      orderBy: {
+        category: 'asc'
+      }
+    });
+
+    return categories.map(c => c.category);
+  } catch (error) {
+    console.error('Error getting categories:', error);
+    return [];
+  }
+}
+
+// Obtener estadísticas del blog
+export async function getBlogStats() {
+  try {
+    const [totalPosts, publishedPosts, draftPosts, categories] = await Promise.all([
+      prisma.post.count(),
+      prisma.post.count({ where: { published: true } }),
+      prisma.post.count({ where: { published: false } }),
+      getCategories()
+    ]);
+
+    return {
+      totalPosts,
+      publishedPosts,
+      draftPosts,
+      categoriesCount: categories.length,
+      categories
+    };
+  } catch (error) {
+    console.error('Error getting blog stats:', error);
+    return {
+      totalPosts: 0,
+      publishedPosts: 0,
+      draftPosts: 0,
+      categoriesCount: 0,
+      categories: []
+    };
+  }
 }

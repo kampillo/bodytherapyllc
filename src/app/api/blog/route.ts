@@ -1,32 +1,22 @@
-// src/app/api/blog/route.ts - API verificada para mostrar posts públicos
+// src/app/api/blog/route.ts - API actualizada para usar Prisma
 import { NextRequest, NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
-import { getAllPosts, getPublishedPosts } from '@/lib/blog';
-
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret';
-
-// Función de verificación local para evitar importaciones
-function verifyTokenLocal(token: string): { userId: number; email: string } | null {
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET) as { userId: number; email: string };
-    return decoded;
-  } catch (error) {
-    return null;
-  }
-}
+import { verifyToken } from '@/lib/auth';
+import { getAllPosts, getPublishedPosts, createPost } from '@/lib/blog';
 
 // GET - obtener posts
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const admin = searchParams.get('admin') === 'true';
+    const category = searchParams.get('category');
+    const search = searchParams.get('search');
     
-    console.log('📡 API Blog - Solicitud recibida:', { admin });
+    console.log('📡 API Blog - Solicitud recibida:', { admin, category, search });
     
     if (admin) {
       // Verificar autenticación para admin
       const token = request.cookies.get('auth-token')?.value;
-      if (!token || !verifyTokenLocal(token)) {
+      if (!token || !verifyToken(token)) {
         console.log('❌ API Blog - Admin no autorizado');
         return NextResponse.json(
           { error: 'No autorizado' },
@@ -34,19 +24,36 @@ export async function GET(request: NextRequest) {
         );
       }
       
-      const posts = getAllPosts();
+      const posts = await getAllPosts();
       console.log('✅ API Blog - Posts admin devueltos:', posts.length);
       return NextResponse.json({ posts });
     } else {
       // Posts públicos (solo publicados)
-      const posts = getPublishedPosts();
+      let posts = await getPublishedPosts();
+      
+      // Filtrar por categoría si se especifica
+      if (category) {
+        posts = posts.filter(post => post.category.toLowerCase() === category.toLowerCase());
+      }
+      
+      // Búsqueda simple si se especifica
+      if (search) {
+        const searchLower = search.toLowerCase();
+        posts = posts.filter(post => 
+          post.title.toLowerCase().includes(searchLower) ||
+          post.excerpt.toLowerCase().includes(searchLower) ||
+          post.content.toLowerCase().includes(searchLower)
+        );
+      }
+      
       console.log('✅ API Blog - Posts públicos devueltos:', posts.length);
       console.log('📝 Posts publicados:', posts.map(p => ({ 
         id: p.id, 
         title: p.title, 
         published: p.published,
         slug: p.slug,
-        image: p.image 
+        image: p.image,
+        author: p.author.name
       })));
       
       return NextResponse.json({ posts });
@@ -65,7 +72,9 @@ export async function POST(request: NextRequest) {
   try {
     // Verificar autenticación
     const token = request.cookies.get('auth-token')?.value;
-    if (!token || !verifyTokenLocal(token)) {
+    const decoded = verifyToken(token || '');
+    
+    if (!decoded) {
       return NextResponse.json(
         { error: 'No autorizado' },
         { status: 401 }
@@ -73,11 +82,13 @@ export async function POST(request: NextRequest) {
     }
     
     const body = await request.json();
-    const { title, excerpt, content, author, category, image, published } = body;
+    const { title, excerpt, content, category, image, published } = body;
     
     console.log('📝 API Blog - Creando nuevo post:', { 
       title, 
       published, 
+      category,
+      authorId: decoded.userId,
       image: image?.substring(0, 50) + '...' 
     });
     
@@ -88,24 +99,29 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    const { createPost } = await import('@/lib/blog');
-    
-    const newPost = createPost({
+    const newPost = await createPost({
       title,
-      slug: '', // Se generará automáticamente
       excerpt: excerpt || '',
       content,
-      author: author || 'Administrador',
       category: category || 'General',
       image: image || '/images/blog/default.jpg',
-      published: published || false
+      published: published || false,
+      authorId: decoded.userId
     });
+    
+    if (!newPost) {
+      return NextResponse.json(
+        { error: 'Error al crear el post' },
+        { status: 500 }
+      );
+    }
     
     console.log('✅ API Blog - Post creado:', { 
       id: newPost.id, 
       title: newPost.title, 
       published: newPost.published,
-      slug: newPost.slug
+      slug: newPost.slug,
+      author: newPost.author.name
     });
     
     return NextResponse.json({ post: newPost }, { status: 201 });
