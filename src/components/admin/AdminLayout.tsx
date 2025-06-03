@@ -1,4 +1,4 @@
-// src/components/admin/AdminLayout.tsx - Versión con UI mejorada
+// src/components/admin/AdminLayout.tsx - Versión actualizada con navegación completa
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -119,6 +119,26 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         </svg>
       ),
       current: pathname.startsWith('/admin/blog')
+    },
+    {
+      name: 'Productos',
+      href: '/admin/products',
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+      ),
+      current: pathname.startsWith('/admin/products')
+    },
+    {
+      name: 'Banners',
+      href: '/admin/banners',
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      ),
+      current: pathname.startsWith('/admin/banners')
     }
   ];
 
@@ -197,12 +217,39 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                 </div>
                 Nuevo Post
               </Link>
+              
+              <Link
+                href="/admin/products/new"
+                className="group flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-all duration-200"
+                onClick={() => setSidebarOpen(false)}
+              >
+                <div className="p-1.5 rounded-md bg-blue-100 text-blue-600 mr-3 group-hover:bg-blue-200">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                </div>
+                Nuevo Producto
+              </Link>
+              
+              <Link
+                href="/admin/banners/new"
+                className="group flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 rounded-lg hover:bg-purple-50 hover:text-purple-700 transition-all duration-200"
+                onClick={() => setSidebarOpen(false)}
+              >
+                <div className="p-1.5 rounded-md bg-purple-100 text-purple-600 mr-3 group-hover:bg-purple-200">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                </div>
+                Nuevo Banner
+              </Link>
+              
               <Link
                 href="/"
                 target="_blank"
-                className="group flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-all duration-200"
+                className="group flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-all duration-200"
               >
-                <div className="p-1.5 rounded-md bg-blue-100 text-blue-600 mr-3 group-hover:bg-blue-200">
+                <div className="p-1.5 rounded-md bg-indigo-100 text-indigo-600 mr-3 group-hover:bg-indigo-200">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
