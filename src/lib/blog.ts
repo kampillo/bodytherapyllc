@@ -7,6 +7,7 @@ export type PostWithAuthor = Post & {
   author: Pick<User, 'id' | 'name' | 'email'>;
 };
 
+export type BlogPost = PostWithAuthor;
 // Tipo para crear post (sin campos autogenerados)
 export type CreatePostData = {
   title: string;

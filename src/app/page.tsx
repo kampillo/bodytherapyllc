@@ -1,4 +1,3 @@
-// src/app/page.tsx - Con soporte multiidioma completo
 'use client';
 
 import Image from 'next/image';
@@ -10,37 +9,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 export default function Home() {
   const { t } = useLanguage();
 
-  // Define las imágenes para el carrusel
-  const heroImages = [
-    {
-      src: "/images/home/banner-1.png",
-      alt: "Terapia de Masaje"
-    },
-    {
-      src: "/images/home/banner-2.png",
-      alt: "Masaje Terapéutico Especializado"
-    },
-    {
-      src: "/images/home/banner-3.png",
-      alt: "promocion 1"
-    },
-    {
-      src: "/images/home/banner-4.jpg",
-      alt: "promocion 2"
-    },
-    {
-      src: "/images/home/banner-5.jpg",
-      alt: "promocion 3"
-    },
-    {
-      src: "/images/home/banner-6.jpg",
-      alt: "promocion 4"
-    },
-    {
-      src: "/images/home/banner-7.jpg",
-      alt: "promocion 5"
-    }
-  ];
+  // ✅ YA NO NECESITAMOS: Arrays de imágenes hardcodeadas
+  // ❌ ANTES: const heroImages = [{ src: "...", alt: "..." }, ...]
+  // ✅ AHORA: El HeroCarousel obtiene los banners automáticamente de Prisma
 
   return (
     <>
@@ -74,26 +45,25 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Carrusel de imágenes: responsivo */}
+            {/* Carrusel dinámico: responsivo y administrable */}
             <div className="w-full md:w-8/12">
               {/* Mobile: aspect ratio más cuadrado */}
               <div className="block md:hidden aspect-[4/3] rounded-xl overflow-hidden shadow-hover">
                 <div className="w-full h-full relative">
-                  <HeroCarousel images={heroImages} interval={6000} />
+                  <HeroCarousel interval={6000} />
                 </div>
               </div>
               
               {/* Desktop: aspect ratio más panorámico */}
               <div className="hidden md:block aspect-[2/1] rounded-xl overflow-hidden shadow-hover">
                 <div className="w-full h-full relative">
-                  <HeroCarousel images={heroImages} interval={6000} />
+                  <HeroCarousel interval={6000} />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
       {/* Services Preview Section */}
       <section className="py-20 bg-light">
         <div className="container mx-auto px-4">
