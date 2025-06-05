@@ -18,7 +18,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
   const [formData, setFormData] = useState({
     title: banner?.title || '',
     subtitle: banner?.subtitle || '',
-    image: banner?.image || '/images/home/banner-default.jpg',
+    image: banner?.image || '/images/blog/banner-default.jpg',
     altText: banner?.altText || '',
     link: banner?.link || '',
     order: banner?.order || 1,
@@ -97,7 +97,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       
       // Generar una URL ficticia para el formulario
       const fileName = `banner-${Date.now()}-${file.name.replace(/\s+/g, '-').toLowerCase()}`;
-      const imageUrl = `/images/home/${fileName}`;
+      const imageUrl = `/images/blog/${fileName}`;
       
       setFormData(prev => ({
         ...prev,
@@ -375,12 +375,12 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                     {uploadingImage ? 'Subiendo...' : 'Subir Imagen'}
                   </button>
                   
-                  {imagePreview && imagePreview !== '/images/home/banner-default.jpg' && (
+                  {imagePreview && imagePreview !== '/images/blog/banner-default.jpg' && (
                     <button
                       type="button"
                       onClick={() => {
-                        setImagePreview('/images/home/banner-default.jpg');
-                        setFormData(prev => ({ ...prev, image: '/images/home/banner-default.jpg' }));
+                        setImagePreview('/images/blog/banner-default.jpg');
+                        setFormData(prev => ({ ...prev, image: '/images/blog/banner-default.jpg' }));
                       }}
                       className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
                     >
@@ -413,7 +413,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                       setImagePreview(newValue);
                     }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-sm"
-                    placeholder="/images/home/mi-banner.jpg"
+                    placeholder="/images/blog/mi-banner.jpg"
                   />
                   <p className="text-xs text-gray-500 mt-1">
                     Puedes pegar una URL de imagen o usar el botón de subir arriba
