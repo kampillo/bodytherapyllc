@@ -2,6 +2,16 @@
 import { prisma } from './prisma';
 import type { Banner } from '@prisma/client';
 
+// Error específico para validaciones de orden
+export class BannerOrderError extends Error {
+  status: number;
+  constructor(message: string) {
+    super(message);
+    this.name = 'BannerOrderError';
+    this.status = 400;
+  }
+}
+
 // Tipo para crear banner (sin campos autogenerados)
 export type CreateBannerData = {
   title: string;
@@ -68,9 +78,18 @@ export async function getBannerById(id: number): Promise<Banner | null> {
 // Crear nuevo banner
 export async function createBanner(bannerData: CreateBannerData): Promise<Banner | null> {
   try {
-    // Si no se especifica orden, obtener el siguiente disponible
+    // Si se proporciona, validar el orden
     let order = bannerData.order;
-    if (order === undefined) {
+    if (order !== undefined) {
+      if (!Number.isInteger(order) || order < 1) {
+        throw new BannerOrderError('El orden debe ser un entero positivo');
+      }
+
+      const existing = await prisma.banner.findFirst({ where: { order } });
+      if (existing) {
+        throw new BannerOrderError('El orden ya está en uso');
+      }
+    } else {
       const lastBanner = await prisma.banner.findFirst({
         orderBy: { order: 'desc' }
       });
@@ -91,6 +110,9 @@ export async function createBanner(bannerData: CreateBannerData): Promise<Banner
 
     return banner;
   } catch (error) {
+    if (error instanceof BannerOrderError) {
+      throw error;
+    }
     console.error('Error creating banner:', error);
     return null;
   }
@@ -99,6 +121,17 @@ export async function createBanner(bannerData: CreateBannerData): Promise<Banner
 // Actualizar banner
 export async function updateBanner(id: number, updates: UpdateBannerData): Promise<Banner | null> {
   try {
+    if (updates.order !== undefined) {
+      if (!Number.isInteger(updates.order) || updates.order < 1) {
+        throw new BannerOrderError('El orden debe ser un entero positivo');
+      }
+
+      const existing = await prisma.banner.findFirst({ where: { order: updates.order } });
+      if (existing && existing.id !== id) {
+        throw new BannerOrderError('El orden ya está en uso');
+      }
+    }
+
     const banner = await prisma.banner.update({
       where: { id },
       data: updates
@@ -106,6 +139,9 @@ export async function updateBanner(id: number, updates: UpdateBannerData): Promi
 
     return banner;
   } catch (error) {
+    if (error instanceof BannerOrderError) {
+      throw error;
+    }
     console.error('Error updating banner:', error);
     return null;
   }
