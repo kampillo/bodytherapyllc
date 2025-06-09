@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
 
     const data = await request.formData();
     const file: File | null = data.get('image') as unknown as File;
+    const folder = (data.get('folder') as string) || 'blog';
 
     if (!file) {
       return NextResponse.json(
@@ -47,8 +48,8 @@ export async function POST(request: NextRequest) {
     // Generar nombre único para el archivo
     const timestamp = Date.now();
     const originalName = file.name.replace(/\s+/g, '-').toLowerCase();
-    const fileName = `blog-${timestamp}-${originalName}`;
-    
+    const prefix = folder === 'banners' ? 'banner' : 'blog';
+    const fileName = `${prefix}-${timestamp}-${originalName}`;
     // Crear directorio si no existe
     const uploadDir = path.join(process.cwd(), 'public/images/blog');
     try {
@@ -69,6 +70,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       imageUrl,
+      filePath,
       message: 'Imagen subida exitosamente'
     });
 

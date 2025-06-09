@@ -60,6 +60,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
       // Opción 1: Usar la API de upload (si está implementada)
       const formData = new FormData();
       formData.append('image', file);
+      formData.append('folder', 'blog');
 
       const uploadResponse = await fetch('/api/upload', {
         method: 'POST',
@@ -75,39 +76,16 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
           image: uploadData.imageUrl
         }));
       } else {
-        // Si la API de upload no funciona, usar método alternativo
-        await handleImageUploadFallback(file);
+        const data = await uploadResponse.json();
+        setError(data.error || 'Error al subir la imagen. Intenta de nuevo.');
       }
 
     } catch (error) {
-      console.log('Upload API no disponible, usando método alternativo');
-      await handleImageUploadFallback(file);
+      console.error('Error uploading image:', error);
+      setError('Error al subir la imagen. Intenta de nuevo.');
     } finally {
       setUploadingImage(false);
     }
-  };
-
-  const handleImageUploadFallback = async (file: File) => {
-    // Crear preview inmediato con FileReader
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
-      setImagePreview(result);
-      
-      // Generar una URL ficticia para el formulario
-      // En un proyecto real, aquí tendrías la URL del servidor
-      const fileName = `blog-${Date.now()}-${file.name.replace(/\s+/g, '-').toLowerCase()}`;
-      const imageUrl = `/images/blog/${fileName}`;
-      
-      setFormData(prev => ({
-        ...prev,
-        image: imageUrl
-      }));
-      
-      console.log('Imagen preparada (ficticia):', imageUrl);
-      console.log('En un proyecto real, la imagen se subiría al servidor');
-    };
-    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
