@@ -1,11 +1,12 @@
 // src/app/api/banners/route.ts - API principal de banners
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyToken } from '@/lib/auth';
-import { 
-  getAllBanners, 
+import {
+  getAllBanners,
   getActiveBanners,
   createBanner,
-  getBannerStats
+  getBannerStats,
+  BannerOrderError
 } from '@/lib/banners';
 
 // GET - obtener banners
@@ -128,6 +129,12 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json({ banner: newBanner }, { status: 201 });
   } catch (error) {
+    if (error instanceof BannerOrderError) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: error.status }
+      );
+    }
     console.error('❌ API Banners - Error creando banner:', error);
     return NextResponse.json(
       { error: 'Error interno del servidor' },

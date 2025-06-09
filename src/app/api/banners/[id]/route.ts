@@ -1,14 +1,15 @@
 // src/app/api/banners/[id]/route.ts - API individual de banners
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyToken } from '@/lib/auth';
-import { 
-  getBannerById, 
-  updateBanner, 
+import {
+  getBannerById,
+  updateBanner,
   deleteBanner,
   toggleActive,
   moveBannerUp,
   moveBannerDown,
-  duplicateBanner
+  duplicateBanner,
+  BannerOrderError
 } from '@/lib/banners';
 
 // Definir el tipo correcto para los parámetros
@@ -135,7 +136,7 @@ export async function PUT(
     if (active !== undefined) updateData.active = active;
     
     const updatedBanner = await updateBanner(bannerId, updateData);
-    
+
     if (!updatedBanner) {
       return NextResponse.json(
         { error: 'Error al actualizar el banner' },
@@ -153,6 +154,12 @@ export async function PUT(
     
     return NextResponse.json({ banner: updatedBanner });
   } catch (error) {
+    if (error instanceof BannerOrderError) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: error.status }
+      );
+    }
     console.error('❌ API Banners - Error updating banner:', error);
     return NextResponse.json(
       { error: 'Error interno del servidor' },
