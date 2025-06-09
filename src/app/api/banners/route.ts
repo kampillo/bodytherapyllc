@@ -94,13 +94,20 @@ export async function POST(request: NextRequest) {
       );
     }
     
+    // Normalizar el campo order. Si viene como 0 o cadena vacía, tratarlo
+    // como undefined para que se asigne automáticamente el siguiente orden.
+    const parsedOrder =
+      order === undefined || order === '' || order === 0 || order === '0'
+        ? undefined
+        : parseInt(order);
+
     const newBanner = await createBanner({
       title,
       subtitle: subtitle || '',
       image,
       altText,
       link: link || '',
-      order: order !== undefined ? parseInt(order) : undefined,
+      order: parsedOrder,
       active: active !== undefined ? active : true
     });
     
