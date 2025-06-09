@@ -28,6 +28,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
   const [error, setError] = useState('');
   const [imagePreview, setImagePreview] = useState<string>(formData.image);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(!!banner?.image);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -65,9 +66,9 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
     setError('');
 
     try {
-      // Opción 1: Usar la API de upload (si está implementada)
       const formDataUpload = new FormData();
       formDataUpload.append('image', file);
+      formDataUpload.append('folder', 'banners');
 
       const uploadResponse = await fetch('/api/upload', {
         method: 'POST',
@@ -82,39 +83,19 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
           ...prev,
           image: uploadData.imageUrl
         }));
+        setImageUploaded(true);
       } else {
-        // Si la API de upload no funciona, usar método alternativo
-        await handleImageUploadFallback(file);
+        const data = await uploadResponse.json();
+        setError(data.error || 'Error al subir la imagen. Intenta de nuevo.');
+        setImageUploaded(false);
       }
-
     } catch (error) {
-      console.log('Upload API no disponible, usando método alternativo');
-      await handleImageUploadFallback(file);
+      console.error('Error uploading image:', error);
+      setError('Error al subir la imagen. Intenta de nuevo.');
+      setImageUploaded(false);
     } finally {
       setUploadingImage(false);
     }
-  };
-
-  const handleImageUploadFallback = async (file: File) => {
-    // Crear preview inmediato con FileReader
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
-      setImagePreview(result);
-      
-      // Generar una URL ficticia para el formulario
-      const fileName = `banner-${Date.now()}-${file.name.replace(/\s+/g, '-').toLowerCase()}`;
-      const imageUrl = `/images/blog/${fileName}`;
-      
-      setFormData(prev => ({
-        ...prev,
-        image: imageUrl
-      }));
-      
-      console.log('Imagen preparada (ficticia):', imageUrl);
-      console.log('En un proyecto real, la imagen se subiría al servidor');
-    };
-    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -129,8 +110,8 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       return;
     }
 
-    if (!formData.image.trim()) {
-      setError('La imagen es requerida');
+    if (!formData.image.trim() || !imageUploaded) {
+      setError('Debes subir una imagen válida');
       setLoading(false);
       return;
     }
@@ -388,6 +369,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                       onClick={() => {
                         setImagePreview('/images/blog/banner-default.jpg');
                         setFormData(prev => ({ ...prev, image: '/images/blog/banner-default.jpg' }));
+                        setImageUploaded(false);
                       }}
                       className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
                     >
@@ -418,6 +400,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                       const newValue = e.target.value;
                       setFormData(prev => ({ ...prev, image: newValue }));
                       setImagePreview(newValue);
+                      setImageUploaded(!!newValue);
                     }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-sm"
                     placeholder="/images/blog/mi-banner.jpg"
@@ -487,7 +470,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                   type="submit"
                   variant="primary"
                   fullWidth
-                  disabled={loading}
+                  disabled={loading || uploadingImage || !imageUploaded}
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
