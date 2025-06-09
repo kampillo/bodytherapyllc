@@ -50,20 +50,16 @@ export async function POST(request: NextRequest) {
     const originalName = file.name.replace(/\s+/g, '-').toLowerCase();
     const prefix = folder === 'banners' ? 'banner' : 'blog';
     const fileName = `${prefix}-${timestamp}-${originalName}`;
-    // Crear directorio si no existe
-    const uploadDir = path.join(process.cwd(), 'public/images/blog');
-    try {
-      await mkdir(uploadDir, { recursive: true });
-    } catch (error) {
-      // El directorio ya existe, continuar
-    }
+    // Crear directorio de destino basado en la carpeta enviada
+    const uploadDir = path.join(process.cwd(), 'public/images', folder);
+    await mkdir(uploadDir, { recursive: true });
 
     // Guardar archivo
     const filePath = path.join(uploadDir, fileName);
     await writeFile(filePath, buffer);
 
     // Retornar URL de la imagen
-    const imageUrl = `/images/blog/${fileName}`;
+    const imageUrl = `/images/${folder}/${fileName}`;
 
     console.log('✅ Imagen guardada exitosamente:', imageUrl);
 
