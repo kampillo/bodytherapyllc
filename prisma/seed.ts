@@ -62,13 +62,16 @@ async function main() {
 
   console.log('✅ Productos creados:', products.count)
 
+  // Carpeta base para las imágenes de banners
+  const BANNER_BASE_PATH = '/images/banners'
+
   // Crear banners iniciales para el carousel
   const banners = await prisma.banner.createMany({
     data: [
       {
         title: 'Terapia de Masaje',
         subtitle: 'Especializada en aliviar dolores crónicos',
-        image: '/images/banners/banner-1.png',
+        image: `${BANNER_BASE_PATH}/banner-1.png`,
         altText: 'Terapia de Masaje',
         order: 1,
         active: true,
@@ -76,7 +79,7 @@ async function main() {
       {
         title: 'Masaje Terapéutico Especializado',
         subtitle: 'Técnicas avanzadas para tu bienestar',
-        image: '/images/banners/banner-2.png',
+        image: `${BANNER_BASE_PATH}/banner-2.png`,
         altText: 'Masaje Terapéutico Especializado',
         order: 2,
         active: true,
@@ -84,7 +87,7 @@ async function main() {
       {
         title: 'Promoción Especial',
         subtitle: 'Descubre nuestros paquetes',
-        image: '/images/banners/banner-3.png',
+        image: `${BANNER_BASE_PATH}/banner-3.png`,
         altText: 'Promoción 1',
         order: 3,
         active: true,
@@ -92,7 +95,7 @@ async function main() {
       {
         title: 'Bienestar Integral',
         subtitle: 'Servicios profesionales de calidad',
-        image: '/images/banners/banner-4.jpg',
+        image: `${BANNER_BASE_PATH}/banner-4.jpg`,
         altText: 'Promoción 2',
         order: 4,
         active: true,
@@ -100,7 +103,7 @@ async function main() {
       {
         title: 'Relajación Profunda',
         subtitle: 'Experiencias transformadoras',
-        image: '/images/banners/banner-5.jpg',
+        image: `${BANNER_BASE_PATH}/banner-5.jpg`,
         altText: 'Promoción 3',
         order: 5,
         active: true,
@@ -108,7 +111,7 @@ async function main() {
       {
         title: 'Terapias Holísticas',
         subtitle: 'Equilibrio para cuerpo y mente',
-        image: '/images/banners/banner-6.jpg',
+        image: `${BANNER_BASE_PATH}/banner-6.jpg`,
         altText: 'Promoción 4',
         order: 6,
         active: true,
@@ -116,7 +119,7 @@ async function main() {
       {
         title: 'Productos Naturales',
         subtitle: 'Complementa tu tratamiento',
-        image: '/images/banners/banner-7.jpg',
+        image: `${BANNER_BASE_PATH}/banner-7.jpg`,
         altText: 'Promoción 5',
         order: 7,
         active: true,
