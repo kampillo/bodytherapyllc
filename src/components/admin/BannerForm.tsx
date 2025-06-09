@@ -21,7 +21,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
     image: banner?.image || '/images/blog/banner-default.jpg',
     altText: banner?.altText || '',
     link: banner?.link || '',
-    order: banner?.order || 1,
+    order: banner?.order ?? undefined,
     active: banner?.active !== undefined ? banner.active : true
   });
   const [loading, setLoading] = useState(false);
@@ -29,12 +29,19 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
   const [imagePreview, setImagePreview] = useState<string>(formData.image);
   const [uploadingImage, setUploadingImage] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : 
-              type === 'number' ? parseInt(value) || 0 : value
+      [name]: type === 'checkbox'
+        ? (e.target as HTMLInputElement).checked
+        : type === 'number'
+          ? value === ''
+            ? undefined
+            : parseInt(value)
+          : value
     }));
   };
 
@@ -134,7 +141,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       return;
     }
 
-    if (formData.order < 1) {
+    if (formData.order !== undefined && formData.order < 1) {
       setError('El orden debe ser mayor a 0');
       setLoading(false);
       return;
@@ -442,8 +449,9 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                     id="order"
                     name="order"
                     min="1"
-                    value={formData.order}
+                    value={formData.order ?? ''}
                     onChange={handleChange}
+                    placeholder="Automático"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                   />
                   <p className="text-xs text-gray-500 mt-1">
