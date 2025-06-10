@@ -1,11 +1,11 @@
-// prisma/schema.prisma
+// prisma/schema.prisma - Versión simplificada con solo DATABASE_URL
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./bodytherapy.db"
+  provider = "postgresql"
+  url = env("DATABASE_URL")
 }
 
 // Modelo de usuarios para el admin
@@ -51,7 +51,7 @@ model Product {
   name        String
   slug        String   @unique
   description String
-  price       Float
+  price       Decimal  @db.Decimal(10, 2)
   image       String
   category    String   @default("General")
   inStock     Boolean  @default(true)
@@ -70,8 +70,8 @@ model Banner {
   subtitle  String?
   image     String
   altText   String
-  link      String?  // URL opcional para hacer el banner clickeable
-  order     Int      @default(0) // Para ordenar los banners
+  link      String?
+  order     Int      @default(0)
   active    Boolean  @default(true)
   
   createdAt DateTime @default(now())
