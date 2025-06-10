@@ -5,6 +5,8 @@ import Button from '@/components/ui/Button';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import HeroCarousel from '@/components/ui/HeroCarousel';
 import { useLanguage } from '@/contexts/LanguageContext';
+// import HeroCarousel from '@/components/ui/HeroCarouselTest';
+
 
 export default function Home() {
   const { t } = useLanguage();

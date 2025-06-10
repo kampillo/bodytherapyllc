@@ -1,14 +1,14 @@
 'use client';
-// src/components/ui/HeroCarousel.tsx - Versión final de producción
+// src/components/ui/HeroCarouselTest.tsx - Versión final corregida
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { Banner } from '@prisma/client';
 
-export interface HeroCarouselProps {
+export interface HeroCarouselTestProps {
   interval?: number;
 }
 
-const HeroCarousel: React.FC<HeroCarouselProps> = ({ 
+const HeroCarouselTest: React.FC<HeroCarouselTestProps> = ({ 
   interval = 5000
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,14 +23,18 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
 
   const fetchBanners = async () => {
     try {
+      console.log('🔍 HeroCarouselTest: Fetcheando banners...');
       const response = await fetch('/api/banners');
       if (response.ok) {
         const data = await response.json();
+        console.log('✅ HeroCarouselTest: Banners obtenidos:', data.banners);
         setBanners(data.banners);
       } else {
+        console.error('❌ HeroCarouselTest: Error response:', response.status);
         setError('Error al cargar banners');
       }
     } catch (error) {
+      console.error('❌ HeroCarouselTest: Error de conexión:', error);
       setError('Error de conexión');
     } finally {
       setLoading(false);
@@ -65,28 +69,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
   // Loading state
   if (loading) {
     return (
-      <div style={{ 
-        width: '100%', 
-        height: '100%', 
-        position: 'relative', 
-        backgroundColor: '#f3f4f6', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center' 
-      }}>
-        <div style={{ 
-          width: '48px', 
-          height: '48px', 
-          border: '3px solid #e5e7eb', 
-          borderTop: '3px solid #3b82f6', 
-          borderRadius: '50%', 
-          animation: 'spin 1s linear infinite' 
-        }} />
+      <div style={{ width: '100%', height: '100%', position: 'relative', backgroundColor: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: '48px', height: '48px', border: '3px solid #e5e7eb', borderTop: '3px solid #3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite' }}>
+        </div>
       </div>
     );
   }
 
-  // Error state or no banners - Show default content
+  // Error state or no banners
   if (error || banners.length === 0) {
     return (
       <div style={{ 
@@ -99,26 +89,51 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
         justifyContent: 'center'
       }}>
         <div style={{ textAlign: 'center', color: 'white', padding: '16px' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '16px' }}>
-            Body Therapy LLC
-          </h2>
-          <p style={{ fontSize: '1.125rem', opacity: 0.9 }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '16px' }}>Body Therapy LLC</h2>
+          <p style={{ fontSize: '1.125rem', marginBottom: '0' }}>
             Servicios profesionales de terapia manual y bienestar
           </p>
+          {error && (
+            <p style={{ fontSize: '0.875rem', marginTop: '16px', opacity: 0.8 }}>
+              {error} - Mostrando contenido por defecto
+            </p>
+          )}
         </div>
       </div>
     );
   }
+
+  console.log('🎯 HeroCarouselTest: Renderizando carrusel con', banners.length, 'banners');
+
+  const currentBanner = banners[currentIndex];
 
   return (
     <div style={{
       position: 'relative',
       width: '100%',
       height: '100%',
-      minHeight: '400px',
+      minHeight: '400px', // Altura mínima forzada
       overflow: 'hidden'
     }}>
-      {/* Main carousel container */}
+      {/* Debug info minimalizado */}
+      <div style={{
+        position: 'absolute',
+        top: '16px',
+        left: '16px',
+        zIndex: 1000,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        color: 'white',
+        padding: '8px',
+        borderRadius: '4px',
+        fontSize: '12px',
+        maxWidth: '250px'
+      }}>
+        <p><strong>DEBUG:</strong> Banner {currentIndex + 1}/{banners.length}</p>
+        <p>Título: {currentBanner?.title}</p>
+        <p style={{ wordBreak: 'break-all' }}>Imagen: {currentBanner?.image}</p>
+      </div>
+
+      {/* Contenedor principal con dimensiones forzadas */}
       <div style={{
         position: 'relative',
         width: '100%',
@@ -139,7 +154,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
               zIndex: index === currentIndex ? 10 : 1
             }}
           >
-            {/* Banner image */}
+            {/* Imagen con estilos inline forzados */}
             <img
               src={banner.image}
               alt={banner.altText || banner.title || 'Banner'}
@@ -154,10 +169,15 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 display: 'block',
                 zIndex: 1
               }}
+              onLoad={() => {
+                console.log(`✅ Imagen cargada: ${banner.image}`);
+              }}
+              onError={(e) => {
+                console.error(`❌ Error cargando imagen: ${banner.image}`, e);
+              }}
             />
             
-            {/* Content overlay - COMENTADO: Solo mostrar imagen sin overlay */}
-            {/* 
+            {/* Overlay con contenido */}
             {(banner.title || banner.subtitle) && (
               <div style={{
                 position: 'absolute',
@@ -249,12 +269,11 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 </div>
               </div>
             )}
-            */}
           </div>
         ))}
       </div>
 
-      {/* Navigation buttons */}
+      {/* Botones de navegación */}
       {banners.length > 1 && (
         <>
           <button
@@ -272,18 +291,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
               border: 'none',
               cursor: 'pointer',
               boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-              transition: 'background-color 0.3s',
-              opacity: 0,
-              animation: 'fadeInOnHover 0.3s'
+              transition: 'background-color 0.3s'
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.backgroundColor = 'white';
-              e.currentTarget.style.opacity = '1';
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
             }}
-            className="group-hover:opacity-100"
             aria-label="Banner anterior"
           >
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -306,17 +321,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
               border: 'none',
               cursor: 'pointer',
               boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-              transition: 'background-color 0.3s',
-              opacity: 0
+              transition: 'background-color 0.3s'
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.backgroundColor = 'white';
-              e.currentTarget.style.opacity = '1';
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
             }}
-            className="group-hover:opacity-100"
             aria-label="Banner siguiente"
           >
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -326,7 +338,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
         </>
       )}
 
-      {/* Dot indicators */}
+      {/* Indicadores */}
       {banners.length > 1 && (
         <div style={{
           position: 'absolute',
@@ -366,20 +378,8 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
           ))}
         </div>
       )}
-
-      {/* CSS for hover effects */}
-      <style jsx>{`
-        .carousel-container:hover .nav-button {
-          opacity: 1;
-        }
-        
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 };
 
-export default HeroCarousel;
+export default HeroCarouselTest;

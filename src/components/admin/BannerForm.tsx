@@ -1,4 +1,4 @@
-// src/components/admin/BannerForm.tsx
+// src/components/admin/BannerForm.tsx - Arreglado para funcionar como BlogForm
 'use client';
 
 import React, { useState, useRef } from 'react';
@@ -18,7 +18,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
   const [formData, setFormData] = useState({
     title: banner?.title || '',
     subtitle: banner?.subtitle || '',
-    image: banner?.image || '/images/blog/banner-default.jpg',
+    image: banner?.image || '/images/banners/default.jpg',
     altText: banner?.altText || '',
     link: banner?.link || '',
     order: banner?.order ?? undefined,
@@ -84,6 +84,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
           image: uploadData.imageUrl
         }));
         setImageUploaded(true);
+        console.log('✅ Imagen subida exitosamente:', uploadData.imageUrl);
       } else {
         const data = await uploadResponse.json();
         setError(data.error || 'Error al subir la imagen. Intenta de nuevo.');
@@ -110,8 +111,8 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       return;
     }
 
-    if (!formData.image.trim() || !imageUploaded) {
-      setError('Debes subir una imagen válida');
+    if (!formData.image.trim()) {
+      setError('Debes proporcionar una imagen');
       setLoading(false);
       return;
     }
@@ -132,6 +133,8 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       const url = isEdit ? `/api/banners/${banner!.id}` : '/api/banners';
       const method = isEdit ? 'PUT' : 'POST';
 
+      console.log('📝 Enviando datos del banner:', formData);
+
       const response = await fetch(url, {
         method,
         headers: {
@@ -144,6 +147,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       const data = await response.json();
 
       if (response.ok) {
+        console.log('✅ Banner guardado exitosamente:', data.banner);
         router.push('/admin/banners');
       } else {
         setError(data.error || 'Error al guardar el banner');
@@ -363,12 +367,12 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                     {uploadingImage ? 'Subiendo...' : 'Subir Imagen'}
                   </button>
                   
-                  {imagePreview && imagePreview !== '/images/blog/banner-default.jpg' && (
+                  {imagePreview && imagePreview !== '/images/banners/default.jpg' && (
                     <button
                       type="button"
                       onClick={() => {
-                        setImagePreview('/images/blog/banner-default.jpg');
-                        setFormData(prev => ({ ...prev, image: '/images/blog/banner-default.jpg' }));
+                        setImagePreview('/images/banners/default.jpg');
+                        setFormData(prev => ({ ...prev, image: '/images/banners/default.jpg' }));
                         setImageUploaded(false);
                       }}
                       className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
@@ -403,7 +407,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                       setImageUploaded(!!newValue);
                     }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-sm"
-                    placeholder="/images/blog/mi-banner.jpg"
+                    placeholder="/images/banners/mi-banner.jpg"
                   />
                   <p className="text-xs text-gray-500 mt-1">
                     Puedes pegar una URL de imagen o usar el botón de subir arriba
@@ -470,7 +474,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                   type="submit"
                   variant="primary"
                   fullWidth
-                  disabled={loading || uploadingImage || !imageUploaded}
+                  disabled={loading || uploadingImage}
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
