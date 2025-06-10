@@ -103,7 +103,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, isEdit = false }) =>
       return;
     }
 
-    if (formData.price <= 0) {
+    if (Number(formData.price) <= 0) {
       setError('El precio debe ser mayor a 0');
       setLoading(false);
       return;
@@ -232,7 +232,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, isEdit = false }) =>
                       name="price"
                       min="0"
                       step="0.01"
-                      value={formData.price}
+                      value={String(formData.price)}
                       onChange={handleChange}
                       className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                       placeholder="39.99"

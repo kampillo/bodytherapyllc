@@ -56,7 +56,7 @@ export default function ShopPage() {
     addToCart({
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: Number(product.price),
       image: product.image,
       quantity: 1
     });
