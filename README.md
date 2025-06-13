@@ -2,23 +2,49 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Environment variables
+
+Copy `.env.example` to `.env` and fill in the values for your setup. The main variables are:
+
+- `DATABASE_URL` – PostgreSQL connection string
+- `JWT_SECRET` – secret used to sign JWT tokens
+- `ADMIN_EMAIL` / `ADMIN_PASSWORD` – credentials for the initial admin user
+- `STRIPE_SECRET_KEY` – Stripe private key
+- `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` – Cloudinary configuration
+- `NEXT_PUBLIC_BASE_URL` – base URL of the app
+
+### 3. Database setup
+
+Run the Prisma migrations to create the schema and seed initial data:
+
+```bash
+npm run db:migrate   # runs `prisma migrate dev`
+npm run db:seed      # optional: populate sample data
+```
+
+### 4. Cloudinary image migration
+
+If you have local images that need to be uploaded to Cloudinary, run:
+
+```bash
+npm run cloudinary:migrate
+```
+
+You can verify the migration with `npm run cloudinary:validate`.
+
+### 5. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 
