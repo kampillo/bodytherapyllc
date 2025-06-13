@@ -5,8 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCartStore } from '@/lib/store/cartStore';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CartDropdown: React.FC = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { items, totalItems, totalPrice, removeFromCart } = useCartStore();
@@ -34,7 +36,7 @@ const CartDropdown: React.FC = () => {
       <button
         onClick={toggleDropdown}
         className="flex items-center justify-center h-10 w-10 rounded-full bg-primary-50 text-primary-800 hover:bg-primary-100 transition-colors relative"
-        aria-label="Carrito"
+        aria-label={t('shop.cart')}
       >
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -50,7 +52,7 @@ const CartDropdown: React.FC = () => {
       {isOpen && (
         <div className="absolute top-full right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-50 overflow-hidden">
           <div className="p-4 border-b border-gray-100">
-            <h3 className="font-bold text-dark">Tu Carrito ({totalItems})</h3>
+            <h3 className="font-bold text-dark">{t('shop.cart')} ({totalItems})</h3>
           </div>
           
           <div className="max-h-80 overflow-y-auto">
@@ -59,7 +61,7 @@ const CartDropdown: React.FC = () => {
                 <svg className="h-12 w-12 mx-auto text-dark/30 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-                <p className="text-sm">Tu carrito está vacío</p>
+                <p className="text-sm">{t('shop.empty.cart')}</p>
               </div>
             ) : (
               <ul className="divide-y divide-gray-100">
@@ -83,7 +85,7 @@ const CartDropdown: React.FC = () => {
                         <button
                           onClick={() => removeFromCart(item.id)}
                           className="text-dark/50 hover:text-red-500 transition-colors"
-                          aria-label="Eliminar producto"
+                          aria-label={t('common.delete')}
                         >
                           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -99,7 +101,7 @@ const CartDropdown: React.FC = () => {
           
           <div className="p-4 border-t border-gray-100 bg-gray-50">
             <div className="flex justify-between mb-4">
-              <span className="font-medium text-dark">Total:</span>
+              <span className="font-medium text-dark">{t('shop.total')}:</span>
               <span className="font-bold text-secondary-700">${totalPrice.toFixed(2)}</span>
             </div>
             
@@ -110,7 +112,7 @@ const CartDropdown: React.FC = () => {
                 size="sm"
                 fullWidth
               >
-                Ver carrito
+                {t('shop.view.cart')}
               </Button>
               
               <Button
@@ -120,7 +122,7 @@ const CartDropdown: React.FC = () => {
                 fullWidth
                 disabled={items.length === 0}
               >
-                Proceder al pago
+                {t('shop.checkout')}
               </Button>
             </div>
           </div>

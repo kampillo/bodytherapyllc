@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+    <html className={`${inter.variable} ${playfair.variable}`}>
       <body className={`font-sans bg-light text-dark antialiased relative`}>
         <LanguageProvider>
           <BackgroundShapes />

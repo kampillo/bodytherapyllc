@@ -71,7 +71,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">
-              Nuestras Especialidades
+              {t('services.title')}
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">
               {t('services.title')}
@@ -246,7 +246,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium mb-4">
-              Productos de Calidad
+              {t('products.title')}
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">
               {t('products.title')}
