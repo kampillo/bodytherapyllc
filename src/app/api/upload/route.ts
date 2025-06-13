@@ -78,8 +78,7 @@ export async function POST(request: NextRequest) {
       folder: cloudinaryFolder,
       public_id,
       tags: [folder, 'body-therapy', process.env.NODE_ENV || 'development'],
-      quality: 'auto',
-      format: 'auto' // Optimización automática de formato
+      quality: 'auto'
     });
 
     console.log('✅ Upload: Imagen subida exitosamente a Cloudinary');
