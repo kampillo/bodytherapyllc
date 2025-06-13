@@ -695,15 +695,15 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary-800 text-white relative overflow-hidden">
+      <section className="py-20 bg-primary-800 text-black relative overflow-hidden">
         <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 bg-primary-700 rounded-bl-3xl opacity-30"></div>
         <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/3 bg-primary-700 rounded-tr-3xl opacity-30"></div>
 
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6 text-black">
             {t('services.cta.title')}
           </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-black/90 mb-10 max-w-2xl mx-auto">
             {t('services.cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">

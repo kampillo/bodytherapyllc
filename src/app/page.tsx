@@ -347,39 +347,22 @@ export default function Home() {
       {/* About Preview Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <div className="relative">
-                <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary-200 rounded-xl -z-10"></div>
-                <div className="relative rounded-xl overflow-hidden shadow-hover">
-                  <Image
-                    src="/images/home/Masajes-spa.jpg"
-                    alt="Nuestra Terapeuta"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 border-2 border-secondary-200 rounded-xl -z-10"></div>
-              </div>
-            </div>
-            <div className="md:w-1/2 md:pl-8">
-              <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">
-                {t('about.title')}
-              </span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">
-                {t('about.title')}
-              </h2>
-              <p className="text-lg text-dark/70 mb-6 leading-relaxed">
-                {t('about.history.desc')}
-              </p>
-              <p className="text-lg text-dark/70 mb-8 leading-relaxed">
-                {t('about.founder.desc')}
-              </p>
-              <Button href="/about" variant="primary">
-                {t('about.learn.more')}
-              </Button>
-            </div>
+          <div className="max-w-3xl mx-auto">
+            <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">
+              {t('about.title')}
+            </span>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">
+              {t('about.title')}
+            </h2>
+            <p className="text-lg text-dark/70 mb-6 leading-relaxed">
+              {t('about.history.desc')}
+            </p>
+            <p className="text-lg text-dark/70 mb-8 leading-relaxed">
+              {t('about.founder.desc')}
+            </p>
+            <Button href="/about" variant="primary">
+              {t('about.learn.more')}
+            </Button>
           </div>
         </div>
       </section>
@@ -411,8 +394,8 @@ export default function Home() {
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-primary-200 rounded-xl -z-10"></div>
                 <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-white shadow-soft rounded-lg px-5 py-4 w-11/12 text-center">
-                  <h4 className="font-bold text-primary-800 text-lg mb-1">MARÍA MERCEDES LIZALDE</h4>
-                  <p className="text-dark/70 text-sm">LMT–Instructor-Proveedor de Clases Continuas</p>
+                  <h4 className="font-bold text-primary-800 text-lg mb-1">{t('mercy.title')}</h4>
+                  <p className="text-dark/70 text-sm">{t('mercy.credentials')}</p>
                 </div>
               </div>
             </div>
@@ -424,30 +407,14 @@ export default function Home() {
               </h2>
 
               <div className="space-y-4 text-dark/80 leading-relaxed">
-                <p>
-                  Mi mayor deseo es que podamos vivir sin dolor. Soy la segunda de 5 hermanos, nací con subluxación en una de mis caderas, era una bebé demasiado grande y el espacio en el vientre de mi Madre era pequeño, en mi infancia esto ocasionó secuelas en mis piernas, mis rodillas se vieron afectadas y se me desarrolló genu valgo, esta condición se caracteriza por una deformación en la que las rodillas se acercan entre sí, haciendo que los tobillos se desvíen hacia afuera, y perdida del arco plantar, lo cual no me permitía correr, pues me ocasionada caídas frecuentes.
-                </p>
-                <p>
-                  Recibí atención medica en mi infancia gracias a mi Madre, estuve en tratamiento, use aparatos ortopédicos en las noches, plantillas y zapatos ortopédico en el día, recuerdo que los aparatos me ocasionaban dolor, lloraba en silencio, esto fue para mí un período largo, intentaba aflojarlos para que no me presionaran y no lo lograba, y así caía agotada hasta altas horas de la noche.
-                </p>
-                <p>
-                  Recuerdo, mi sueño se volvió liviano y podía escuchar a una de mis hermanas que lloraba en las noches por el dolor de piernas debido al desarrollo, me levantaba y le daba masaje hasta que se quedaba dormida.
-                </p>
-                <p>
-                  A mi Madre le daba masaje en su espalda baja desde que tenía 6 años, le decía: Mamá déjame sobarte las bolitas que tienes en la espalda, me encantaba hacerlo, dejaba mis juegos de niña para apoyarla con ello, podía estar todo el tiempo tocándole y palpando sus bolitas, que hoy sé eran contracturas. A los 7 años puse mis primeras ventosas, también a mi Madre.
-                </p>
-                <p>
-                  Ya adulta tuve otras secuelas, me hicieron dos cirugías, una en cada pie, estuve en silla de ruedas por casi 2 meses.
-                </p>
-                <p className="font-medium text-primary-700">
-                  Estas experiencias generaron en mí una empatía por el dolor ajeno, por quienes enfrentan dificultades físicas. Esto es lo que me motiva a ofrecerles nuestros servicios, con la firme intención de ayudarles a mejorar su movimiento, y por ende su calidad de vida.
-                </p>
-                <p>
-                  Soy fiel creyente de Papá Dios, él tiene planes para cada uno de nosotros. Hoy reafirmo mi misión terrenal, encaminarte a que tu cuerpo este en equilibrio, ¡libre de dolor!
-                </p>
-                <p>
-                  ¡Por más vidas sanas, en movimiento, y libres de dolor!
-                </p>
+                <p>{t('mercy.story.p1')}</p>
+                <p>{t('mercy.story.p2')}</p>
+                <p>{t('mercy.story.p3')}</p>
+                <p>{t('mercy.story.p4')}</p>
+                <p>{t('mercy.story.p5')}</p>
+                <p className="font-medium text-primary-700">{t('mercy.story.p6')}</p>
+                <p>{t('mercy.story.p7')}</p>
+                <p>{t('mercy.story.p8')}</p>
               </div>
 
               <div className="mt-8">

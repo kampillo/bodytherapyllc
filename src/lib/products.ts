@@ -1,6 +1,8 @@
 // src/lib/products.ts - Librería para gestión de productos
 import { prisma } from './prisma';
-import type { Product } from '@prisma/client';
+import type { Product as PrismaProduct } from '@prisma/client';
+
+export type Product = PrismaProduct;
 
 // Tipo para crear producto (sin campos autogenerados)
 export type CreateProductData = {

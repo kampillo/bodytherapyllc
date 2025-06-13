@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import ProductCard from '@/components/ui/ProductCard';
 import { useCartStore } from '@/lib/store/cartStore';
-import type { Product } from '@prisma/client';
+import type { Product } from '@/lib/products';
 
 export default function ShopPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -66,7 +66,7 @@ export default function ShopPage() {
     return (
       <div className="min-h-screen bg-light">
         {/* Header */}
-        <div className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-16">
+        <div className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-8">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Nuestra Tienda</h1>
             <p className="text-xl text-primary-100">Productos naturales para tu bienestar</p>
@@ -74,8 +74,8 @@ export default function ShopPage() {
         </div>
 
         {/* Loading */}
-        <div className="container mx-auto px-4 py-16">
-          <div className="flex justify-center items-center py-12">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex justify-center items-center py-8">
             <div className="animate-spin rounded-full h-12 w-12 border-t-3 border-b-3 border-primary-600"></div>
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function ShopPage() {
     return (
       <div className="min-h-screen bg-light">
         {/* Header */}
-        <div className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-16">
+        <div className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-8">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Nuestra Tienda</h1>
             <p className="text-xl text-primary-100">Productos naturales para tu bienestar</p>
@@ -95,7 +95,7 @@ export default function ShopPage() {
         </div>
 
         {/* Error */}
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-6">
           <div className="text-center">
             <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
               <svg className="w-12 h-12 text-red-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,10 +119,10 @@ export default function ShopPage() {
   return (
     <div className="min-h-screen bg-light">
       {/* Header */}
-      <div className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-16">
+      <div className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Nuestra Tienda</h1>
-          <p className="text-xl text-primary-100 mb-8">
+          <p className="text-xl text-primary-100 mb-6">
             Descubre nuestros productos naturales seleccionados especialmente para tu bienestar
           </p>
           <div className="flex justify-center">
@@ -135,7 +135,7 @@ export default function ShopPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-6">
         {/* Filtros */}
         <div className="bg-white rounded-xl shadow-soft p-6 mb-8">
           <div className="flex flex-col lg:flex-row gap-6 items-center">
@@ -246,7 +246,7 @@ export default function ShopPage() {
                   <h3 className="text-lg font-bold text-primary-800 mb-2 line-clamp-2">{product.name}</h3>
                   <p className="text-dark/70 text-sm mb-4 line-clamp-3">{product.description}</p>
                   <div className="flex justify-between items-center">
-                    <span className="text-2xl text-secondary-700 font-bold">${product.price.toFixed(2)}</span>
+                    <span className="text-2xl text-secondary-700 font-bold">${Number(product.price).toFixed(2)}</span>
                     <Button
                       onClick={() => handleAddToCart(product)}
                       variant="primary"
