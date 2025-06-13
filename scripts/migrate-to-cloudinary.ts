@@ -211,8 +211,7 @@ class ImageMigrator {
         folder: cloudinaryFolder,
         public_id,
         tags: [type, 'migrated', process.env.NODE_ENV || 'production'],
-        quality: 'auto',
-        format: 'auto'
+        quality: 'auto'
       });
 
       console.log(`📤 Imagen subida exitosamente: ${result.secure_url}`);
