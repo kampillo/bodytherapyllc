@@ -5,10 +5,9 @@ import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
-import type { Banner } from '@prisma/client';
 
 interface BannerFormProps {
-  banner?: Banner;
+  banner?: any;
   isEdit?: boolean;
 }
 
@@ -442,12 +441,12 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
                     disabled={uploadingImage}
-                    className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium flex items-center justify-center"
+                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium flex items-center justify-center"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    {uploadingImage ? 'Subiendo...' : 'Subir a Cloudinary'}
+                    {uploadingImage ? 'Subiendo...' : 'Subir'}
                   </button>
                   
                   {imagePreview && imagePreview !== '/images/banners/default.jpg' && (
