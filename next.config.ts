@@ -9,11 +9,19 @@ const nextConfig = {
   },
   // Configuración mejorada para imágenes
   images: {
-    // Permitir dominios externos si es necesario
+    // Dominios externos permitidos para cargar imágenes
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**', // Permitir cualquier dominio HTTPS
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'bodytherapyllc.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.bodytherapyllc.com',
       },
       {
         protocol: 'http',
