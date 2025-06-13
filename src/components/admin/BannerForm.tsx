@@ -1,4 +1,4 @@
-// src/components/admin/BannerForm.tsx - Arreglado para funcionar como BlogForm
+// src/components/admin/BannerForm.tsx - Actualizado para Cloudinary
 'use client';
 
 import React, { useState, useRef } from 'react';
@@ -10,6 +10,23 @@ import type { Banner } from '@prisma/client';
 interface BannerFormProps {
   banner?: Banner;
   isEdit?: boolean;
+}
+
+interface CloudinaryResponse {
+  success: boolean;
+  imageUrl: string;
+  publicId: string;
+  fileName: string;
+  folder: string;
+  optimizedUrls: Record<string, string>;
+  metadata: {
+    width: number;
+    height: number;
+    format: string;
+    bytes: number;
+    createdAt: string;
+  };
+  message: string;
 }
 
 const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
@@ -28,7 +45,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
   const [error, setError] = useState('');
   const [imagePreview, setImagePreview] = useState<string>(formData.image);
   const [uploadingImage, setUploadingImage] = useState(false);
-  const [imageUploaded, setImageUploaded] = useState(!!banner?.image);
+  const [currentImagePublicId, setCurrentImagePublicId] = useState<string>('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -56,9 +73,9 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       return;
     }
 
-    // Validar tamaño (máximo 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      setError('La imagen debe ser menor a 5MB');
+    // Validar tamaño (máximo 10MB para Cloudinary free)
+    if (file.size > 10 * 1024 * 1024) {
+      setError('La imagen debe ser menor a 10MB');
       return;
     }
 
@@ -66,6 +83,8 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
     setError('');
 
     try {
+      console.log('📤 Subiendo banner a Cloudinary:', file.name);
+
       const formDataUpload = new FormData();
       formDataUpload.append('image', file);
       formDataUpload.append('folder', 'banners');
@@ -77,26 +96,78 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       });
 
       if (uploadResponse.ok) {
-        const uploadData = await uploadResponse.json();
+        const uploadData: CloudinaryResponse = await uploadResponse.json();
+        
+        console.log('✅ Banner subido exitosamente:', uploadData.imageUrl);
+        console.log('📊 Metadatos:', uploadData.metadata);
+
+        // Eliminar imagen anterior si existe
+        if (currentImagePublicId && currentImagePublicId !== uploadData.publicId) {
+          try {
+            await fetch(`/api/upload?publicId=${encodeURIComponent(currentImagePublicId)}`, {
+              method: 'DELETE',
+              credentials: 'include'
+            });
+            console.log('🗑️ Banner anterior eliminado');
+          } catch (deleteError) {
+            console.warn('⚠️ No se pudo eliminar el banner anterior:', deleteError);
+          }
+        }
+
+        // Actualizar estado con la nueva imagen
         setImagePreview(uploadData.imageUrl);
         setFormData(prev => ({
           ...prev,
           image: uploadData.imageUrl
         }));
-        setImageUploaded(true);
-        console.log('✅ Imagen subida exitosamente:', uploadData.imageUrl);
+        setCurrentImagePublicId(uploadData.publicId);
+
+        // Mostrar información del banner subido
+        const { width, height, format, bytes } = uploadData.metadata;
+        const sizeInMB = (bytes / (1024 * 1024)).toFixed(2);
+        console.log(`📐 Banner procesado: ${width}x${height} ${format.toUpperCase()}, ${sizeInMB}MB`);
+
+        // Verificar dimensiones recomendadas para banners
+        if (width < 1200 || height < 600) {
+          setError(`⚠️ Recomendación: Para mejores resultados, usa imágenes de al menos 1200x600 píxeles. Tu imagen es ${width}x${height}.`);
+        }
+
       } else {
-        const data = await uploadResponse.json();
-        setError(data.error || 'Error al subir la imagen. Intenta de nuevo.');
-        setImageUploaded(false);
+        const errorData = await uploadResponse.json();
+        console.error('❌ Error del servidor:', errorData);
+        setError(errorData.error || 'Error al subir la imagen. Intenta de nuevo.');
       }
     } catch (error) {
-      console.error('Error uploading image:', error);
-      setError('Error al subir la imagen. Intenta de nuevo.');
-      setImageUploaded(false);
+      console.error('❌ Error uploading banner:', error);
+      setError('Error de conexión al subir la imagen. Intenta de nuevo.');
     } finally {
       setUploadingImage(false);
     }
+  };
+
+  const handleRemoveImage = async () => {
+    if (currentImagePublicId) {
+      try {
+        setUploadingImage(true);
+        const response = await fetch(`/api/upload?publicId=${encodeURIComponent(currentImagePublicId)}`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+
+        if (response.ok) {
+          console.log('✅ Banner eliminado de Cloudinary');
+        }
+      } catch (error) {
+        console.warn('⚠️ Error eliminando banner:', error);
+      } finally {
+        setUploadingImage(false);
+      }
+    }
+
+    // Resetear a imagen por defecto
+    setImagePreview('/images/banners/default.jpg');
+    setFormData(prev => ({ ...prev, image: '/images/banners/default.jpg' }));
+    setCurrentImagePublicId('');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -118,7 +189,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
     }
 
     if (!formData.altText.trim()) {
-      setError('El texto alternativo es requerido');
+      setError('El texto alternativo es requerido para accesibilidad');
       setLoading(false);
       return;
     }
@@ -133,7 +204,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       const url = isEdit ? `/api/banners/${banner!.id}` : '/api/banners';
       const method = isEdit ? 'PUT' : 'POST';
 
-      console.log('📝 Enviando datos del banner:', formData);
+      console.log('💾 Guardando banner:', { title: formData.title, image: formData.image });
 
       const response = await fetch(url, {
         method,
@@ -147,7 +218,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log('✅ Banner guardado exitosamente:', data.banner);
+        console.log('✅ Banner guardado exitosamente');
         router.push('/admin/banners');
       } else {
         setError(data.error || 'Error al guardar el banner');
@@ -159,6 +230,8 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
       setLoading(false);
     }
   };
+
+  const isCloudinaryImage = formData.image.includes('res.cloudinary.com');
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -325,7 +398,14 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
             
             {/* Imagen */}
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Imagen del Banner</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Imagen del Banner
+                {isCloudinaryImage && (
+                  <span className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                    Cloudinary
+                  </span>
+                )}
+              </h3>
               
               <div className="space-y-4">
                 {/* Preview de la imagen */}
@@ -348,7 +428,10 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                   
                   {uploadingImage && (
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+                      <div className="text-center text-white">
+                        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white mx-auto mb-2"></div>
+                        <p className="text-sm">Subiendo a Cloudinary...</p>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -362,20 +445,17 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                     className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium flex items-center justify-center"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    {uploadingImage ? 'Subiendo...' : 'Subir Imagen'}
+                    {uploadingImage ? 'Subiendo...' : 'Subir a Cloudinary'}
                   </button>
                   
                   {imagePreview && imagePreview !== '/images/banners/default.jpg' && (
                     <button
                       type="button"
-                      onClick={() => {
-                        setImagePreview('/images/banners/default.jpg');
-                        setFormData(prev => ({ ...prev, image: '/images/banners/default.jpg' }));
-                        setImageUploaded(false);
-                      }}
-                      className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
+                      onClick={handleRemoveImage}
+                      disabled={uploadingImage}
+                      className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors text-sm font-medium"
                     >
                       Quitar
                     </button>
@@ -404,19 +484,18 @@ const BannerForm: React.FC<BannerFormProps> = ({ banner, isEdit = false }) => {
                       const newValue = e.target.value;
                       setFormData(prev => ({ ...prev, image: newValue }));
                       setImagePreview(newValue);
-                      setImageUploaded(!!newValue);
                     }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-sm"
-                    placeholder="/images/banners/mi-banner.jpg"
+                    placeholder="https://res.cloudinary.com/..."
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Puedes pegar una URL de imagen o usar el botón de subir arriba
+                    URLs de Cloudinary se optimizan automáticamente para mejores rendimiento
                   </p>
                 </div>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <p className="text-sm text-blue-800">
-                    <strong>Recomendación:</strong> Usa imágenes de al menos 1200x600 píxeles para mejor calidad en todos los dispositivos.
+                    <strong>Recomendación:</strong> Usa imágenes de al menos 1200x600 píxeles para mejor calidad en todos los dispositivos. Cloudinary optimizará automáticamente el formato y calidad.
                   </p>
                 </div>
               </div>

@@ -2,7 +2,7 @@
   "name": "bodytherapy",
   "version": "0.1.0",
   "private": true,
- "scripts": {
+  "scripts": {
     "dev": "next dev --turbopack",
     "build": "prisma generate && next build",
     "start": "next start",
@@ -13,7 +13,10 @@
     "db:reset": "prisma migrate reset",
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "migrate:images": "tsx scripts/migrate-to-cloudinary.ts",
+    "cloudinary:migrate": "npm run migrate:images migrate",
+    "cloudinary:validate": "npm run migrate:images validate"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -23,6 +26,7 @@
     "@stripe/react-stripe-js": "^3.6.0",
     "@stripe/stripe-js": "^7.2.0",
     "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.1",
     "jsonwebtoken": "^9.0.2",
     "next": "15.3.1",
     "react": "^19.0.0",

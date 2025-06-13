@@ -1,4 +1,4 @@
-// src/components/admin/BlogForm.tsx - Con upload funcional arreglado
+// src/components/admin/BlogForm.tsx - Actualizado para Cloudinary
 'use client';
 
 import React, { useState, useRef } from 'react';
@@ -10,6 +10,23 @@ import { BlogPost } from '@/lib/blog';
 interface BlogFormProps {
   post?: BlogPost;
   isEdit?: boolean;
+}
+
+interface CloudinaryResponse {
+  success: boolean;
+  imageUrl: string;
+  publicId: string;
+  fileName: string;
+  folder: string;
+  optimizedUrls: Record<string, string>;
+  metadata: {
+    width: number;
+    height: number;
+    format: string;
+    bytes: number;
+    createdAt: string;
+  };
+  message: string;
 }
 
 const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
@@ -28,6 +45,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
   const [error, setError] = useState('');
   const [imagePreview, setImagePreview] = useState<string>(formData.image);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [currentImagePublicId, setCurrentImagePublicId] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -47,9 +65,9 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
       return;
     }
 
-    // Validar tamaño (máximo 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      setError('La imagen debe ser menor a 5MB');
+    // Validar tamaño (máximo 10MB para Cloudinary free)
+    if (file.size > 10 * 1024 * 1024) {
+      setError('La imagen debe ser menor a 10MB');
       return;
     }
 
@@ -57,35 +75,86 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
     setError('');
 
     try {
-      // Opción 1: Usar la API de upload (si está implementada)
-      const formData = new FormData();
-      formData.append('image', file);
-      formData.append('folder', 'blog');
+      console.log('📤 Subiendo imagen a Cloudinary:', file.name);
+
+      const formDataUpload = new FormData();
+      formDataUpload.append('image', file);
+      formDataUpload.append('folder', 'blog');
 
       const uploadResponse = await fetch('/api/upload', {
         method: 'POST',
         credentials: 'include',
-        body: formData
+        body: formDataUpload
       });
 
       if (uploadResponse.ok) {
-        const uploadData = await uploadResponse.json();
+        const uploadData: CloudinaryResponse = await uploadResponse.json();
+        
+        console.log('✅ Imagen subida exitosamente:', uploadData.imageUrl);
+        console.log('📊 Metadatos:', uploadData.metadata);
+
+        // Eliminar imagen anterior si existe
+        if (currentImagePublicId && currentImagePublicId !== uploadData.publicId) {
+          try {
+            await fetch(`/api/upload?publicId=${encodeURIComponent(currentImagePublicId)}`, {
+              method: 'DELETE',
+              credentials: 'include'
+            });
+            console.log('🗑️ Imagen anterior eliminada');
+          } catch (deleteError) {
+            console.warn('⚠️ No se pudo eliminar la imagen anterior:', deleteError);
+          }
+        }
+
+        // Actualizar estado con la nueva imagen
         setImagePreview(uploadData.imageUrl);
         setFormData(prev => ({
           ...prev,
           image: uploadData.imageUrl
         }));
-      } else {
-        const data = await uploadResponse.json();
-        setError(data.error || 'Error al subir la imagen. Intenta de nuevo.');
-      }
+        setCurrentImagePublicId(uploadData.publicId);
 
+        // Mostrar información de la imagen subida
+        const { width, height, format, bytes } = uploadData.metadata;
+        const sizeInMB = (bytes / (1024 * 1024)).toFixed(2);
+        console.log(`📐 Imagen procesada: ${width}x${height} ${format.toUpperCase()}, ${sizeInMB}MB`);
+
+      } else {
+        const errorData = await uploadResponse.json();
+        console.error('❌ Error del servidor:', errorData);
+        setError(errorData.error || 'Error al subir la imagen. Intenta de nuevo.');
+      }
     } catch (error) {
-      console.error('Error uploading image:', error);
-      setError('Error al subir la imagen. Intenta de nuevo.');
+      console.error('❌ Error uploading image:', error);
+      setError('Error de conexión al subir la imagen. Intenta de nuevo.');
     } finally {
       setUploadingImage(false);
     }
+  };
+
+  const handleRemoveImage = async () => {
+    if (currentImagePublicId) {
+      try {
+        setUploadingImage(true);
+        const response = await fetch(`/api/upload?publicId=${encodeURIComponent(currentImagePublicId)}`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+
+        if (response.ok) {
+          console.log('✅ Imagen eliminada de Cloudinary');
+        }
+      } catch (error) {
+        console.warn('⚠️ Error eliminando imagen:', error);
+      } finally {
+        setUploadingImage(false);
+      }
+    }
+
+    // Resetear a imagen por defecto
+    setImagePreview('/images/blog/default.jpg');
+    setFormData(prev => ({ ...prev, image: '/images/blog/default.jpg' }));
+    setCurrentImagePublicId('');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -93,9 +162,24 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
     setLoading(true);
     setError('');
 
+    // Validaciones
+    if (!formData.title.trim()) {
+      setError('El título es requerido');
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.content.trim()) {
+      setError('El contenido es requerido');
+      setLoading(false);
+      return;
+    }
+
     try {
       const url = isEdit ? `/api/blog/${post!.id}` : '/api/blog';
       const method = isEdit ? 'PUT' : 'POST';
+
+      console.log('💾 Guardando post:', { title: formData.title, image: formData.image });
 
       const response = await fetch(url, {
         method,
@@ -109,6 +193,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
       const data = await response.json();
 
       if (response.ok) {
+        console.log('✅ Post guardado exitosamente');
         router.push('/admin/blog');
       } else {
         setError(data.error || 'Error al guardar el post');
@@ -132,6 +217,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
     'Tratamientos'
   ];
 
+  const isCloudinaryImage = formData.image.includes('res.cloudinary.com');
+
   return (
     <div className="max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
@@ -143,10 +230,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
             {isEdit ? 'Actualiza la información de tu post' : 'Crea un nuevo artículo para el blog'}
           </p>
         </div>
-        <Button
-          href="/admin/blog"
-          variant="outline"
-        >
+        <Button href="/admin/blog" variant="outline">
           <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
@@ -232,7 +316,14 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
             
             {/* Imagen */}
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Imagen del Post</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Imagen del Post
+                {isCloudinaryImage && (
+                  <span className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                    Cloudinary
+                  </span>
+                )}
+              </h3>
               
               <div className="space-y-4">
                 {/* Preview de la imagen */}
@@ -255,7 +346,10 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
                   
                   {uploadingImage && (
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+                      <div className="text-center text-white">
+                        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white mx-auto mb-2"></div>
+                        <p className="text-sm">Subiendo a Cloudinary...</p>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -269,19 +363,17 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
                     className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium flex items-center justify-center"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    {uploadingImage ? 'Subiendo...' : 'Subir Imagen'}
+                    {uploadingImage ? 'Subiendo...' : 'Subir a Cloudinary'}
                   </button>
                   
                   {imagePreview && imagePreview !== '/images/blog/default.jpg' && (
                     <button
                       type="button"
-                      onClick={() => {
-                        setImagePreview('/images/blog/default.jpg');
-                        setFormData(prev => ({ ...prev, image: '/images/blog/default.jpg' }));
-                      }}
-                      className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
+                      onClick={handleRemoveImage}
+                      disabled={uploadingImage}
+                      className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors text-sm font-medium"
                     >
                       Quitar
                     </button>
@@ -296,7 +388,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
                   className="hidden"
                 />
 
-                {/* URL manual - CAMBIADO de type="url" a type="text" */}
+                {/* URL manual */}
                 <div>
                   <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700 mb-2">
                     O URL de imagen
@@ -312,10 +404,16 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
                       setImagePreview(newValue);
                     }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-sm"
-                    placeholder="/images/blog/mi-imagen.jpg"
+                    placeholder="https://res.cloudinary.com/..."
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Puedes pegar una URL de imagen o usar el botón de subir arriba
+                    URLs de Cloudinary se optimizan automáticamente
+                  </p>
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                  <p className="text-sm text-blue-800">
+                    <strong>Cloudinary:</strong> Las imágenes se optimizan automáticamente para web (WebP/AVIF) y se entregan via CDN global para máxima velocidad.
                   </p>
                 </div>
               </div>
@@ -385,7 +483,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
                   type="submit"
                   variant="primary"
                   fullWidth
-                  disabled={loading}
+                  disabled={loading || uploadingImage}
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
