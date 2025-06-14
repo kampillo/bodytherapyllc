@@ -344,29 +344,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Preview Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-4">
-              {t('about.title')}
-            </span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-6">
-              {t('about.title')}
-            </h2>
-            <p className="text-lg text-dark/70 mb-6 leading-relaxed">
-              {t('about.history.desc')}
-            </p>
-            <p className="text-lg text-dark/70 mb-8 leading-relaxed">
-              {t('about.founder.desc')}
-            </p>
-            <Button href="/about" variant="primary">
-              {t('about.learn.more')}
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <TestimonialSection />
       <div className="container mx-auto px-4 pb-12 -mt-8 text-center">

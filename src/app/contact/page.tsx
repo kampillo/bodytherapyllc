@@ -6,11 +6,6 @@ import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ContactForm from '@/components/sections/ContactForm';
 
-export const metadata = {
-  title: 'Contacto - Body Therapy LLC',
-  description: 'Contáctanos para consultas, reservas o cualquier pregunta sobre nuestros servicios de terapia.',
-};
-
 const ContactPage = () => {
   const { t } = useLanguage();
 

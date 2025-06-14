@@ -21,7 +21,9 @@ export default function EditBlogPostPage() {
 
   const fetchPost = async () => {
     try {
-      const response = await fetch(`/api/blog/${params.id}`);
+      const response = await fetch(`/api/blog/${params.id}`, {
+        credentials: 'include'
+      });
       if (response.ok) {
         const data = await response.json();
         setPost(data.post);

@@ -36,7 +36,7 @@ export async function GET(
       );
     }
     
-    const post = getPostById(postId);
+    const post = await getPostById(postId);
     if (!post) {
       return NextResponse.json(
         { error: 'Post no encontrado' },
@@ -63,6 +63,7 @@ export async function PUT(
     // Verificar autenticación
     const token = request.cookies.get('auth-token')?.value;
     if (!token || !verifyTokenLocal(token)) {
+      console.error('❌ No autorizado - Token inválido o ausente');
       return NextResponse.json(
         { error: 'No autorizado' },
         { status: 401 }
@@ -72,26 +73,67 @@ export async function PUT(
     const { id } = await context.params;
     const postId = parseInt(id);
     
+    console.log('🔄 Actualizando post:', { postId });
+    
     if (isNaN(postId)) {
+      console.error('❌ ID inválido:', id);
       return NextResponse.json(
         { error: 'ID inválido' },
         { status: 400 }
       );
     }
-    
-    const body = await request.json();
-    const updatedPost = updatePost(postId, body);
-    
-    if (!updatedPost) {
+
+    // Verificar que el post existe antes de intentar actualizarlo
+    const existingPost = await getPostById(postId);
+    if (!existingPost) {
+      console.error('❌ Post no encontrado:', postId);
       return NextResponse.json(
         { error: 'Post no encontrado' },
         { status: 404 }
       );
     }
     
-    return NextResponse.json({ post: updatedPost });
+    const body = await request.json();
+    console.log('📝 Datos recibidos:', body);
+    
+    // Validar datos requeridos
+    if (!body.title || !body.content) {
+      console.error('❌ Datos incompletos:', body);
+      return NextResponse.json(
+        { error: 'Título y contenido son requeridos' },
+        { status: 400 }
+      );
+    }
+
+    try {
+      const updatedPost = await updatePost(postId, body);
+      if (!updatedPost) {
+        console.error('❌ Error: El post no se pudo actualizar');
+        return NextResponse.json(
+          { error: 'No se pudo actualizar el post' },
+          { status: 500 }
+        );
+      }
+      console.log('✅ Post actualizado exitosamente:', updatedPost.id);
+      return NextResponse.json({ post: updatedPost });
+    } catch (error) {
+      console.error('❌ Error al actualizar el post:', error);
+      if (error instanceof Error) {
+        return NextResponse.json(
+          { error: error.message },
+          { status: 500 }
+        );
+      }
+      return NextResponse.json(
+        { error: 'Error al actualizar el post' },
+        { status: 500 }
+      );
+    }
   } catch (error) {
-    console.error('Error updating post:', error);
+    console.error('❌ Error en la ruta PUT:', error);
+    if (error instanceof Error) {
+      console.error('Detalles del error:', error.message);
+    }
     return NextResponse.json(
       { error: 'Error interno del servidor' },
       { status: 500 }
@@ -124,7 +166,7 @@ export async function DELETE(
       );
     }
     
-    const deleted = deletePost(postId);
+    const deleted = await deletePost(postId);
     
     if (!deleted) {
       return NextResponse.json(

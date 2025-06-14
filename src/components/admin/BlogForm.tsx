@@ -4,6 +4,13 @@
 import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import Underline from '@tiptap/extension-underline';
+import TextAlign from '@tiptap/extension-text-align';
+import Link from '@tiptap/extension-link';
+import Color from '@tiptap/extension-color';
+import TextStyle from '@tiptap/extension-text-style';
 import Button from '@/components/ui/Button';
 import { BlogPost } from '@/lib/blog';
 
@@ -33,19 +40,43 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useState({
-    title: post?.title || '',
-    excerpt: post?.excerpt || '',
-    content: post?.content || '',
-    author: typeof post?.author === 'string' ? post.author : post?.author?.name || 'María Mercedes Lizalde',
-    category: post?.category || 'General',
-    image: post?.image || '/images/blog/default.jpg',
-    published: post?.published || false
+    title: post?.title ?? '',
+    excerpt: post?.excerpt ?? '',
+    content: post?.content ?? '',
+    author: post?.author ? (typeof post.author === 'string' ? post.author : post.author.name) : 'María Mercedes Lizalde',
+    category: post?.category ?? 'General',
+    image: post?.image ?? '/images/blog/default.jpg',
+    published: post?.published ?? false
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [imagePreview, setImagePreview] = useState<string>(formData.image);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [currentImagePublicId, setCurrentImagePublicId] = useState<string>('');
+  const [showLinkInput, setShowLinkInput] = useState(false);
+  const [linkUrl, setLinkUrl] = useState('');
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Underline,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
+      Link.configure({
+        openOnClick: false,
+        HTMLAttributes: {
+          class: 'text-primary-600 hover:text-primary-700 underline',
+        },
+      }),
+      Color,
+      TextStyle,
+    ],
+    content: formData.content,
+    onUpdate: ({ editor }) => {
+      setFormData(prev => ({ ...prev, content: editor.getHTML() }));
+    },
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -179,7 +210,13 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
       const url = isEdit ? `/api/blog/${post!.id}` : '/api/blog';
       const method = isEdit ? 'PUT' : 'POST';
 
-      console.log('💾 Guardando post:', { title: formData.title, image: formData.image });
+      // Preparar datos para enviar
+      const postData = {
+        ...formData,
+        authorId: post?.author?.id || 1 // Usar el ID del autor existente o un valor por defecto
+      };
+
+      console.log('💾 Guardando post:', { title: postData.title, image: postData.image });
 
       const response = await fetch(url, {
         method,
@@ -187,7 +224,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify(formData)
+        body: JSON.stringify(postData)
       });
 
       const data = await response.json();
@@ -203,6 +240,15 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
       console.error('Error al guardar:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleLinkSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (linkUrl) {
+      editor?.chain().focus().setLink({ href: linkUrl }).run();
+      setLinkUrl('');
+      setShowLinkInput(false);
     }
   };
 
@@ -293,19 +339,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
                   <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
                     Contenido *
                   </label>
-                  <textarea
-                    id="content"
-                    name="content"
-                    rows={20}
-                    value={formData.content}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors font-mono text-sm"
-                    placeholder="Escribe el contenido completo del post aquí..."
-                    required
-                  />
-                  <p className="text-sm text-gray-500 mt-2">
-                    Puedes usar párrafos separados por líneas en blanco. Se convertirán automáticamente en párrafos HTML.
-                  </p>
+                  <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: formData.content }} />
                 </div>
               </div>
             </div>
@@ -327,7 +361,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
               
               <div className="space-y-4">
                 {/* Preview de la imagen */}
-                <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
+                <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden border border-gray-200 mb-4">
                   {imagePreview ? (
                     <Image
                       src={imagePreview}
@@ -360,7 +394,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
                     disabled={uploadingImage}
-                    className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium flex items-center justify-center"
+                    className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium flex items-center justify-center border border-primary-700 shadow-sm"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -373,7 +407,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, isEdit = false }) => {
                       type="button"
                       onClick={handleRemoveImage}
                       disabled={uploadingImage}
-                      className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors text-sm font-medium"
+                      className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors text-sm font-medium border border-red-700 shadow-sm"
                     >
                       Quitar
                     </button>

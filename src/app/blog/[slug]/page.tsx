@@ -172,13 +172,7 @@ export default function BlogPostPage() {
               )}
 
               <div className="prose prose-lg max-w-none text-dark/80 leading-relaxed">
-                {post.content.split('\n\n').map((paragraph, index) => (
-                  paragraph.trim() && (
-                    <p key={index} className="mb-6 text-lg leading-relaxed">
-                      {paragraph.trim()}
-                    </p>
-                  )
-                ))}
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
               </div>
 
               {/* Call to Action */}

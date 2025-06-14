@@ -193,20 +193,11 @@ export async function createPost(postData: CreatePostData): Promise<PostWithAuth
 // Actualizar post
 export async function updatePost(id: number, updates: UpdatePostData): Promise<PostWithAuthor | null> {
   try {
-    // Si se actualiza el título, generar nuevo slug
-    let slug;
-    if (updates.title) {
-      slug = await generateUniqueSlug(updates.title, id);
-    }
+    console.log('🔄 Actualizando post:', { id, updates });
 
-    const updateData: any = { ...updates };
-    if (slug) {
-      updateData.slug = slug;
-    }
-
-    const post = await prisma.post.update({
+    // Verificar si el post existe
+    const existingPost = await prisma.post.findUnique({
       where: { id },
-      data: updateData,
       include: {
         author: {
           select: {
@@ -218,10 +209,68 @@ export async function updatePost(id: number, updates: UpdatePostData): Promise<P
       }
     });
 
-    return post;
+    if (!existingPost) {
+      console.error('❌ Post no encontrado:', id);
+      return null;
+    }
+
+    console.log('✅ Post encontrado:', existingPost);
+
+    // Validar datos requeridos
+    if (!updates.title || !updates.content) {
+      console.error('❌ Datos incompletos:', updates);
+      throw new Error('Título y contenido son requeridos');
+    }
+
+    // Si se actualiza el título, generar nuevo slug
+    let slug;
+    if (updates.title) {
+      slug = await generateUniqueSlug(updates.title, id);
+    }
+
+    // Preparar datos de actualización
+    const updateData = {
+      title: updates.title,
+      content: updates.content,
+      excerpt: updates.excerpt ?? existingPost.excerpt,
+      image: updates.image ?? existingPost.image,
+      category: updates.category ?? existingPost.category,
+      published: updates.published ?? existingPost.published,
+      ...(slug && { slug })
+    };
+
+    console.log('📝 Datos de actualización finales:', updateData);
+
+    try {
+      const post = await prisma.post.update({
+        where: { id },
+        data: updateData,
+        include: {
+          author: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            }
+          }
+        }
+      });
+
+      console.log('✅ Post actualizado:', post);
+      return post;
+    } catch (prismaError) {
+      console.error('❌ Error de Prisma:', prismaError);
+      if (prismaError instanceof Error) {
+        throw new Error(`Error de base de datos: ${prismaError.message}`);
+      }
+      throw prismaError;
+    }
   } catch (error) {
-    console.error('Error updating post:', error);
-    return null;
+    console.error('❌ Error updating post:', error);
+    if (error instanceof Error) {
+      console.error('Detalles del error:', error.message);
+    }
+    throw error; // Re-lanzar el error para manejarlo en la ruta de la API
   }
 }
 
