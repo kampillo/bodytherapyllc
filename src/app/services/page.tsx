@@ -40,21 +40,21 @@ const ServicesPage: React.FC = () => {
         price="$125.00"
         duration="75 min"
         features={[
-          "Tendinopatías y Esguinces",
-          "Recuperación de movimiento por fracturas",
-          "Escoliosis y Fascitis plantar",
-          "Capsulitis articular",
-          "Parálisis facial",
-          "Lumbalgia, Ciatalgia y Cervicalgia",
-          "Síndrome de latigazo",
-          "Síndrome de tenista y golfista",
-          "Lesiones deportivas y neurológicas",
-          "Eliminación de toxinas",
-          "Activación de circulación sanguínea y linfática",
-          "Mejora del aporte de oxígeno a los tejidos",
-          "Ampliación del arco de movilidad",
-          "Disminución del dolor",
-          "*Se trabaja por región."
+          t('services.features.tendinopathies'),
+          t('services.features.fractures'),
+          t('services.features.scoliosis'),
+          t('services.features.capsulitis'),
+          t('services.features.facial'),
+          t('services.features.back'),
+          t('services.features.whiplash'),
+          t('services.features.tennis'),
+          t('services.features.sports'),
+          t('services.features.toxins'),
+          t('services.features.circulation'),
+          t('services.features.oxygen'),
+          t('services.features.mobility'),
+          t('services.features.pain'),
+          t('services.features.region')
         ]}
         link="/contact"
       />
@@ -176,7 +176,7 @@ const ServicesPage: React.FC = () => {
                     </div>
                   </div>
                   <p className="text-sm text-secondary-700 mt-2">
-                    Paquete 3 {t('services.clinical.lymphatic.title').toLowerCase()}: $280.00
+                    {t('services.packages.three')} {t('services.clinical.lymphatic.title').toLowerCase()}: $280.00
                   </p>
                 </div>
               </div>
@@ -217,9 +217,6 @@ const ServicesPage: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Continúa con el resto de masajes clínicos siguiendo el mismo patrón... */}
-            
           </div>
         </div>
       </section>
@@ -724,7 +721,7 @@ const ServicesPage: React.FC = () => {
               <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              Llámanos: (713) 922-8973
+              {t('common.call')}: (713) 922-8973
             </Button>
           </div>
         </div>

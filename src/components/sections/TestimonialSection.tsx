@@ -1,6 +1,7 @@
 'use client';
 // src/components/sections/TestimonialCarousel.tsx
 import React, { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 // import Image from 'next/image';
 
 interface Testimonial {
@@ -140,6 +141,7 @@ const testimonials = [
 ];
 
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = false }) => {
+  const { t } = useLanguage();
   const carouselRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -200,9 +202,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">Lo Que Dicen Nuestros Clientes</h2>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">{t('testimonials.title')}</h2>
             <p className="text-lg text-dark/70 max-w-3xl mx-auto">
-              Experiencias reales de personas que han transformado su bienestar con nuestras terapias
+              {t('testimonials.subtitle')}
             </p>
           </div>
           
@@ -225,10 +227,10 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-800 rounded-full text-sm font-medium mb-4">Testimonios</span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">Lo Que Dicen Nuestros Clientes</h2>
+          <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-800 rounded-full text-sm font-medium mb-4">{t('testimonials.badge')}</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">{t('testimonials.title')}</h2>
           <p className="text-lg text-dark/70 max-w-3xl mx-auto">
-            Experiencias reales de personas que han transformado su bienestar con nuestras terapias
+            {t('testimonials.subtitle')}
           </p>
         </div>
         
@@ -241,7 +243,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
           <button 
             onClick={() => setScrollPosition(prev => Math.max(0, prev - 400))}
             className="absolute top-1/2 left-2 z-20 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-primary-50 transition-all"
-            aria-label="Testimonio anterior"
+            aria-label={t('testimonials.previous')}
           >
             <svg className="h-6 w-6 text-primary-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -251,7 +253,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
           <button 
             onClick={() => setScrollPosition(prev => prev + 400)}
             className="absolute top-1/2 right-2 z-20 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-primary-50 transition-all"
-            aria-label="Testimonio siguiente"
+            aria-label={t('testimonials.next')}
           >
             <svg className="h-6 w-6 text-primary-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -283,6 +285,8 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
 
 // Componente de tarjeta de testimonio individual con comillas bien posicionadas
 const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
+  const { t } = useLanguage();
+  
   return (
     <div className="bg-white rounded-xl shadow-soft p-8 transition-all duration-300 hover:shadow-hover relative h-full">
       {/* Comillas correctamente posicionadas */}
@@ -302,7 +306,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
           </div>
           <div className="ml-4">
             <h4 className="font-bold text-primary-800">{testimonial.author}</h4>
-            <p className="text-sm text-dark/60">{testimonial.role}</p>
+            <p className="text-sm text-dark/60">{t('testimonials.client.role')}</p>
           </div>
         </div>
       </div>
