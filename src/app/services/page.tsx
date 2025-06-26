@@ -398,6 +398,9 @@ const ServicesPage: React.FC = () => {
                   <h3 className="text-xl font-bold text-primary-800 mb-3">
                     {t('services.holistic.bars.title')}
                   </h3>
+                  <p className="text-dark/70 text-sm mb-4">
+                    {t('services.holistic.bars.desc')}
+                  </p>
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -415,6 +418,9 @@ const ServicesPage: React.FC = () => {
                   <h3 className="text-xl font-bold text-primary-800 mb-3">
                     {t('services.holistic.reflexology.title')}
                   </h3>
+                  <p className="text-dark/70 text-sm mb-4">
+                    {t('services.holistic.reflexology.desc')}
+                  </p>
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center">
                       <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -625,14 +631,7 @@ const ServicesPage: React.FC = () => {
           </div>
 
           {/* Couple Massage Packages */}
-          <div className="mt-16">
-            <h3 className="text-center font-heading text-2xl font-bold text-primary-800 mb-12">
-              {t('services.packages.couple.title')}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Los 3 paquetes de parejas siguiendo el mismo patrón... */}
-            </div>
-          </div>
+       
 
           <div className="mt-16">
             <h3 className="text-center font-heading text-2xl font-bold text-primary-800 mb-12">

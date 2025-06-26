@@ -56,6 +56,10 @@ const translations = {
     'services.corporate.desc': 'Servicio profesional de masaje Shiatsu para empresas, ideal para reducir el estrés laboral.',
     'services.holistic': 'Terapias Holísticas',
     'services.holistic.desc': 'Enfoque integral que combina diferentes técnicas para armonizar cuerpo, mente y espíritu.',
+    'services.holistic.bars.desc': 'Access Bars es un proceso manual que consiste en presionar suavemente con los dedos 32 puntos concretos de la cabeza, con el fin de liberar las cargas eléctricas acumuladas por todos los pensamientos, memorias y emociones negativas que nos suelen llevar a enfermar.',
+    'services.holistic.reflexology.desc': 'La reflexología es una técnica terapéutica basada en la aplicación de presión en puntos específicos de los pies, manos y orejas que corresponden a diferentes órganos y sistemas del cuerpo. Esta práctica ayuda a estimular la circulación, reducir el estrés y promover la relajación profunda.',
+    'services.holistic.reiki.desc': 'Técnica de sanación energética que promueve la relajación, reduce el estrés y apoya las capacidades naturales de sanación del cuerpo.',
+    'services.holistic.meditation.desc': 'Te ayuda a lograr un estado de profunda relajación y claridad mental a través de técnicas guiadas de respiración y mindfulness.',
     'services.packages': 'Paquetes de Masaje',
     'services.packages.desc': 'Experiencias completas que combinan diferentes técnicas y extras para una experiencia integral.',
     'services.more.info': 'Más información',
@@ -275,15 +279,13 @@ const translations = {
     'services.corporate.executive.title': 'Masaje Ejecutivo',
     'services.corporate.executive.desc': 'Servicio premium de masaje para ejecutivos y gerentes. Ayuda a mantener el máximo rendimiento y gestionar el estrés laboral.',
     
-    // Holistic Therapies
+    // Holistic Therapies (ESPAÑOL)
     'services.holistic.section.title': 'Terapias Holísticas',
     'services.holistic.section.desc': 'Enfoque integral para el bienestar total',
     'services.holistic.bars.title': 'Access Bars',
     'services.holistic.reflexology.title': 'Reflexología',
     'services.holistic.reiki.title': 'Terapia Reiki',
-    'services.holistic.reiki.desc': 'Técnica de sanación energética que promueve la relajación, reduce el estrés y apoya las capacidades naturales de sanación del cuerpo.',
     'services.holistic.meditation.title': 'Meditación Guiada',
-    'services.holistic.meditation.desc': 'Te ayuda a lograr un estado de profunda relajación y claridad mental a través de técnicas guiadas de respiración y mindfulness.',
     
     // Massage Packages
     'services.packages.section.title': 'Paquetes Especiales',
@@ -482,6 +484,10 @@ const translations = {
     'services.corporate.desc': 'Professional Shiatsu massage service for companies, ideal for reducing work stress.',
     'services.holistic': 'Holistic Therapies',
     'services.holistic.desc': 'Comprehensive approach that combines different techniques to harmonize body, mind and spirit.',
+    'services.holistic.bars.desc': 'Access Bars is a manual technique that involves gently pressing 32 specific points on the head with the fingers, in order to release the electrical charges accumulated from thoughts, memories, and negative emotions that often lead to illness.',
+    'services.holistic.reflexology.desc': 'Reflexology is a therapeutic technique based on applying pressure to specific points on the feet, hands, and ears that correspond to different organs and systems of the body. This practice helps stimulate circulation, reduce stress, and promote deep relaxation.',
+    'services.holistic.reiki.desc': 'Energy healing technique that promotes relaxation, reduces stress, and supports the body\'s natural healing abilities.',
+    'services.holistic.meditation.desc': 'Helps you achieve a state of deep relaxation and mental clarity through guided breathing and mindfulness techniques.',
     'services.packages': 'Massage Packages',
     'services.packages.desc': 'Complete experiences that combine different techniques and extras for an integral experience.',
     'services.more.info': 'More information',
@@ -679,7 +685,7 @@ const translations = {
     'services.relaxing.swedish.title': 'Swedish Massage',
     'services.relaxing.swedish.desc': 'Swedish massage is based on the combination of five fundamental steps that produce the effects of eliminating toxins accumulated due to muscle tension, improving blood circulation, and therefore, increasing oxygenation of the tissues. All of this results in muscular efficiency and relaxation, which contribute to psychological well-being and stress reduction.',
     'services.relaxing.aromatherapy.title': 'Aromatherapy Massage',
-    'services.relaxing.aromatherapy.desc': 'It is a relaxing massage that uses a sequence of highly concentrated, therapeutic-grade essential oils applied to the skin. Its primary function is antibacterial and anti-inflammatory, helping to strengthen the body’s defenses. It is mainly applied to the feet, back, and spine with medium pressure. It produces deep relaxation and helps soothe tense and sore muscles, tendons, and ligaments. Ideal for relieving stress, realigning the spine, back pain, tight shoulders, sciatic nerve discomfort, fatigue, or simply if you need to break the routine and treat yourself.',
+    'services.relaxing.aromatherapy.desc': 'It is a relaxing massage that uses a sequence of highly concentrated, therapeutic-grade essential oils applied to the skin. Its primary function is antibacterial and anti-inflammatory, helping to strengthen the bodys defenses. It is mainly applied to the feet, back, and spine with medium pressure. It produces deep relaxation and helps soothe tense and sore muscles, tendons, and ligaments. Ideal for relieving stress, realigning the spine, back pain, tight shoulders, sciatic nerve discomfort, fatigue, or simply if you need to break the routine and treat yourself.',
     'services.relaxing.hot_stones.title': 'Hot Stone Massage',
     'services.relaxing.hot_stones.desc': 'Therapy with hot volcanic stones',
     'services.relaxing.stones.title': 'Masaje con Piedras Calientes',
@@ -701,15 +707,17 @@ const translations = {
     'services.corporate.executive.title': 'Executive Massage',
     'services.corporate.executive.desc': 'Premium massage service for executives and managers. Helps maintain peak performance and manage work-related stress.',
     
-    // Holistic Therapies
+    // Holistic Therapies (ENGLISH)
     'services.holistic.section.title': 'Holistic Therapies',
     'services.holistic.section.desc': 'Integral approach for total wellbeing',
     'services.holistic.bars.title': 'Access Bars',
+    'services.holistic.bars.desc2': 'Access Bars is a manual technique that involves gently pressing 32 specific points on the head with the fingers, in order to release the electrical charges accumulated from thoughts, memories, and negative emotions that often lead to illness.',
     'services.holistic.reflexology.title': 'Reflexology',
+    'services.holistic.reflexology.desc2': 'Reflexology is a therapeutic technique based on applying pressure to specific points on the feet, hands, and ears that correspond to different organs and systems of the body. This practice helps stimulate circulation, reduce stress, and promote deep relaxation.',
     'services.holistic.reiki.title': 'Reiki Therapy',
-    'services.holistic.reiki.desc': 'Energy healing technique that promotes relaxation, reduces stress, and supports the body\'s natural healing abilities.',
+    'services.holistic.reiki.desc2': 'Energy healing technique that promotes relaxation, reduces stress, and supports the body\'s natural healing abilities.',
     'services.holistic.meditation.title': 'Guided Meditation',
-    'services.holistic.meditation.desc': 'Helps you achieve a state of deep relaxation and mental clarity through guided breathing and mindfulness techniques.',
+    'services.holistic.meditation.desc2': 'Helps you achieve a state of deep relaxation and mental clarity through guided breathing and mindfulness techniques.',
     
     // Massage Packages
     'services.packages.section.title': 'Special Packages',
