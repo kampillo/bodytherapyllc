@@ -252,7 +252,7 @@ const CoursesPage = () => {
       </section>
 
       {/* Upcoming Courses Section */}
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 bg-primary-50 text-primary-800 rounded-full text-sm font-medium mb-4">
@@ -349,7 +349,7 @@ const CoursesPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-20 bg-primary-800 text-black relative overflow-hidden">
