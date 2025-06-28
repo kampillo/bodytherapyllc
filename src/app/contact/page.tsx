@@ -3,20 +3,20 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useContact } from '@/contexts/ContactContext';
 import ContactForm from '@/components/sections/ContactForm';
 
 const ContactPage = () => {
-  const { t } = useLanguage();
+  const { t } = useContact();
 
   return (
     <>
       {/* Hero Section */}
       <section className="bg-light py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-primary mb-6">{t('contact.title')}</h1>
+          <h1 className="text-4xl font-bold text-primary mb-6">{t.title}</h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            {t('contact.subtitle')}
+            {t.subtitle}
           </p>
         </div>
       </section>
@@ -27,7 +27,7 @@ const ContactPage = () => {
           <div className="flex flex-col lg:flex-row gap-12">
             <div className="lg:w-2/5">
               <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-primary mb-6">{t('contact.info')}</h2>
+                <h2 className="text-2xl font-bold text-primary mb-6">{t.info}</h2>
 
                 <div className="space-y-6">
                   <div className="flex">
@@ -39,7 +39,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-lg font-medium text-gray-900">{t('contact.phone')}</h3>
+                      <h3 className="text-lg font-medium text-gray-900">{t.phone}</h3>
                       <p className="mt-1 text-gray-600">
                         <a href="tel:+17139228973" className="hover:text-primary transition">
                           +1 (713) 922-8973
@@ -57,7 +57,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-lg font-medium text-gray-900">{t('contact.email')}</h3>
+                      <h3 className="text-lg font-medium text-gray-900">{t.email}</h3>
                       <p className="mt-1 text-gray-600">
                         <a href="mailto:mercedes@bodytherapyllc.com" className="hover:text-primary transition">
                           mercedes@bodytherapyllc.com
@@ -75,10 +75,10 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-lg font-medium text-gray-900">{t('contact.schedule')}</h3>
-                      <p className="mt-1 text-gray-600">{t('footer.schedule.weekdays')}</p>
-                      <p className="text-gray-600">{t('footer.schedule.saturday')}</p>
-                      <p className="text-gray-600">{t('footer.schedule.sunday')}</p>
+                      <h3 className="text-lg font-medium text-gray-900">{t.schedule}</h3>
+                      <p className="mt-1 text-gray-600">Lunes - Viernes: 9:00 AM - 6:00 PM</p>
+                      <p className="text-gray-600">Sábado: 9:00 AM - 4:00 PM</p>
+                      <p className="text-gray-600">Domingo: Cerrado</p>
                     </div>
                   </div>
 
@@ -92,16 +92,16 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-lg font-medium text-gray-900">{t('contact.address')}</h3>
+                      <h3 className="text-lg font-medium text-gray-900">{t.address}</h3>
                       <p className="mt-1 text-gray-600">
-                        {t('contact.address')}
+                        {t.address}
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-8">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">{t('footer.follow')}</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">{t.follow}</h3>
                   <div className="flex space-x-4">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-secondary transition">
                       <span className="sr-only">Facebook</span>
@@ -128,7 +128,7 @@ const ContactPage = () => {
 
             <div className="lg:w-3/5">
               <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-primary mb-6">{t('contact.form.title')}</h2>
+                <h2 className="text-2xl font-bold text-primary mb-6">{t.form.title}</h2>
                 <ContactForm />
               </div>
             </div>
@@ -140,16 +140,16 @@ const ContactPage = () => {
       <section className="py-16 bg-light">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">{t('contact.title')}</h2>
+            <h2 className="text-3xl font-bold text-primary mb-4">{t.map.title}</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              {t('contact.subtitle')}
+              {t.map.subtitle}
             </p>
           </div>
 
           <div className="rounded-lg overflow-hidden shadow-xl">
             {/* Aquí iría un mapa embebido, por ahora es una imagen placeholder */}
             <div className="bg-gray-200 h-96 flex items-center justify-center">
-              <p className="text-gray-600">Mapa embebido iría aquí</p>
+              <p className="text-gray-600">{t.map.placeholder}</p>
             </div>
           </div>
         </div>

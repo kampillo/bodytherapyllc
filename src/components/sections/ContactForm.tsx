@@ -3,10 +3,10 @@
 
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useContact } from '@/contexts/ContactContext';
 
 const ContactForm = () => {
-  const { t } = useLanguage();
+  const { t } = useContact();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,20 +36,20 @@ const ContactForm = () => {
     };
     
     if (!formData.name.trim()) {
-      newErrors.name = `${t('contact.form.name')} ${t('common.required').toLowerCase()}`;
+      newErrors.name = t.validation.nameRequired;
       valid = false;
     }
     
     if (!formData.email.trim()) {
-      newErrors.email = `${t('contact.form.email')} ${t('common.required').toLowerCase()}`;
+      newErrors.email = t.validation.emailRequired;
       valid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Por favor ingresa un email válido / Please enter a valid email';
+      newErrors.email = t.validation.invalidEmail;
       valid = false;
     }
     
     if (!formData.message.trim()) {
-      newErrors.message = `${t('contact.form.message')} ${t('common.required').toLowerCase()}`;
+      newErrors.message = t.validation.messageRequired;
       valid = false;
     }
     
@@ -75,7 +75,7 @@ const ContactForm = () => {
     setFormStatus({
       submitted: true,
       success: false,
-      message: t('common.loading'),
+      message: 'Cargando... / Loading...',
     });
     
     // Simular envío
@@ -83,7 +83,7 @@ const ContactForm = () => {
       setFormStatus({
         submitted: true,
         success: true,
-        message: t('contact.form.success'),
+        message: t.form.success,
       });
       
       // Resetear el formulario
@@ -123,7 +123,7 @@ const ContactForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-dark/80 mb-2">
-            {t('contact.form.name')} *
+            {t.form.name} *
           </label>
           <input
             type="text"
@@ -134,7 +134,7 @@ const ContactForm = () => {
             className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all ${
               errors.name ? 'border-red-300' : 'border-gray-200'
             }`}
-            placeholder={t('contact.form.name')}
+            placeholder={t.form.name}
           />
           {errors.name && (
             <p className="mt-1.5 text-sm text-red-500 flex items-center">
@@ -148,7 +148,7 @@ const ContactForm = () => {
         
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-dark/80 mb-2">
-            {t('contact.form.email')} *
+            {t.form.email} *
           </label>
           <input
             type="email"
@@ -159,7 +159,7 @@ const ContactForm = () => {
             className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all ${
               errors.email ? 'border-red-300' : 'border-gray-200'
             }`}
-            placeholder="tu@email.com"
+            placeholder={t.placeholders.email}
           />
           {errors.email && (
             <p className="mt-1.5 text-sm text-red-500 flex items-center">
@@ -175,7 +175,7 @@ const ContactForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-dark/80 mb-2">
-            {t('contact.form.phone')}
+            {t.form.phone}
           </label>
           <input
             type="tel"
@@ -184,13 +184,13 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handleChange}
             className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all"
-            placeholder="(123) 456-7890"
+            placeholder={t.placeholders.phone}
           />
         </div>
         
         <div>
           <label htmlFor="subject" className="block text-sm font-medium text-dark/80 mb-2">
-            {t('contact.form.subject')}
+            {t.form.subject}
           </label>
           <select
             id="subject"
@@ -200,18 +200,18 @@ const ContactForm = () => {
             className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all appearance-none"
             style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")", backgroundPosition: "right 1rem center", backgroundRepeat: "no-repeat", backgroundSize: "1.5em 1.5em", paddingRight: "2.5rem" }}
           >
-            <option value="">Selecciona una opción / Select an option</option>
-            <option value="Consulta">Consulta general / General inquiry</option>
-            <option value="Cita">Reservar cita / Book appointment</option>
-            <option value="Informacion">Solicitar información / Request information</option>
-            <option value="Otro">Otro / Other</option>
+            <option value="">{t.options.selectOption}</option>
+            <option value="Consulta">{t.options.generalInquiry}</option>
+            <option value="Cita">{t.options.bookAppointment}</option>
+            <option value="Informacion">{t.options.requestInfo}</option>
+            <option value="Otro">{t.options.other}</option>
           </select>
         </div>
       </div>
       
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-dark/80 mb-2">
-          {t('contact.form.message')} *
+          {t.form.message} *
         </label>
         <textarea
           id="message"
@@ -222,7 +222,7 @@ const ContactForm = () => {
           className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all ${
             errors.message ? 'border-red-300' : 'border-gray-200'
           }`}
-          placeholder="¿Cómo podemos ayudarte? / How can we help you?"
+          placeholder={t.placeholders.message}
         ></textarea>
         {errors.message && (
           <p className="mt-1.5 text-sm text-red-500 flex items-center">
@@ -242,7 +242,7 @@ const ContactForm = () => {
           className="w-full md:w-auto"
         >
           <span className="flex items-center">
-            <span>{t('contact.form.send')}</span>
+            <span>{t.form.send}</span>
             <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>

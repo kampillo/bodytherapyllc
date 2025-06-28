@@ -6,8 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { BlogPost } from '@/lib/blog';
+import { useBlog } from '@/contexts/BlogContext';
 
 export default function BlogPage() {
+  const { t } = useBlog();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -27,11 +29,11 @@ export default function BlogPage() {
         setPosts(data.posts);
       } else {
         console.error('❌ Error al cargar posts:', response.status);
-        setError('Error al cargar los posts');
+        setError(t.error.loadError);
       }
     } catch (error) {
       console.error('❌ Error de conexión:', error);
-      setError('Error de conexión');
+      setError(t.error.connectionError);
     } finally {
       setLoading(false);
     }
@@ -42,7 +44,7 @@ export default function BlogPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-700 mx-auto mb-4"></div>
-          <p className="text-gray-600">Cargando artículos...</p>
+          <p className="text-gray-600">{t.loading.loadingArticles}</p>
         </div>
       </div>
     );
@@ -57,7 +59,7 @@ export default function BlogPage() {
           </svg>
           <p className="text-red-700 mb-4">{error}</p>
           <Button onClick={fetchPosts} variant="outline">
-            Intentar de nuevo
+            {t.error.tryAgain}
           </Button>
         </div>
       </div>
@@ -73,11 +75,11 @@ export default function BlogPage() {
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <span className="inline-block px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium mb-4">
-            Conocimientos y Consejos
+            {t.hero.badge}
           </span>
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-800 mb-6">Nuestro Blog</h1>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-800 mb-6">{t.hero.title}</h1>
           <p className="text-xl text-dark/70 max-w-3xl mx-auto">
-            Artículos, consejos y conocimientos sobre terapia manual, masaje terapéutico y bienestar integral.
+            {t.hero.subtitle}
           </p>
         </div>
       </section>
@@ -90,8 +92,8 @@ export default function BlogPage() {
               <svg className="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No hay artículos disponibles</h3>
-              <p className="text-gray-500">Próximamente tendremos contenido nuevo para ti.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{t.empty.noArticles}</h3>
+              <p className="text-gray-500">{t.empty.noArticlesDesc}</p>
             </div>
           ) : (
             <>
@@ -140,7 +142,7 @@ export default function BlogPage() {
                         <span className="text-dark/80 font-medium">{posts[0].author.name}</span>
                       </div>
                       <Button href={`/blog/${posts[0].slug}`} variant="primary">
-                        Leer Artículo
+                        {t.actions.readArticle}
                       </Button>
                     </div>
                   </div>
@@ -193,7 +195,7 @@ export default function BlogPage() {
                             href={`/blog/${post.slug}`}
                             className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center transition-colors"
                           >
-                            Leer más
+                            {t.actions.readMore}
                             <svg className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
@@ -215,9 +217,9 @@ export default function BlogPage() {
         <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/3 bg-primary-700 rounded-tr-3xl opacity-30"></div>
 
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6 text-black">¿Quieres aprender más sobre terapia manual?</h2>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6 text-black">{t.cta.title}</h2>
           <p className="text-xl text-black mb-10 max-w-2xl mx-auto">
-            Ofrecemos cursos y talleres para profesionales y entusiastas de la terapia manual y el masaje terapéutico.
+            {t.cta.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button
@@ -226,7 +228,7 @@ export default function BlogPage() {
               size="lg"
               className="shadow-lg"
             >
-              Explorar Cursos
+              {t.cta.exploreCourses}
             </Button>
             <Button
               href="/contact"
@@ -234,7 +236,7 @@ export default function BlogPage() {
               size="lg"
               className="text-white border-white hover:bg-white/10 shadow-lg"
             >
-              Contactar para Información
+              {t.cta.contactForInfo}
             </Button>
           </div>
         </div>

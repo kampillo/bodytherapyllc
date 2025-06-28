@@ -7,8 +7,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { BlogPost } from '@/lib/blog';
+import { useBlog } from '@/contexts/BlogContext';
 
 export default function BlogPostPage() {
+  const { t } = useBlog();
   const params = useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
@@ -36,15 +38,15 @@ export default function BlogPostPage() {
           setPost(foundPost);
         } else {
           console.error('❌ Post no encontrado:', params.slug);
-          setError('Post no encontrado');
+          setError(t.error.notFound);
         }
       } else {
         console.error('❌ Error al cargar post:', response.status);
-        setError('Error al cargar el post');
+        setError(t.error.loadError);
       }
     } catch (error) {
       console.error('❌ Error de conexión:', error);
-      setError('Error de conexión');
+      setError(t.error.connectionError);
     } finally {
       setLoading(false);
     }
@@ -71,7 +73,7 @@ export default function BlogPostPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-700 mx-auto mb-4"></div>
-          <p className="text-gray-600">Cargando artículo...</p>
+          <p className="text-gray-600">{t.loading.loadingArticle}</p>
         </div>
       </div>
     );
@@ -84,10 +86,10 @@ export default function BlogPostPage() {
           <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Post no encontrado</h1>
-          <p className="text-gray-600 mb-8">El artículo que buscas no existe o ha sido eliminado.</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">{t.error.notFound}</h1>
+          <p className="text-gray-600 mb-8">{t.error.notFoundDesc}</p>
           <Button href="/blog" variant="primary">
-            Volver al Blog
+            {t.actions.backToBlog}
           </Button>
         </div>
       </div>
@@ -101,11 +103,11 @@ export default function BlogPostPage() {
         <div className="container mx-auto px-4">
           <div className="flex items-center text-sm text-dark/60">
             <Link href="/" className="hover:text-primary-700 transition-colors">
-              Inicio
+              {t.breadcrumb.home}
             </Link>
             <span className="mx-2">/</span>
             <Link href="/blog" className="hover:text-primary-700 transition-colors">
-              Blog
+              {t.breadcrumb.blog}
             </Link>
             <span className="mx-2">/</span>
             <span className="text-dark/80 truncate">{post.title}</span>
@@ -179,17 +181,17 @@ export default function BlogPostPage() {
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-xl p-6">
                   <h3 className="font-heading text-xl font-bold text-primary-800 mb-4">
-                    ¿Te resultó útil este artículo?
+                    {t.article.usefulArticle}
                   </h3>
                   <p className="text-dark/70 mb-6">
-                    Si tienes preguntas o quieres saber más sobre nuestros servicios, estamos aquí para ayudarte.
+                    {t.article.usefulArticleDesc}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button href="/contact" variant="primary">
-                      Contáctanos para más información
+                      {t.article.contactForInfo}
                     </Button>
                     <Button href="/services" variant="outline">
-                      Explorar nuestros servicios
+                      {t.article.exploreServices}
                     </Button>
                   </div>
                 </div>
@@ -202,10 +204,10 @@ export default function BlogPostPage() {
             <div className="mt-16">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-primary-800 mb-4">
-                  Artículos Relacionados
+                  {t.related.title}
                 </h2>
                 <p className="text-lg text-dark/70">
-                  Otros artículos que podrían interesarte
+                  {t.related.subtitle}
                 </p>
               </div>
 
@@ -245,7 +247,7 @@ export default function BlogPostPage() {
                         href={`/blog/${relatedPost.slug}`}
                         className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center transition-colors"
                       >
-                        Leer más
+                        {t.actions.readMore}
                         <svg className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>

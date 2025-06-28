@@ -170,33 +170,6 @@ const translations = {
     'common.required': 'Required',
     'common.optional': 'Optional',
     
-    // Contact
-    'contact.title': 'Contact',
-    'contact.subtitle': 'We are here to help you. Contact us for inquiries, appointments, or any information you need.',
-    'contact.info': 'Contact Information',
-    'contact.phone': 'Phone',
-    'contact.email': 'Email',
-    'contact.schedule': 'Schedule',
-    'contact.address': 'Body Therapy LLC\nKaty, TX',
-    'contact.form.title': 'Send us a message',
-    'contact.form.name': 'Name',
-    'contact.form.email': 'Email',
-    'contact.form.phone': 'Phone',
-    'contact.form.subject': 'Subject',
-    'contact.form.message': 'Message',
-    'contact.form.send': 'Send Message',
-    'contact.form.success': 'Your message has been sent successfully. We will contact you soon.',
-    'contact.form.error': 'There was an error sending your message. Please try again.',
-    
-    // Blog
-    'blog.title': 'Our Blog',
-    'blog.subtitle': 'Articles, tips, and knowledge about manual therapy, therapeutic massage, and integral wellbeing.',
-    'blog.read.more': 'Read more',
-    'blog.read.article': 'Read Article',
-    'blog.related': 'Related Articles',
-    'blog.no.posts': 'No articles available',
-    'blog.no.posts.desc': 'We will have new content for you soon.',
-    
     // Services Page
     'services.page.title': 'Nuestros Servicios',
     'services.page.subtitle': 'Descubre nuestra gama de masajes terapéuticos y relajantes diseñados para mejorar tu bienestar',
@@ -215,14 +188,6 @@ const translations = {
     'shop.total': 'Total',
     'shop.quantity': 'Quantity',
     
-    // Courses
-    'courses.title': 'Specialized Certifications',
-    'courses.subtitle': 'Explore our courses designed for massage professionals and therapists',
-    'courses.request.info': 'Request Information',
-    'courses.professional.training': 'Professional Training',
-    'courses.training.desc': 'Expand your knowledge and skills as a massage therapist.',
-    'courses.contact.us': 'Contact Us Now',
-
     // Services Page - Títulos principales
     'services.specialized.title': 'Masaje Terapéutico Especializado PAIN',
     'services.specialized.desc': 'Se utilizan en el tratamiento de trastornos neuromusculares y musculoesqueléticos, facilitando:\nEliminación de toxinas\nActiva la circulación sanguínea y linfática\nmejora el aporte de oxígeno a los tejidos,\namplía el arco de movilidad,\ndisminuye el dolor,\n\nNota: rehabilita las activdades de la vida diaria (dependiendo la patología).\n\nEl enfoque es en patologías donde el movimiento se ve afectado.',
@@ -335,105 +300,6 @@ const translations = {
     'services.cta.title': '¿Listo para experimentar el alivio que mereces?',
     'services.cta.subtitle': 'Nuestro equipo de profesionales está listo para ayudarte a recuperar tu bienestar y mejorar tu calidad de vida.',
     'services.cta.button': 'Agenda tu cita hoy',
-
-    // Courses Page - Hero Section
-    'courses.hero.badge': 'Formación Especializada',
-    'courses.hero.title': 'CERTIFICACIONES EN TÉCNICAS DE TERAPIA MANUAL PARA MASAJISTAS PROFESIONALES: TU CAMINO HACIA LA EXCELENCIA.',
-    'courses.hero.subtitle': 'Por: María Mercedes Lizalde',
-    'courses.hero.credentials': 'LMT-Instructor-Proveedor de Clases Continuas',
-    
-    // Professional Training Section
-    'courses.training.title': 'Formación Profesional',
-    'courses.training.expand': 'Amplía tus conocimientos y habilidades como masajista.',
-    'courses.training.description': 'Nuestros cursos combinan teoría con práctica intensiva, en grupos reducidos para garantizar atención personalizada y un aprendizaje efectivo.',
-    'courses.training.feature1': 'Instructores certificados con amplia experiencia',
-    'courses.training.feature2': 'Materiales didácticos de alta calidad',
-    'courses.training.feature3': 'Práctica supervisada en grupos reducidos',
-    'courses.training.feature4': 'Certificación avalada',
-    
-    // Available Programs
-    'courses.programs.badge': 'Programas Disponibles',
-    'courses.programs.title': 'Nuestros Certificaciones Especializados',
-    'courses.programs.subtitle': 'Explora nuestros cursos diseñados para profesionales del masaje y terapeutas',
-    
-    // Individual Courses
-    'courses.mti.title': 'Curso de Terapia de Masaje MTI para Adultos',
-    'courses.mti.description': 'El curso incluye una descripción general completa de los desafíos de enseñar a estudiantes adultos. Habilidades prácticas requeridas para guiar a los estudiantes adultos. Una consideración detallada de un plan de estudios de terapia de masajes TDLR aprobado y requisitos.',
-    'courses.mti.duration': '30 horas',
-    'courses.mti.level': 'Profesional',
-    'courses.mti.price': '$450.00',
-    
-    'courses.upper.title': 'Estiramiento Deportivo Miembro Superior',
-    'courses.upper.description': 'Esta clase incluye anatomía de miembros superiores, manipulación de los tejidos blandos para realizar estiramientos de forma correcta y evitar lesiones. Cómo, cuándo y en qué momento se deben llevar a cabo.',
-    'courses.upper.duration': '6 horas',
-    'courses.upper.level': 'Intermedio',
-    'courses.upper.price': '$150.00',
-    
-    'courses.lower.title': 'Estiramiento Deportivo Miembro Inferior',
-    'courses.lower.description': 'Esta clase incluye anatomía de miembros inferiores, manipulación de los tejidos blandos para realizar estiramientos de forma correcta y evitar lesiones. Cómo, cuándo y en qué momento se deben llevar a cabo.',
-    'courses.lower.duration': '6 horas',
-    'courses.lower.level': 'Intermedio',
-    'courses.lower.price': '$150.00',
-    
-    // Course Details
-    'courses.duration': 'Duración',
-    'courses.level': 'Nivel',
-    'courses.investment': 'Inversión',
-    'courses.request.infoo': 'Solicitar Información',
-    
-    // Testimonials Section
-    'courses.testimonials.badge': 'Experiencias',
-    'courses.testimonials.title': 'Lo que Dicen Nuestros Estudiantes',
-    'courses.testimonials.subtitle': 'Experiencias de quienes han tomado nuestros cursos especializados',
-    
-    'courses.testimonial1.name': 'Laura Martínez',
-    'courses.testimonial1.role': 'Masajista profesional',
-    'courses.testimonial1.content': '"El curso de Estiramiento Deportivo fue clave para mejorar mis servicios. Las técnicas aprendidas me permiten ofrecer un tratamiento más completo y efectivo a mis clientes deportistas."',
-    
-    'courses.testimonial2.name': 'Carlos Rodríguez',
-    'courses.testimonial2.role': 'Fisioterapeuta',
-    'courses.testimonial2.content': '"Como profesional de la fisioterapia, el curso de estiramiento me proporcionó nuevas herramientas para tratar lesiones deportivas. La metodología de enseñanza facilita la aplicación inmediata de lo aprendido."',
-    
-    'courses.testimonial3.name': 'Miguel Sánchez',
-    'courses.testimonial3.role': 'Instructor de masaje',
-    'courses.testimonial3.content': '"El curso MTI para enseñar a adultos transformó mi manera de impartir clases. Las estrategias pedagógicas y el conocimiento del plan TDLR son invaluables para cualquier instructor de masaje."',
-    
-    // Upcoming Courses Section
-    'courses.upcoming.badge': 'Calendario',
-    'courses.upcoming.title': 'Próximas Fechas',
-    'courses.upcoming.subtitle': 'Reserva tu lugar en nuestros próximos cursos y talleres',
-    
-    // Table Headers
-    'courses.table.course': 'Curso',
-    'courses.table.start': 'Fecha de Inicio',
-    'courses.table.duration': 'Duración',
-    'courses.table.price': 'Precio',
-    'courses.table.availability': 'Disponibilidad',
-    'courses.table.action': 'Acción',
-    
-    // Availability Status
-    'courses.available': 'Plazas disponibles',
-    'courses.few': 'Pocas plazas',
-    'courses.register': 'Inscribirse',
-    
-    // Course Schedule Entries
-    'courses.schedule.mti.date': '15 de Mayo, 2025',
-    'courses.schedule.mti.duration': '30 horas (5 días)',
-    'courses.schedule.upper.date': '10 de Junio, 2025',
-    'courses.schedule.upper.duration': '6 horas (1 día)',
-    'courses.schedule.lower.date': '11 de Junio, 2025',
-    'courses.schedule.lower.duration': '6 horas (1 día)',
-    
-    // Package Deal
-    'courses.package.title': '¿Interesado en un paquete completo?',
-    'courses.package.description': 'Obtén un 10% de descuento al inscribirte en el paquete completo de Estiramiento Deportivo (miembro superior e inferior) por solo $270.00',
-    'courses.package.button': 'Solicitar Paquete Completo',
-    
-    // CTA Section
-    'courses.cta.title': '¿Quieres ampliar tus conocimientos?',
-    'courses.cta.subtitle': 'Contáctanos para obtener más información sobre nuestros cursos y programas de formación especializada.',
-    'courses.cta.contact': 'Contáctanos Ahora',
-    'courses.cta.phone': 'Llámanos: (713) 922-8973',
 
     'services.features.tendinopathies': 'Tendinopatías y Esguinces',
     'services.features.fractures': 'Recuperación de movimiento por fracturas',
@@ -598,33 +464,6 @@ const translations = {
     'common.required': 'Required',
     'common.optional': 'Optional',
     
-    // Contact
-    'contact.title': 'Contact',
-    'contact.subtitle': 'We are here to help you. Contact us for inquiries, appointments, or any information you need.',
-    'contact.info': 'Contact Information',
-    'contact.phone': 'Phone',
-    'contact.email': 'Email',
-    'contact.schedule': 'Schedule',
-    'contact.address': 'Body Therapy LLC\nKaty, TX',
-    'contact.form.title': 'Send us a message',
-    'contact.form.name': 'Name',
-    'contact.form.email': 'Email',
-    'contact.form.phone': 'Phone',
-    'contact.form.subject': 'Subject',
-    'contact.form.message': 'Message',
-    'contact.form.send': 'Send Message',
-    'contact.form.success': 'Your message has been sent successfully. We will contact you soon.',
-    'contact.form.error': 'There was an error sending your message. Please try again.',
-    
-    // Blog
-    'blog.title': 'Our Blog',
-    'blog.subtitle': 'Articles, tips, and knowledge about manual therapy, therapeutic massage, and integral wellbeing.',
-    'blog.read.more': 'Read more',
-    'blog.read.article': 'Read Article',
-    'blog.related': 'Related Articles',
-    'blog.no.posts': 'No articles available',
-    'blog.no.posts.desc': 'We will have new content for you soon.',
-    
     // Services Page
     'services.page.title': 'Our Services',
     'services.page.subtitle': 'Discover our range of therapeutic and relaxing massages designed to improve your wellbeing',
@@ -643,14 +482,6 @@ const translations = {
     'shop.total': 'Total',
     'shop.quantity': 'Quantity',
     
-    // Courses
-    'courses.title': 'Specialized Certifications',
-    'courses.subtitle': 'Explore our courses designed for massage professionals and therapists',
-    'courses.request.info': 'Request Information',
-    'courses.professional.training': 'Professional Training',
-    'courses.training.desc': 'Expand your knowledge and skills as a massage therapist.',
-    'courses.contact.us': 'Contact Us Now',
-
     // Services Page - Títulos principales
     'services.specialized.title': 'Specialized Therapeutic Massage',
     'services.specialized.desc': 'Used in the treatment of neuromuscular and musculoskeletal disorders, facilitating:\nToxin elimination\nActivates blood and lymphatic circulation\nimproves oxygen supply to tissues,\nexpands range of motion,\nreduces pain,\n\nNote: rehabilitates activities of daily living (depending on the pathology).',
@@ -767,105 +598,6 @@ const translations = {
     'services.cta.title': 'Ready to Experience Relief?',
     'services.cta.subtitle': 'Book your appointment today and start your journey to a pain-free life',
     'services.cta.button': 'Book Appointment',
-
-    // Courses Page - Hero Section
-    'courses.hero.badge': 'Formación Especializada',
-    'courses.hero.title': 'CERTIFICACIONES EN TÉCNICAS DE TERAPIA MANUAL PARA MASAJISTAS PROFESIONALES: TU CAMINO HACIA LA EXCELENCIA.',
-    'courses.hero.subtitle': 'Por: María Mercedes Lizalde',
-    'courses.hero.credentials': 'LMT-Instructor-Proveedor de Clases Continuas',
-    
-    // Professional Training Section
-    'courses.training.title': 'Formación Profesional',
-    'courses.training.expand': 'Amplía tus conocimientos y habilidades como masajista.',
-    'courses.training.description': 'Nuestros cursos combinan teoría con práctica intensiva, en grupos reducidos para garantizar atención personalizada y un aprendizaje efectivo.',
-    'courses.training.feature1': 'Instructores certificados con amplia experiencia',
-    'courses.training.feature2': 'Materiales didácticos de alta calidad',
-    'courses.training.feature3': 'Práctica supervisada en grupos reducidos',
-    'courses.training.feature4': 'Certificación avalada',
-    
-    // Available Programs
-    'courses.programs.badge': 'Programas Disponibles',
-    'courses.programs.title': 'Nuestros Certificaciones Especializados',
-    'courses.programs.subtitle': 'Explora nuestros cursos diseñados para profesionales del masaje y terapeutas',
-    
-    // Individual Courses
-    'courses.mti.title': 'Curso de Terapia de Masaje MTI para Adultos',
-    'courses.mti.description': 'El curso incluye una descripción general completa de los desafíos de enseñar a estudiantes adultos. Habilidades prácticas requeridas para guiar a los estudiantes adultos. Una consideración detallada de un plan de estudios de terapia de masajes TDLR aprobado y requisitos.',
-    'courses.mti.duration': '30 horas',
-    'courses.mti.level': 'Profesional',
-    'courses.mti.price': '$450.00',
-    
-    'courses.upper.title': 'Estiramiento Deportivo Miembro Superior',
-    'courses.upper.description': 'Esta clase incluye anatomía de miembros superiores, manipulación de los tejidos blandos para realizar estiramientos de forma correcta y evitar lesiones. Cómo, cuándo y en qué momento se deben llevar a cabo.',
-    'courses.upper.duration': '6 horas',
-    'courses.upper.level': 'Intermedio',
-    'courses.upper.price': '$150.00',
-    
-    'courses.lower.title': 'Estiramiento Deportivo Miembro Inferior',
-    'courses.lower.description': 'Esta clase incluye anatomía de miembros inferiores, manipulación de los tejidos blandos para realizar estiramientos de forma correcta y evitar lesiones. Cómo, cuándo y en qué momento se deben llevar a cabo.',
-    'courses.lower.duration': '6 horas',
-    'courses.lower.level': 'Intermedio',
-    'courses.lower.price': '$150.00',
-    
-    // Course Details
-    'courses.duration': 'Duration',
-    'courses.level': 'Level',
-    'courses.investment': 'Investment',
-    'courses.request.infoo': 'Request Information',
-    
-    // Testimonials Section
-    'courses.testimonials.badge': 'Experiences',
-    'courses.testimonials.title': 'What Our Students Say',
-    'courses.testimonials.subtitle': 'Experiences from those who have taken our specialized courses',
-    
-    'courses.testimonial1.name': 'Laura Martínez',
-    'courses.testimonial1.role': 'Professional massage therapist',
-    'courses.testimonial1.content': '"The Sports Stretching course was key to improving my services. The techniques learned allow me to offer more complete and effective treatment to my sports clients."',
-    
-    'courses.testimonial2.name': 'Carlos Rodríguez',
-    'courses.testimonial2.role': 'Physical therapist',
-    'courses.testimonial2.content': '"As a physical therapy professional, the stretching course provided me with new tools to treat sports injuries. The teaching methodology facilitates the immediate application of what was learned."',
-    
-    'courses.testimonial3.name': 'Miguel Sánchez',
-    'courses.testimonial3.role': 'Massage instructor',
-    'courses.testimonial3.content': '"The MTI course for teaching adults transformed my way of teaching classes. The pedagogical strategies and knowledge of the TDLR plan are invaluable for any massage instructor."',
-    
-    // Upcoming Courses Section
-    'courses.upcoming.badge': 'Calendar',
-    'courses.upcoming.title': 'Upcoming Dates',
-    'courses.upcoming.subtitle': 'Reserve your spot in our upcoming courses and workshops',
-    
-    // Table Headers
-    'courses.table.course': 'Course',
-    'courses.table.start': 'Start Date',
-    'courses.table.duration': 'Duration',
-    'courses.table.price': 'Price',
-    'courses.table.availability': 'Availability',
-    'courses.table.action': 'Action',
-    
-    // Availability Status
-    'courses.available': 'Available spots',
-    'courses.few': 'Few spots left',
-    'courses.register': 'Register',
-    
-    // Course Schedule Entries
-    'courses.schedule.mti.date': 'May 15, 2025',
-    'courses.schedule.mti.duration': '30 hours (5 days)',
-    'courses.schedule.upper.date': 'June 10, 2025',
-    'courses.schedule.upper.duration': '6 hours (1 day)',
-    'courses.schedule.lower.date': 'June 11, 2025',
-    'courses.schedule.lower.duration': '6 hours (1 day)',
-    
-    // Package Deal
-    'courses.package.title': 'Interested in a complete package?',
-    'courses.package.description': 'Get a 10% discount when enrolling in the complete Sports Stretching package (upper and lower limb) for only $270.00',
-    'courses.package.button': 'Request Complete Package',
-    
-    // CTA Section
-    'courses.cta.title': 'Want to expand your knowledge?',
-    'courses.cta.subtitle': 'Contact us for more information about our courses and specialized training programs.',
-    'courses.cta.contact': 'Contact Us Now',
-    'courses.cta.phone': 'Call us: (713) 922-8973',
 
     'services.features.tendinopathies': 'Tendinopatías y Esguinces',
     'services.features.fractures': 'Movement Recovery from Fractures',
