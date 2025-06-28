@@ -1,15 +1,18 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import HeroCarousel from '@/components/ui/HeroCarousel';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTestimonials } from '@/contexts/TestimonialContext';
 // import HeroCarousel from '@/components/ui/HeroCarouselTest';
 
 
 export default function Home() {
   const { t } = useLanguage();
+  const { getTestimonialTranslation } = useTestimonials();
 
   // ✅ YA NO NECESITAMOS: Arrays de imágenes hardcodeadas
   // ❌ ANTES: const heroImages = [{ src: "...", alt: "..." }, ...]
@@ -348,7 +351,7 @@ export default function Home() {
       <TestimonialSection />
       <div className="container mx-auto px-4 pb-12 -mt-8 text-center">
         <Button href="/about#testimonials" variant="outline" size="lg">
-          {t('testimonials.view.all')}
+          {getTestimonialTranslation('view.all')}
         </Button>
       </div>
 

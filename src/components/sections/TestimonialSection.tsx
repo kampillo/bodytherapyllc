@@ -12,7 +12,7 @@ interface TestimonialCarouselProps {
 
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = false }) => {
   const { t } = useLanguage();
-  const { getTestimonials } = useTestimonials();
+  const { getTestimonials, getTestimonialTranslation } = useTestimonials();
   const carouselRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -76,9 +76,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">{t('testimonials.title')}</h2>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">{getTestimonialTranslation('title')}</h2>
             <p className="text-lg text-dark/70 max-w-3xl mx-auto">
-              {t('testimonials.subtitle')}
+              {getTestimonialTranslation('subtitle')}
             </p>
           </div>
           
@@ -101,10 +101,10 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-800 rounded-full text-sm font-medium mb-4">{t('testimonials.badge')}</span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">{t('testimonials.title')}</h2>
+          <span className="inline-block px-3 py-1 bg-secondary-50 text-secondary-800 rounded-full text-sm font-medium mb-4">{getTestimonialTranslation('badge')}</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-800 mb-4">{getTestimonialTranslation('title')}</h2>
           <p className="text-lg text-dark/70 max-w-3xl mx-auto">
-            {t('testimonials.subtitle')}
+            {getTestimonialTranslation('subtitle')}
           </p>
         </div>
         
@@ -117,7 +117,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
           <button 
             onClick={() => setScrollPosition(prev => Math.max(0, prev - 400))}
             className="absolute top-1/2 left-2 z-20 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-primary-50 transition-all"
-            aria-label={t('testimonials.previous')}
+            aria-label={getTestimonialTranslation('previous')}
           >
             <svg className="h-6 w-6 text-primary-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -127,7 +127,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ showAll = fal
           <button 
             onClick={() => setScrollPosition(prev => prev + 400)}
             className="absolute top-1/2 right-2 z-20 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-primary-50 transition-all"
-            aria-label={t('testimonials.next')}
+            aria-label={getTestimonialTranslation('next')}
           >
             <svg className="h-6 w-6 text-primary-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

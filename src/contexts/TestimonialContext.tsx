@@ -28,6 +28,7 @@ export interface TranslatedTestimonial {
 interface TestimonialContextType {
   getTestimonials: () => TranslatedTestimonial[];
   getTestimonial: (id: number) => TranslatedTestimonial | undefined;
+  getTestimonialTranslation: (key: string) => string;
 }
 
 // Crear el contexto
@@ -286,6 +287,26 @@ const testimonials: Testimonial[] = [
   }
 ];
 
+// Traducciones específicas para testimonios
+const testimonialTranslations: Record<string, Record<string, string>> = {
+  es: {
+    'view.all': 'Ver todos los testimonios',
+    'title': 'Lo que dicen nuestros clientes',
+    'subtitle': 'Descubre las experiencias transformadoras de quienes han confiado en nuestros servicios',
+    'badge': 'Testimonios',
+    'previous': 'Anterior',
+    'next': 'Siguiente'
+  },
+  en: {
+    'view.all': 'View all testimonials',
+    'title': 'What our clients say',
+    'subtitle': 'Discover the transformative experiences of those who have trusted our services',
+    'badge': 'Testimonials',
+    'previous': 'Previous',
+    'next': 'Next'
+  }
+};
+
 interface TestimonialProviderProps {
   children: ReactNode;
 }
@@ -317,9 +338,15 @@ export const TestimonialProvider: React.FC<TestimonialProviderProps> = ({ childr
     };
   };
 
+  // Función para obtener traducciones específicas de testimonios
+  const getTestimonialTranslation = (key: string): string => {
+    return testimonialTranslations[language]?.[key] || key;
+  };
+
   const value: TestimonialContextType = {
     getTestimonials,
     getTestimonial,
+    getTestimonialTranslation,
   };
 
   return (
