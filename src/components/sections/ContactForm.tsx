@@ -78,23 +78,47 @@ const ContactForm = () => {
       message: 'Cargando... / Loading...',
     });
     
-    // Simular envío
-    setTimeout(() => {
-      setFormStatus({
-        submitted: true,
-        success: true,
-        message: t.form.success,
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
       
-      // Resetear el formulario
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
+      const result = await response.json();
+      
+      if (response.ok) {
+        setFormStatus({
+          submitted: true,
+          success: true,
+          message: t.form.success,
+        });
+        
+        // Resetear el formulario
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        setFormStatus({
+          submitted: true,
+          success: false,
+          message: result.error || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.',
+        });
+      }
+    } catch (error) {
+      console.error('Error sending contact form:', error);
+      setFormStatus({
+        submitted: true,
+        success: false,
+        message: 'Error de conexión. Por favor, inténtalo de nuevo.',
       });
-    }, 1500);
+    }
   };
   
   return (
