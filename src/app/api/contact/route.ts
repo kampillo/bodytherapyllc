@@ -3,15 +3,22 @@ import nodemailer from 'nodemailer';
 
 // Create transporter for sending emails
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // You can change this to your email provider
+  service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER, // Your email address
-    pass: process.env.EMAIL_PASS, // Your email password or app password
+    user: process.env.EMAIL_USER, // Your Gmail address
+    pass: process.env.EMAIL_PASS, // Your Gmail app password
   },
 });
 
 export async function POST(request: NextRequest) {
   try {
+    // Debug: Check if environment variables are loaded
+    console.log('Email configuration check:');
+    console.log('EMAIL_USER:', process.env.EMAIL_USER ? 'Set' : 'Not set');
+    console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'Set' : 'Not set');
+    console.log('Using host: smtp.bodytherapyllc.com');
+    console.log('Using port: 587');
+    
     const body = await request.json();
     const { name, email, phone, subject, message } = body;
 
@@ -72,7 +79,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error sending email:', error);
     return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: `Failed to send email: ${error instanceof Error ? error.message : 'Unknown error'}` },
       { status: 500 }
     );
   }

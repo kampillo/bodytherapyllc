@@ -1,22 +1,47 @@
 # Email Setup for Contact Form
 
-The contact form is now configured to send emails to `mercedes@bodytherapyllc.com`. To make it work, you need to set up the email configuration.
+The contact form is now configured to send emails to `mercedes@bodytherapyllc.com` using Gmail SMTP. To make it work, you need to set up the Gmail configuration.
 
 ## Setup Instructions
 
-### 1. Create Environment File
+### 1. Update Environment File
 
-Create a `.env.local` file in the root directory of your project with the following content:
+Update your `.env` file with the following Gmail configuration:
 
 ```env
-# Email Configuration for Contact Form
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
+# Email Configuration for Contact Form (Gmail)
+EMAIL_USER=kampiyojp@gmail.com
+EMAIL_PASS=your-gmail-app-password
 ```
 
-### 2. Gmail Setup (Recommended)
+### 2. Gmail Setup (Current Configuration)
 
-If you're using Gmail, follow these steps:
+The contact form is now configured for Gmail. Follow these steps:
+
+1. **Enable 2-Step Verification** (if not already enabled):
+   - Go to your Google Account settings
+   - Navigate to Security
+   - Enable 2-Step Verification
+
+2. **Generate an App Password**:
+   - Go to Security > App passwords
+   - Select "Mail" as the app
+   - Generate a new app password
+   - Copy the generated password (16 characters)
+
+3. **Update your .env file**:
+   ```env
+   EMAIL_USER=kampiyojp@gmail.com
+   EMAIL_PASS=your-16-character-app-password
+   ```
+
+**Important Notes for Gmail:**
+- Use your full Gmail address as the username
+- Use the App Password, NOT your regular Gmail password
+- The App Password is 16 characters long
+- Make sure 2-Step Verification is enabled
+
+If you want to switch to Gmail, follow these steps:
 
 1. **Enable 2-Step Verification** (if not already enabled):
    - Go to your Google Account settings
@@ -37,11 +62,47 @@ If you're using Gmail, follow these steps:
 
 ### 3. Alternative Email Providers
 
-You can use other email providers by modifying the `service` field in `src/app/api/contact/route.ts`:
+The current configuration is set up for **Gmail**. If you need to use other providers:
 
-- **Outlook/Hotmail**: Change `service: 'gmail'` to `service: 'outlook'`
-- **Yahoo**: Change `service: 'gmail'` to `service: 'yahoo'`
-- **Custom SMTP**: Replace the service configuration with:
+- **Bluehost**: Replace the configuration with:
+  ```javascript
+  const transporter = nodemailer.createTransport({
+    host: 'mail.bodytherapyllc.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+  ```
+
+- **Outlook/Hotmail**: 
+  ```javascript
+  const transporter = nodemailer.createTransport({
+    service: 'outlook',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+  ```
+
+- **Yahoo**: 
+  ```javascript
+  const transporter = nodemailer.createTransport({
+    service: 'yahoo',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+  ```
+
+- **Custom SMTP**: 
   ```javascript
   const transporter = nodemailer.createTransport({
     host: 'your-smtp-host.com',
