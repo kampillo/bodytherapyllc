@@ -143,17 +143,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
             <img
               src={banner.image}
               alt={banner.altText || banner.title || 'Banner'}
-              style={{ 
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center center',
-                display: 'block',
-                zIndex: 1
-              }}
+              className="absolute top-0 left-0 w-full h-full object-contain md:object-cover object-center block z-[1]"
             />
             
             {/* Content overlay - COMENTADO: Solo mostrar imagen sin overlay */}

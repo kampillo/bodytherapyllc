@@ -631,7 +631,120 @@ const ServicesPage: React.FC = () => {
           </div>
 
           {/* Couple Massage Packages */}
-       
+          <div className="mt-16">
+            <h3 className="text-center font-heading text-2xl font-bold text-primary-800 mb-12">
+              {t('services.packages.couple.title')}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Couple Massage Body */}
+              <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+                <div className="relative">
+                  <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                    {t('services.promotion')}
+                  </div>
+                  <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                    <Image
+                      src="/images/services/4.jpeg"
+                      alt={t('services.packages.couple.body.title')}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-primary-800 mb-4">
+                  {t('services.packages.couple.body.title')}
+                </h3>
+                <p className="text-dark/70 text-sm mb-4">
+                  {t('services.packages.couple.body.desc')}
+                </p>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">{t('services.packages.couple.body.duration')}</span>
+                  </div>
+                  <div>
+                    <span className="text-sm line-through text-dark/50 mr-2">{t('services.packages.couple.body.price')}</span>
+                    <span className="text-xl font-bold text-secondary-700">{t('services.packages.couple.body.promotion')}</span>
+                  </div>
+                </div>
+                <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
+              </div>
+
+              {/* Couple Massage BodyFacial */}
+              <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+                <div className="relative">
+                  <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                    {t('services.promotion')}
+                  </div>
+                  <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                    <Image
+                      src="/images/services/5.jpeg"
+                      alt={t('services.packages.couple.facial.title')}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-primary-800 mb-4">
+                  {t('services.packages.couple.facial.title')}
+                </h3>
+                <p className="text-dark/70 text-sm mb-4">
+                  {t('services.packages.couple.facial.desc')}
+                </p>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">{t('services.packages.couple.facial.duration')}</span>
+                  </div>
+                  <div>
+                    <span className="text-sm line-through text-dark/50 mr-2">{t('services.packages.couple.facial.price')}</span>
+                    <span className="text-xl font-bold text-secondary-700">{t('services.packages.couple.facial.promotion')}</span>
+                  </div>
+                </div>
+                <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
+              </div>
+
+              {/* Couple Massage BodyStone */}
+              <div className="bg-white rounded-xl shadow-soft p-6 hover:shadow-hover transition-all">
+                <div className="relative">
+                  <div className="absolute -top-4 -right-4 bg-secondary-600 text-white text-sm font-bold py-1 px-3 rounded-full">
+                    {t('services.promotion')}
+                  </div>
+                  <div className="relative rounded-lg overflow-hidden h-48 mb-6">
+                    <Image
+                      src="/images/services/6.jpeg"
+                      alt={t('services.packages.couple.stone.title')}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-primary-800 mb-4">
+                  {t('services.packages.couple.stone.title')}
+                </h3>
+                <p className="text-dark/70 text-sm mb-4">
+                  {t('services.packages.couple.stone.desc')}
+                </p>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-dark/70">{t('services.packages.couple.stone.duration')}</span>
+                  </div>
+                  <div>
+                    <span className="text-sm line-through text-dark/50 mr-2">{t('services.packages.couple.stone.price')}</span>
+                    <span className="text-xl font-bold text-secondary-700">{t('services.packages.couple.stone.promotion')}</span>
+                  </div>
+                </div>
+                <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
+              </div>
+            </div>
+          </div>
 
           <div className="mt-16">
             <h3 className="text-center font-heading text-2xl font-bold text-primary-800 mb-12">
