@@ -53,7 +53,7 @@ export default function Home() {
             {/* Carrusel dinámico: responsivo y administrable */}
             <div className="w-full md:w-8/12">
               {/* Mobile: altura fija más pequeña para ver imágenes completas */}
-              <div className="block md:hidden h-48 sm:h-56 rounded-xl overflow-hidden shadow-hover">
+              <div className="block md:hidden aspect-[16/9] rounded-xl overflow-hidden shadow-hover">
                 <div className="w-full h-full relative">
                   <HeroCarousel interval={6000} />
                 </div>

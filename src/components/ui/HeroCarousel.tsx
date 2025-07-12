@@ -115,15 +115,13 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
       position: 'relative',
       width: '100%',
       height: '100%',
-      minHeight: '400px',
       overflow: 'hidden'
     }}>
       {/* Main carousel container */}
       <div style={{
         position: 'relative',
         width: '100%',
-        height: '100%',
-        minHeight: '400px'
+        height: '100%'
       }}>
         {banners.map((banner, index) => (
           <div 
@@ -143,7 +141,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
             <img
               src={banner.image}
               alt={banner.altText || banner.title || 'Banner'}
-              className="absolute top-0 left-0 w-full h-full object-contain md:object-cover object-center block z-[1]"
+              className="absolute top-0 left-0 w-full h-full object-cover object-top block z-[1]"
             />
             
             {/* Content overlay - COMENTADO: Solo mostrar imagen sin overlay */}
