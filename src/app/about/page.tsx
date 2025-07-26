@@ -33,31 +33,59 @@ const AboutPage = () => {
       {/* Story Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <div className="relative rounded-lg overflow-hidden shadow-xl">
+          <div className="flex flex-col items-center">
+            {/* Image Section - Centered */}
+            {/* <div className="mb-12 flex justify-center">
+              <div className="relative rounded-lg overflow-hidden shadow-xl max-w-md">
                 <Image
                   src="/images/home/Masajes-spa.jpg"
-                  alt="María Mercedes Lizalde - Fundadora"
-                  width={600}
-                  height={400}
+                  alt="María Mercedes Cázares - Fundadora"
+                  width={400}
+                  height={300}
                   className="w-full h-auto"
                 />
               </div>
-            </div>
-            <div className="md:w-1/2 md:pl-12">
-              <h2 className="text-3xl font-bold text-primary-800 mb-4">
+            </div> */}
+            
+            {/* Text Section - Full Width */}
+            <div className="w-full">
+              <h2 className="text-3xl font-bold text-primary-800 mb-8 text-center">
                 {t('about.story.title')}
               </h2>
-              <p className="text-lg text-dark/70 mb-6">
-                {t('about.story.p1')}
-              </p>
-              <p className="text-lg text-dark/70 mb-6">
-                {t('about.story.p2')}
-              </p>
-              <p className="text-lg text-dark/70">
-                {t('about.story.p3')}
-              </p>
+              <div className="max-w-4xl mx-auto space-y-6">
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p1')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p2')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p3')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p4')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p5')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p6')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p7')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p8')}
+                </p>
+                <ul className="text-lg text-dark/70 leading-relaxed ml-6 space-y-2 list-disc">
+                  <li>{t('about.story.services.1')}</li>
+                  <li>{t('about.story.services.2')}</li>
+                  <li>{t('about.story.services.3')}</li>
+                  <li>{t('about.story.services.4')}</li>
+                  <li>{t('about.story.services.5')}</li>
+                  <li>{t('about.story.services.6')}</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
