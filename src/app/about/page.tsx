@@ -37,13 +37,13 @@ const AboutPage = () => {
             {/* Image Section - Centered */}
             {/* <div className="mb-12 flex justify-center">
               <div className="relative rounded-lg overflow-hidden shadow-xl max-w-md">
-                <Image
-                  src="/images/home/Masajes-spa.jpg"
-                  alt="María Mercedes Cázares - Fundadora"
-                  width={400}
-                  height={300}
-                  className="w-full h-auto"
-                />
+                                  <Image
+                    src="/images/home/Masajes-spa.jpg"
+                    alt="María Mercedes - Fundadora"
+                    width={400}
+                    height={300}
+                    className="w-full h-auto"
+                  />
               </div>
             </div> */}
             
@@ -76,6 +76,12 @@ const AboutPage = () => {
                 </p>
                 <p className="text-lg text-dark/70 leading-relaxed">
                   {t('about.story.p8')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p9')}
+                </p>
+                <p className="text-lg text-dark/70 leading-relaxed">
+                  {t('about.story.p10')}
                 </p>
                 <ul className="text-lg text-dark/70 leading-relaxed ml-6 space-y-2 list-disc">
                   <li>{t('about.story.services.1')}</li>
