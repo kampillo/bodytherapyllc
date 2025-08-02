@@ -342,6 +342,8 @@ const translations = {
     'services.features.pain': 'Disminución del dolor',
     'services.features.region': '*Se trabaja por región',
     'services.features.packages.three': 'Paquete de 3',
+    'services.conditions.title': 'Condiciones que trata:',
+    'services.objectives.title': 'Objetivos:',
 
     'services.packages.three': 'Paquete de 3'
   },
@@ -665,6 +667,8 @@ const translations = {
     'services.features.pain': 'Pain Reduction',
     'services.features.region': '*Worked by region',
     'services.features.packages.three': 'Paquete de 3',
+    'services.conditions.title': 'Conditions treated:',
+    'services.objectives.title': 'Objectives:',
 
     'services.packages.three': 'Paquete de 3'
   }

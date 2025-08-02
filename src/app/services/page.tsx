@@ -37,7 +37,7 @@ const ServicesPage: React.FC = () => {
         description={t('services.specialized.desc')}
         imageSrc="/images/services/masaje-terapeutico-especializado.png"
         imageAlt={t('services.specialized.title')}
-        price="$125.00"
+        price="$120.00"
         duration="75 min"
         features={[
           t('services.features.tendinopathies'),
@@ -48,7 +48,9 @@ const ServicesPage: React.FC = () => {
           t('services.features.back'),
           t('services.features.whiplash'),
           t('services.features.tennis'),
-          t('services.features.sports'),
+          t('services.features.sports')
+        ]}
+        objectives={[
           t('services.features.toxins'),
           t('services.features.circulation'),
           t('services.features.oxygen'),

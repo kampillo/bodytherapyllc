@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ServiceCardProps {
   title: string;
@@ -11,6 +12,7 @@ interface ServiceCardProps {
   price?: string;
   duration?: string;
   features?: string[];
+  objectives?: string[];
   link: string;
   reversed?: boolean;
   id?: string;
@@ -24,10 +26,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   price,
   duration,
   features,
+  objectives,
   link,
   reversed = false,
   id
 }) => {
+  const { t } = useLanguage();
   return (
     <section id={id} className={`py-16 ${reversed ? 'bg-primary-50' : 'bg-white'}`}>
       <div className="container mx-auto px-4">
@@ -58,16 +62,35 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             </p>
             
             {features && features.length > 0 && (
-              <ul className="space-y-2 mb-6">
-                {features.map((feature, index) => (
-                  <li key={index} className="flex items-start">
-                    <svg className="h-6 w-6 text-secondary-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-dark/80">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="mb-6">
+                <h3 className="font-semibold text-lg text-primary-800 mb-3">{t('services.conditions.title')}</h3>
+                <ul className="space-y-2">
+                  {features.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <svg className="h-5 w-5 text-secondary-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-dark/80 text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {objectives && objectives.length > 0 && (
+              <div className="mb-6">
+                <h3 className="font-semibold text-lg text-primary-800 mb-3">{t('services.objectives.title')}</h3>
+                <ul className="space-y-2">
+                  {objectives.map((objective, index) => (
+                    <li key={index} className="flex items-start">
+                      <svg className="h-5 w-5 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4" />
+                      </svg>
+                      <span className="text-dark/80 text-sm">{objective}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
             
             {(price || duration) && (
