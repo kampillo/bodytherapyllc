@@ -152,17 +152,18 @@ const translations = {
     'testimonials.client.role': 'Cliente',
     'testimonials.previous': 'Testimonio anterior',
     'testimonials.next': 'Testimonio siguiente',
-    
+
     // Footer
-    'footer.services': 'Services',
-    'footer.links': 'Links',
-    'footer.contact': 'Contact',
-    'footer.follow': 'Follow Us',
-    'footer.schedule': 'Schedule',
-    'footer.schedule.weekdays': 'Monday - Friday: 9:00 AM - 6:00 PM',
-    'footer.schedule.saturday': 'Saturday: 9:00 AM - 5:00 PM',
-    'footer.schedule.sunday': 'Sunday: Closed',
-    'footer.rights': 'All rights reserved.',
+    'footer.services': 'Servicios',
+    'footer.links': 'Enlaces',
+    'footer.contact': 'Contacto',
+    'contact.address': '1846 Snake River Road\nSuite B, Office 13\nKaty, TX 77449',
+    'footer.follow': 'Síguenos',
+    'footer.schedule': 'Horario',
+    'footer.schedule.weekdays': 'Lunes - Viernes: 9:00 AM - 6:00 PM',
+    'footer.schedule.saturday': 'Sábado: 9:00 AM - 5:00 PM',
+    'footer.schedule.sunday': 'Domingo: Cerrado',
+    'footer.rights': 'Todos los derechos reservados.',
     
     // Common
     'common.loading': 'Loading...',
@@ -474,11 +475,12 @@ const translations = {
     'testimonials.client.role': 'Client',
     'testimonials.previous': 'Previous testimonial',
     'testimonials.next': 'Next testimonial',
-    
+
     // Footer
     'footer.services': 'Services',
     'footer.links': 'Links',
     'footer.contact': 'Contact',
+    'contact.address': '1846 Snake River Road\nSuite B, Office 13\nKaty, TX 77449',
     'footer.follow': 'Follow Us',
     'footer.schedule': 'Schedule',
     'footer.schedule.weekdays': 'Monday - Friday: 9:00 AM - 6:00 PM',

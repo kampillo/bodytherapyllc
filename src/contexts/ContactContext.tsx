@@ -94,7 +94,7 @@ export const ContactProvider: React.FC<ContactProviderProps> = ({ children }) =>
       phone: 'Teléfono',
       email: 'Correo Electrónico',
       schedule: 'Horario',
-      address: 'Body Therapy LLC\nKaty, TX',
+      address: '1846 Snake River Road\nSuite B, Office 13\nKaty, TX 77449',
       follow: 'Síguenos',
       
       // Form
@@ -152,7 +152,7 @@ export const ContactProvider: React.FC<ContactProviderProps> = ({ children }) =>
       phone: 'Phone',
       email: 'Email',
       schedule: 'Schedule',
-      address: 'Body Therapy LLC\nKaty, TX',
+      address: '1846 Snake River Road\nSuite B, Office 13\nKaty, TX 77449',
       follow: 'Follow Us',
       
       // Form
