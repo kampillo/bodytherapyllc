@@ -40,7 +40,6 @@ const ServicesPage: React.FC = () => {
         description={t('services.specialized.desc')}
         imageSrc="/images/services/masaje-terapeutico-especializado.png"
         imageAlt={t('services.specialized.title')}
-        price="$120.00"
         duration="75 min"
         features={[
           t('services.features.tendinopathies'),
@@ -103,10 +102,7 @@ const ServicesPage: React.FC = () => {
                       </svg>
                       <span className="text-dark/70">60 {t('services.min')}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="font-bold text-secondary-700">$95.00</span>
-                      <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
-                    </div>
+                    <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
                   </div>
                 </div>
               </div>
@@ -139,10 +135,7 @@ const ServicesPage: React.FC = () => {
                       </svg>
                       <span className="text-dark/70">60 {t('services.min')}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="font-bold text-secondary-700">$95.00</span>
-                      <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
-                    </div>
+                    <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
                   </div>
                 </div>
               </div>
@@ -175,14 +168,8 @@ const ServicesPage: React.FC = () => {
                       </svg>
                       <span className="text-dark/70">60 {t('services.min')}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="font-bold text-secondary-700">$100.00</span>
-                      <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
-                    </div>
+                    <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
                   </div>
-                  <p className="text-sm text-secondary-700 mt-2">
-                    {t('services.packages.three')} {t('services.clinical.lymphatic.title').toLowerCase()}: $280.00
-                  </p>
                 </div>
               </div>
             </div>
@@ -214,10 +201,7 @@ const ServicesPage: React.FC = () => {
                       </svg>
                       <span className="text-dark/70">60 {t('services.min')}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="font-bold text-secondary-700">$90.00</span>
-                      <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
-                    </div>
+                    <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
                   </div>
                 </div>
               </div>
@@ -262,7 +246,6 @@ const ServicesPage: React.FC = () => {
                     </svg>
                     <span className="text-dark/70">60 {t('services.min')}</span>
                   </div>
-                  <span className="font-bold text-secondary-700">$80.00</span>
                 </div>
               </div>
               <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
@@ -292,7 +275,6 @@ const ServicesPage: React.FC = () => {
                     </svg>
                     <span className="text-dark/70">60 {t('services.min')}</span>
                   </div>
-                  <span className="font-bold text-secondary-700">$80.00</span>
                 </div>
               </div>
               <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
@@ -322,7 +304,6 @@ const ServicesPage: React.FC = () => {
                     </svg>
                     <span className="text-dark/70">60 {t('services.min')}</span>
                   </div>
-                  <span className="font-bold text-secondary-700">$90.00</span>
                 </div>
               </div>
               <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
@@ -413,7 +394,6 @@ const ServicesPage: React.FC = () => {
                       </svg>
                       <span className="text-dark/70">60 {t('services.min')}</span>
                     </div>
-                    <span className="font-bold text-secondary-700">$70.00</span>
                   </div>
                   <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
                 </div>
@@ -433,7 +413,6 @@ const ServicesPage: React.FC = () => {
                       </svg>
                       <span className="text-dark/70">45 {t('services.min')}</span>
                     </div>
-                    <span className="font-bold text-secondary-700">$70.00</span>
                   </div>
                   <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
                 </div>
@@ -501,16 +480,12 @@ const ServicesPage: React.FC = () => {
                   <span>{t('services.package.towels')}</span>
                 </li>
               </ul>
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center mb-6">
                 <div className="flex items-center">
                   <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-dark/70">75 {t('services.min')}</span>
-                </div>
-                <div>
-                  <span className="text-sm line-through text-dark/50 mr-2">$120.00</span>
-                  <span className="text-xl font-bold text-secondary-700">$95.00</span>
                 </div>
               </div>
               <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
@@ -560,16 +535,12 @@ const ServicesPage: React.FC = () => {
                   <span>{t('services.package.aromatherapy')}</span>
                 </li>
               </ul>
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center mb-6">
                 <div className="flex items-center">
                   <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-dark/70">75 {t('services.min')}</span>
-                </div>
-                <div>
-                  <span className="text-sm line-through text-dark/50 mr-2">$110.00</span>
-                  <span className="text-xl font-bold text-secondary-700">$100.00</span>
                 </div>
               </div>
               <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
@@ -619,16 +590,12 @@ const ServicesPage: React.FC = () => {
                   <span>{t('services.package.oil')}</span>
                 </li>
               </ul>
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center mb-6">
                 <div className="flex items-center">
                   <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-dark/70">75 {t('services.min')}</span>
-                </div>
-                <div>
-                  <span className="text-sm line-through text-dark/50 mr-2">$130.00</span>
-                  <span className="text-xl font-bold text-secondary-700">$110.00</span>
                 </div>
               </div>
               <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
@@ -662,16 +629,12 @@ const ServicesPage: React.FC = () => {
                 <p className="text-dark/70 text-sm mb-4">
                   {t('services.packages.couple.body.desc')}
                 </p>
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center mb-6">
                   <div className="flex items-center">
                     <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span className="text-dark/70">{t('services.packages.couple.body.duration')}</span>
-                  </div>
-                  <div>
-                    <span className="text-sm line-through text-dark/50 mr-2">{t('services.packages.couple.body.price')}</span>
-                    <span className="text-xl font-bold text-secondary-700">{t('services.packages.couple.body.promotion')}</span>
                   </div>
                 </div>
                 <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
@@ -698,16 +661,12 @@ const ServicesPage: React.FC = () => {
                 <p className="text-dark/70 text-sm mb-4">
                   {t('services.packages.couple.facial.desc')}
                 </p>
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center mb-6">
                   <div className="flex items-center">
                     <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span className="text-dark/70">{t('services.packages.couple.facial.duration')}</span>
-                  </div>
-                  <div>
-                    <span className="text-sm line-through text-dark/50 mr-2">{t('services.packages.couple.facial.price')}</span>
-                    <span className="text-xl font-bold text-secondary-700">{t('services.packages.couple.facial.promotion')}</span>
                   </div>
                 </div>
                 <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
@@ -734,16 +693,12 @@ const ServicesPage: React.FC = () => {
                 <p className="text-dark/70 text-sm mb-4">
                   {t('services.packages.couple.stone.desc')}
                 </p>
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center mb-6">
                   <div className="flex items-center">
                     <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span className="text-dark/70">{t('services.packages.couple.stone.duration')}</span>
-                  </div>
-                  <div>
-                    <span className="text-sm line-through text-dark/50 mr-2">{t('services.packages.couple.stone.price')}</span>
-                    <span className="text-xl font-bold text-secondary-700">{t('services.packages.couple.stone.promotion')}</span>
                   </div>
                 </div>
                 <Button href="/contact" variant="primary" size="md" className="w-full">{t('services.book')}</Button>
@@ -766,14 +721,13 @@ const ServicesPage: React.FC = () => {
                     <p className="text-dark/70 mb-6">
                       {t('services.packages.neck.desc')}
                     </p>
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="flex items-center mb-6">
                       <div className="flex items-center">
                         <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span className="text-dark/70">30 {t('services.min')}</span>
                       </div>
-                      <span className="font-bold text-secondary-700">$50.00</span>
                     </div>
                     <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
                   </div>
@@ -790,14 +744,13 @@ const ServicesPage: React.FC = () => {
                     <p className="text-dark/70 mb-6">
                       {t('services.packages.legs.desc')}
                     </p>
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="flex items-center mb-6">
                       <div className="flex items-center">
                         <svg className="h-5 w-5 text-secondary-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span className="text-dark/70">45 {t('services.min')}</span>
                       </div>
-                      <span className="font-bold text-secondary-700">$75.00</span>
                     </div>
                     <Button href="/contact" variant="outline" size="sm">{t('services.book')}</Button>
                   </div>

@@ -9,7 +9,6 @@ interface ServiceCardProps {
   description: string;
   imageSrc: string;
   imageAlt: string;
-  price?: string;
   duration?: string;
   features?: string[];
   objectives?: string[];
@@ -23,7 +22,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   description,
   imageSrc,
   imageAlt,
-  price,
   duration,
   features,
   objectives,
@@ -93,21 +91,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               </div>
             )}
             
-            {(price || duration) && (
+            {duration && (
               <div className="flex flex-wrap items-center gap-6 mb-6 p-4 bg-light rounded-lg border border-gray-100">
-                {duration && (
-                  <div>
-                    <p className="text-sm text-dark/60 mb-1">Duración</p>
-                    <p className="text-lg font-semibold text-primary-800">{duration}</p>
-                  </div>
-                )}
-                
-                {price && (
-                  <div>
-                    <p className="text-sm text-dark/60 mb-1">Precio</p>
-                    <p className="text-xl font-bold text-secondary-600">{price}</p>
-                  </div>
-                )}
+                <div>
+                  <p className="text-sm text-dark/60 mb-1">Duración</p>
+                  <p className="text-lg font-semibold text-primary-800">{duration}</p>
+                </div>
               </div>
             )}
             
